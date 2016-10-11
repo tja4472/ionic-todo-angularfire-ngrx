@@ -42,5 +42,8 @@
     "ionic-plugin-keyboard"
   ],
   "cordovaPlatforms": [],
-  "description": "my-side-menu: An Ionic project"
+  "description": "my-side-menu: An Ionic project",
+  "config": {
+    "ionic_rollup": "./config/af-rollup.config.js"
+  }  
 }
