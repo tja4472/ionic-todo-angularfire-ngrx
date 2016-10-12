@@ -1,6 +1,6 @@
 import { Observable } from 'rxjs/Observable';
 
-import { LoginActions, LoginActionTypes } from '../actions/login.action';
+import * as loginAction from '../actions/login.action';
 import { FirebaseAuthState } from 'angularfire2';
 
 import { assign } from '../utils';
@@ -21,20 +21,20 @@ const initialState: State = {
 
 export function reducer(
     state = initialState,
-    action: LoginActions,
+    action: loginAction.Actions,
 ): State {
     switch (action.type) {
-        case LoginActionTypes.GOOGLE_AUTHENTICATION: {
+        case loginAction.ActionTypes.GOOGLE_AUTHENTICATION: {
             return assign(state, {
                 isAuthenticating: true
             });
         }
 
-        case LoginActionTypes.ANONYMOUS_AUTHENTICATION_SUCCESS:
-        case LoginActionTypes.CREATE_USER_SUCCESS:
-        case LoginActionTypes.EMAIL_AUTHENTICATION_SUCCESS:
-        case LoginActionTypes.GOOGLE_AUTHENTICATION_SUCCESS:
-        case LoginActionTypes.RESTORE_AUTHENTICATION: {
+        case loginAction.ActionTypes.ANONYMOUS_AUTHENTICATION_SUCCESS:
+        case loginAction.ActionTypes.CREATE_USER_SUCCESS:
+        case loginAction.ActionTypes.EMAIL_AUTHENTICATION_SUCCESS:
+        case loginAction.ActionTypes.GOOGLE_AUTHENTICATION_SUCCESS:
+        case loginAction.ActionTypes.RESTORE_AUTHENTICATION: {
             let user: FirebaseAuthState = action.payload;
 
             return assign(state, {
@@ -44,7 +44,7 @@ export function reducer(
             });
         }
 
-        case LoginActionTypes.LOGOUT: {
+        case loginAction.ActionTypes.LOGOUT: {
             return assign(state, {
                 displayName: '',
                 isAuthenticated: false,
@@ -52,10 +52,10 @@ export function reducer(
             });
         }
 
-        case LoginActionTypes.ANONYMOUS_AUTHENTICATION:
-        case LoginActionTypes.BEGIN_AUTHENTICATION:
-        case LoginActionTypes.CREATE_USER:
-        case LoginActionTypes.EMAIL_AUTHENTICATION: {
+        case loginAction.ActionTypes.ANONYMOUS_AUTHENTICATION:
+        case loginAction.ActionTypes.BEGIN_AUTHENTICATION:
+        case loginAction.ActionTypes.CREATE_USER:
+        case loginAction.ActionTypes.EMAIL_AUTHENTICATION: {
             return assign(state, {
                 error: null,
                 isAuthenticating: true
@@ -63,9 +63,9 @@ export function reducer(
         }
 
         // case LoginActionTypes.BEGIN_AUTHENTICATION_FAILURE:
-        case LoginActionTypes.ANONYMOUS_AUTHENTICATION_FAILURE:
-        case LoginActionTypes.CREATE_USER_FAILURE:
-        case LoginActionTypes.EMAIL_AUTHENTICATION_FAILURE: {
+        case loginAction.ActionTypes.ANONYMOUS_AUTHENTICATION_FAILURE:
+        case loginAction.ActionTypes.CREATE_USER_FAILURE:
+        case loginAction.ActionTypes.EMAIL_AUTHENTICATION_FAILURE: {
             return assign(state, {
                 error: action.payload,
                 isAuthenticated: false,
@@ -92,17 +92,17 @@ function makeDisplayName(user: FirebaseAuthState) {
 // Selectors
 // =========
 export function getDisplayName(state$: Observable<State>) {
-    return state$.select(s => s.displayName);
+    return state$.select(state => state.displayName);
 }
 
 export function getError(state$: Observable<State>) {
-    return state$.select(s => s.error);
+    return state$.select(state => state.error);
 }
 
 export function getIsAuthenticated(state$: Observable<State>) {
-    return state$.select(s => s.isAuthenticated);
+    return state$.select(state => state.isAuthenticated);
 }
 
 export function getIsAuthenticating(state$: Observable<State>) {
-    return state$.select(s => s.isAuthenticating);
+    return state$.select(state => state.isAuthenticating);
 }

@@ -10,7 +10,7 @@ import { localStorageSync } from 'ngrx-store-localstorage';
 import { combineReducers } from '@ngrx/store';
 //  error TS4023: Selector 
 // tslint:disable-next-line:no-unused-variable
-import { share, Selector } from '../utils/util';
+// import { share, Selector } from '../utils/util';
 
 import * as fromLoginReducer from './login.reducer';
 import * as fromTodoCompletedReducer from './todo-completed.reducer';
@@ -64,28 +64,28 @@ export function reducer(state: any, action: any) {
  ***********/
 // login
 export function getLoginState(state$: Observable<State>) {
-    return state$.select(s => s.login);
+    return state$.select(state => state.login);
 }
 
-export const getLogin_GetDisplayName = share(compose(fromLoginReducer.getDisplayName, getLoginState));
-export const getLogin_GetError = share(compose(fromLoginReducer.getError, getLoginState));
-export const getLogin_GetIsAuthenticated = share(compose(fromLoginReducer.getIsAuthenticated, getLoginState));
-export const getLogin_GetIsAuthenticating = share(compose(fromLoginReducer.getIsAuthenticating, getLoginState));
+export const getLogin_GetDisplayName = compose(fromLoginReducer.getDisplayName, getLoginState);
+export const getLogin_GetError = compose(fromLoginReducer.getError, getLoginState);
+export const getLogin_GetIsAuthenticated = compose(fromLoginReducer.getIsAuthenticated, getLoginState);
+export const getLogin_GetIsAuthenticating = compose(fromLoginReducer.getIsAuthenticating, getLoginState);
 
 // todo
 export function getTodoState(state$: Observable<State>) {
-    return state$.select(s => s.todo);
+    return state$.select(state => state.todo);
 }
 
-export const getTodo_GetLoaded = share(compose(fromTodoReducer.getLoaded, getTodoState));
-export const getTodo_GetLoading = share(compose(fromTodoReducer.getLoading, getTodoState));
-export const getTodo_GetTodos = share(compose(fromTodoReducer.getTodos, getTodoState));
+export const getTodo_GetLoaded = compose(fromTodoReducer.getLoaded, getTodoState);
+export const getTodo_GetLoading = compose(fromTodoReducer.getLoading, getTodoState);
+export const getTodo_GetTodos = compose(fromTodoReducer.getTodos, getTodoState);
 
 // todoCompleted
 export function getTodoCompletedState(state$: Observable<State>) {
-    return state$.select(s => s.todoCompleted);
+    return state$.select(state => state.todoCompleted);
 }
 
-export const getTodoCompleted_GetLoaded = share(compose(fromTodoCompletedReducer.getLoaded, getTodoCompletedState));
-export const getTodoCompleted_GetLoading = share(compose(fromTodoCompletedReducer.getLoading, getTodoCompletedState));
-export const getTodoCompleted_GetTodoCompletedList = share(compose(fromTodoCompletedReducer.geTodoCompletedList, getTodoCompletedState));
+export const getTodoCompleted_GetLoaded = compose(fromTodoCompletedReducer.getLoaded, getTodoCompletedState);
+export const getTodoCompleted_GetLoading = compose(fromTodoCompletedReducer.getLoading, getTodoCompletedState);
+export const getTodoCompleted_GetTodoCompletedList = compose(fromTodoCompletedReducer.geTodoCompletedList, getTodoCompletedState);

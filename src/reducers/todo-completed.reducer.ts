@@ -1,6 +1,6 @@
 import { Observable } from 'rxjs/Observable';
 
-import { TodoCompletedActions, TodoCompletedActionTypes } from '../actions/todo-completed.action';
+import * as todoCompletedAction from '../actions/todo-completed.action';
 import { TodoCompleted } from '../models/todo-completed';
 import { assign } from '../utils';
 
@@ -18,16 +18,16 @@ const initialState: State = {
 
 export function reducer(
     state = initialState,
-    action: TodoCompletedActions,
+    action: todoCompletedAction.Actions,
 ): State {
     switch (action.type) {
-        case TodoCompletedActionTypes.LOAD: {
+        case todoCompletedAction.ActionTypes.LOAD: {
             return assign(state, {
                 loading: true
             });
         }
 
-        case TodoCompletedActionTypes.LOAD_SUCCESS: {
+        case todoCompletedAction.ActionTypes.LOAD_SUCCESS: {
             const items: TodoCompleted[] = action.payload;
 
             return {
@@ -47,13 +47,13 @@ export function reducer(
 // Selectors
 // =========
 export function getLoaded(state$: Observable<State>) {
-    return state$.select(s => s.loaded);
+    return state$.select(state => state.loaded);
 }
 
 export function getLoading(state$: Observable<State>) {
-    return state$.select(s => s.loading);
+    return state$.select(state => state.loading);
 }
 
 export function geTodoCompletedList(state$: Observable<State>) {
-    return state$.select(s => s.todoCompletedList);
+    return state$.select(state => state.todoCompletedList);
 }

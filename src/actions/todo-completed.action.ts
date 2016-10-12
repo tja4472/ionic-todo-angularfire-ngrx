@@ -1,47 +1,47 @@
 import { Action } from '@ngrx/store';
-import { label } from '../utils/util';
+import { type } from '../utils/util';
 
 import { TodoCompleted } from '../models/todo-completed';
 
-export const TodoCompletedActionTypes = {
-    LOAD: label('[TodoCompletedActions] Load'),
-    LOAD_SUCCESS: label('[TodoCompletedActions] Load Success'),
-    MOVE_TO_CURRENT: label('[TodoCompletedActions] Move To Current'),
-    REMOVE: label('[TodoCompletedActions] Remove'),
-    SAVE: label('[TodoCompletedActions] Save'),
+export const ActionTypes = {
+    LOAD: type('[TodoCompletedActions] Load'),
+    LOAD_SUCCESS: type('[TodoCompletedActions] Load Success'),
+    MOVE_TO_CURRENT: type('[TodoCompletedActions] Move To Current'),
+    REMOVE: type('[TodoCompletedActions] Remove'),
+    SAVE: type('[TodoCompletedActions] Save'),
 }
 
 export class LoadAction implements Action {
-    type = TodoCompletedActionTypes.LOAD;
+    type = ActionTypes.LOAD;
 
     constructor() { }
 }
 
 export class LoadSuccessAction implements Action {
-    type = TodoCompletedActionTypes.LOAD_SUCCESS;
+    type = ActionTypes.LOAD_SUCCESS;
 
     constructor(public payload: TodoCompleted[]) { }
 }
 
 export class MoveToCurrentAction implements Action {
-    type = TodoCompletedActionTypes.MOVE_TO_CURRENT;
+    type = ActionTypes.MOVE_TO_CURRENT;
 
     constructor(public payload: TodoCompleted) { }
 }
 
 export class RemoveAction implements Action {
-    type = TodoCompletedActionTypes.REMOVE;
+    type = ActionTypes.REMOVE;
 
     constructor(public payload: string) { } // itemKey
 }
 
 export class SaveAction implements Action {
-    type = TodoCompletedActionTypes.SAVE;
+    type = ActionTypes.SAVE;
 
     constructor(public payload: TodoCompleted) { }
 }
 
-export type TodoCompletedActions =
+export type Actions =
     LoadAction |
     LoadSuccessAction |
     MoveToCurrentAction |
