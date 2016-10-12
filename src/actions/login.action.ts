@@ -7,6 +7,8 @@ export const LoginActionTypes = {
     ANONYMOUS_AUTHENTICATION: label('[Login] Anonymous Authentication'),
     ANONYMOUS_AUTHENTICATION_FAILURE: label('[Login] Anonymous Authentication Failure'),
     ANONYMOUS_AUTHENTICATION_SUCCESS: label('[Login] Anonymous Authentication Success'),
+    BEGIN_AUTHENTICATION: label('[Login] Begin Authentication'),
+    BEGIN_AUTHENTICATION_FAILURE: label('[Login] Begin Authentication Failure'),
     CREATE_USER: label('[Login] Create User'),
     CREATE_USER_FAILURE: label('[Login] Create User Failure'),
     CREATE_USER_SUCCESS: label('[Login] Create User Success'),
@@ -36,6 +38,18 @@ export class AnonymousAuthenticationSuccessAction implements Action {
     type = LoginActionTypes.ANONYMOUS_AUTHENTICATION_SUCCESS;
 
     constructor(public payload: FirebaseAuthState) { }
+}
+
+export class BeginAuthenticationAction implements Action {
+    type = LoginActionTypes.BEGIN_AUTHENTICATION;
+
+    constructor() { }
+}
+
+export class BeginAuthenticationFailureAction implements Action {
+    type = LoginActionTypes.BEGIN_AUTHENTICATION_FAILURE;
+
+    constructor() { }
 }
 
 export class CreateUserAction implements Action {
@@ -114,6 +128,8 @@ export type LoginActions =
     AnonymousAuthenticationAction |
     AnonymousAuthenticationFailureAction |
     AnonymousAuthenticationSuccessAction |
+    BeginAuthenticationAction |
+    BeginAuthenticationFailureAction |
     CreateUserAction |
     CreateUserFailureAction |
     CreateUserSuccessAction |

@@ -47,11 +47,3 @@ export type TodoCompletedActions =
     MoveToCurrentAction |
     RemoveAction |
     SaveAction;
-
-
-
-
-
-
-
-
