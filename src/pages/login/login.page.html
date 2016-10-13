@@ -1,0 +1,57 @@
+<ion-header>
+  <ion-navbar>
+    <button menuToggle>
+      <ion-icon name="menu"></ion-icon>
+    </button>
+    <ion-title>Login</ion-title>
+  </ion-navbar>
+</ion-header>
+
+<ion-content>
+  <ion-list>
+    <form [formGroup]="loginForm" (ngSubmit)="logForm()" novalidate>
+      <ion-item>
+        <ion-label floating primary>Username</ion-label>
+        <ion-input type="text" formControlName="username">
+        </ion-input>
+      </ion-item>
+
+      <control-messages [control]="loginForm.controls.username"></control-messages>
+
+      <ion-item>
+        <ion-label floating primary>Password</ion-label>
+        <ion-input type="password" formControlName="password">
+        </ion-input>
+      </ion-item>
+
+      <control-messages [control]="loginForm.controls.password"></control-messages>
+
+      <ion-row responsive-sm>
+        <ion-col>
+          <button type="submit" [disabled]="!loginForm.valid" primary block>Login</button>
+        </ion-col>
+        <ion-col>
+          <button (click)="onSignup()" light block>Signup</button>
+        </ion-col>
+      </ion-row>
+      <ion-row responsive-sm>
+        <ion-col>
+          <button secondary (click)="signInAnonymously()">Login Anonymously</button>
+        </ion-col>
+      </ion-row>
+      <ion-row responsive-sm>
+        <ion-col>
+          <button secondary (click)="signInWithGoogle()">Login with Google</button>
+        </ion-col>
+      </ion-row>
+    </form>
+  </ion-list>
+
+  <h5>Login State</h5>
+  <p>
+    {{loginState$ | async | json}}
+  </p>
+
+  <error [error]="(loginState$ | async).error">
+  </error>
+</ion-content>

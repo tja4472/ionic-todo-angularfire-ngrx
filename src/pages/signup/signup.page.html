@@ -1,0 +1,42 @@
+<ion-header>
+  <ion-navbar>
+    <button menuToggle>
+      <ion-icon name="menu"></ion-icon>
+    </button>
+    <ion-title>Signup</ion-title>
+  </ion-navbar>
+</ion-header>
+
+<ion-content class="login-page">
+  <ion-list>
+    <form [formGroup]="loginForm" (ngSubmit)="logForm()" novalidate>
+      <ion-item>
+        <ion-label floating primary>Username</ion-label>
+        <ion-input type="text" formControlName="username">
+        </ion-input>
+      </ion-item>
+
+      <control-messages [control]="loginForm.controls.username"></control-messages>
+
+      <ion-item>
+        <ion-label floating primary>Password</ion-label>
+        <ion-input type="password" formControlName="password">
+        </ion-input>
+      </ion-item>
+
+      <control-messages [control]="loginForm.controls.password"></control-messages>
+
+      <div padding>
+        <button type="submit" [disabled]="!loginForm.valid" primary block>Create</button>
+      </div>
+    </form>
+  </ion-list>
+
+  <h5>Login State</h5>
+  <p>
+    {{loginState$ | async | json}}
+  </p>
+
+  <error [error]="(loginState$ | async).error">
+  </error>
+</ion-content>

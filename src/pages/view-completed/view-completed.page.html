@@ -1,0 +1,27 @@
+<ion-header>
+  <ion-navbar>
+    <button menuToggle>
+      <ion-icon name="menu"></ion-icon>
+    </button>
+    <ion-title>Completed Todos</ion-title>
+  </ion-navbar>
+</ion-header>
+
+<ion-content>
+  <todo-completed-list 
+      [data]="data$ | async" 
+      (editItem)="editItem($event)"
+      (removeItem)="removeItem($event)"        
+  ></todo-completed-list>
+
+  <!--
+{{data$ | async | json }}    
+  <todo-list 
+      [todos]="todos$ | async" 
+      (addItem)="addItem($event)"
+      (toggleCompleteItem)="toggleCompleteItem($event)"      
+      (editItem)="editItem($event)"
+      (reorderItems)="reorderItems($event)"
+  ></todo-list>
+-->
+</ion-content>
