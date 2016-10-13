@@ -1,0 +1,53 @@
+<button fab primary fab-bottom fab-right (click)="addItem.emit()">
+    <ion-icon name="add"></ion-icon>
+  </button>
+
+<ion-list reorder="true" (ionItemReorder)="reorderItems.emit($event)">
+  <ion-item-sliding *ngFor="let item of todos">
+    <button ion-item (click)="editItem.emit(item)">
+      <div [style.text-decoration]="item.isComplete ? 'line-through': ''">
+        <h3>{{item.name}} - {{item.isComplete}}</h3> 
+        <p>{{item.description}}</p>
+      </div>
+    </button>
+
+    <ion-item-options>
+      <button (click)="toggleCompleteItem.emit(item)">
+            Toggle Complete
+          </button>
+      <button danger (click)="removeItem.emit(item)">
+            Remove
+          </button>
+    </ion-item-options>
+  </ion-item-sliding>
+
+
+  <!--
+    <ion-item *ngFor="let item of todos">
+          <h2>Item</h2>
+      <ion-label (click)="bb()">{{item.name}} - {{item.isComplete}} </ion-label>
+      <ion-toggle start [checked]="item.isComplete" (click)="aaaaa()"></ion-toggle>
+    <p>
+      Item Content next to the label
+    </p>      
+      {{item.description}}
+      </ion-item>    
+-->
+  <!--    
+    <ion-item *ngFor="let item of todos" (click)="itemSelected.emit(item)">
+
+
+      <ion-checkbox [checked]="item.isComplete" (click)="aaaaa()">kkkkkkk</ion-checkbox>
+
+
+      <ion-checkbox [(ngModel)]="item.isComplete">{{item.isComplete}}</ion-checkbox>
+-->
+  <!--      
+        <h3>{{item.name}}</h3>
+        <p>{{item.description}}</p>
+-->
+
+
+
+
+</ion-list>

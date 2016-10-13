@@ -36,3 +36,14 @@ firebase.initializeApp(MyFirebaseAppConfig.config)
   providers: []
 })
 export class AppModule {}
+
+/*
+so I need some initial state loaded before angular does anything.. for example 
+the user may already be logged in and I need to load up their user information.. 
+where should I put that code? currently I put it in my services constructor 
+(where it dispatches the load user action) but I'm hitting auth guards before 
+the services constructor
+
+AppModule constructor
+https://gitter.im/ngrx/store?at=57fe27d14fde7203142e2bb7
+*/
