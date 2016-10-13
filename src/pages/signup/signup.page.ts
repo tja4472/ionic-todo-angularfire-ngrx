@@ -8,7 +8,7 @@ import { Store } from '@ngrx/store';
 // import { LoginActions } from '../../actions';
 import * as FromRootReducer from '../../reducers';
 
-import { LoginSelector } from '../../selectors';
+// import { LoginSelector } from '../../selectors';
 import { Validators, FormBuilder, FormGroup } from '@angular/forms';
 // import { ControlMessages } from '../../components/control-messages/control-messages.component';
 // import { ValidationService } from '../../validation.service';
@@ -30,7 +30,8 @@ export class SignupPage {
     // private loginActions: LoginActions,
     private store: Store<FromRootReducer.State>) {
     //
-    this.loginState$ = this.store.let(LoginSelector.getLoginState());
+    // this.loginState$ = this.store.let(LoginSelector.getLoginState());
+    this.loginState$ = loginService.getLoginState();    
   }
 
   ionViewLoaded() {

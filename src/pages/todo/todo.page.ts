@@ -6,7 +6,7 @@ import { NavParams, ViewController } from 'ionic-angular';
 import { ToDo } from '../../models/todo';
 import { Validators, FormBuilder, FormGroup } from '@angular/forms';
 // import { ControlMessages } from '../../components/control-messages/control-messages.component';
-import { assign } from '../../utils';
+import { assign } from '../../utils/assign';
 
 @Component({
   changeDetection: ChangeDetectionStrategy.OnPush,

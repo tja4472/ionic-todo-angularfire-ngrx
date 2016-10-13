@@ -2,7 +2,7 @@ import { Observable } from 'rxjs/Observable';
 
 import * as todoCompletedAction from '../actions/todo-completed.action';
 import { TodoCompleted } from '../models/todo-completed';
-import { assign } from '../utils';
+import { assign } from '../utils/assign';
 
 export interface State {
     loaded: boolean;

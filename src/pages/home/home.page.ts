@@ -7,7 +7,8 @@ import {
   RemoveItemOutput,
   ToggleCompleteItemOutput,
   ReorderItemsOutput,
-  TodosInput} from '../../components/todo-list/todo-list.component';
+  TodosInput
+} from '../../components/todo-list/todo-list.component';
 // import { PopoverPage } from '../../components/popover/popover.component';
 import { ToDo } from '../../models/todo';
 import { TodoPage } from '../todo/todo.page';
@@ -15,7 +16,8 @@ import { TodoPage } from '../todo/todo.page';
 
 @Component({
   // directives: [TodoListComponent],
-  templateUrl: 'home.page.html'
+  selector: 'page-home',
+  templateUrl: 'home.page.html',
 })
 export class HomePage {
   todos$: Observable<TodosInput>;
@@ -143,7 +145,7 @@ export class HomePage {
   `
 })
 class PopoverPage {
-  constructor(private viewCtrl: ViewController) {}
+  constructor(private viewCtrl: ViewController) { }
 
   close(data: string) {
     this.viewCtrl.dismiss(data);
