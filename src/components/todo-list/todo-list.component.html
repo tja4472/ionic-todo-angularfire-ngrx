@@ -1,28 +1,30 @@
-<button fab primary fab-bottom fab-right (click)="addItem.emit()">
+<ion-fab bottom right edge>
+	<button ion-fab color=primary (click)="addItem.emit()">
     <ion-icon name="add"></ion-icon>
   </button>
+</ion-fab>
 
 <ion-list reorder="true" (ionItemReorder)="reorderItems.emit($event)">
-  <ion-item-sliding *ngFor="let item of todos">
-    <button ion-item (click)="editItem.emit(item)">
+	<ion-item-sliding *ngFor="let item of todos">
+		<button ion-item (click)="editItem.emit(item)">
       <div [style.text-decoration]="item.isComplete ? 'line-through': ''">
         <h3>{{item.name}} - {{item.isComplete}}</h3> 
         <p>{{item.description}}</p>
       </div>
     </button>
 
-    <ion-item-options>
-      <button (click)="toggleCompleteItem.emit(item)">
+		<ion-item-options>
+			<button ion-button (click)="toggleCompleteItem.emit(item)">
             Toggle Complete
           </button>
-      <button danger (click)="removeItem.emit(item)">
+			<button ion-button color="danger" (click)="removeItem.emit(item)">
             Remove
           </button>
-    </ion-item-options>
-  </ion-item-sliding>
+		</ion-item-options>
+	</ion-item-sliding>
 
 
-  <!--
+	<!--
     <ion-item *ngFor="let item of todos">
           <h2>Item</h2>
       <ion-label (click)="bb()">{{item.name}} - {{item.isComplete}} </ion-label>
@@ -33,7 +35,7 @@
       {{item.description}}
       </ion-item>    
 -->
-  <!--    
+	<!--    
     <ion-item *ngFor="let item of todos" (click)="itemSelected.emit(item)">
 
 
@@ -42,7 +44,7 @@
 
       <ion-checkbox [(ngModel)]="item.isComplete">{{item.isComplete}}</ion-checkbox>
 -->
-  <!--      
+	<!--      
         <h3>{{item.name}}</h3>
         <p>{{item.description}}</p>
 -->

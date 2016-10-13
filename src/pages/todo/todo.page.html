@@ -1,12 +1,12 @@
 <ion-header>
     <ion-toolbar>
         <ion-buttons left>
-            <button (click)="dismiss()">
+            <button ion-button (click)="dismiss()">
                 cancel      
             </button>
         </ion-buttons>
         <ion-buttons end>
-            <button (click)="save()">
+            <button ion-button (click)="save()">
                 save      
             </button>
         </ion-buttons>
@@ -18,13 +18,13 @@
     <ion-list>
         <form [formGroup]="todoForm" novalidate>
             <ion-item>
-                <ion-label primary>Complete?</ion-label>
+                <ion-label color="primary">Complete?</ion-label>
                 <ion-checkbox formControlName="isComplete">
                 </ion-checkbox>
             </ion-item>
 
             <ion-item>
-                <ion-label floating primary>Name</ion-label>
+                <ion-label floating color="primary">Name</ion-label>
                 <ion-input type="text" formControlName="name">
                 </ion-input>
             </ion-item>
@@ -32,7 +32,7 @@
             <control-messages [control]="todoForm.controls.name"></control-messages>
 
             <ion-item>
-                <ion-label floating primary>Description</ion-label>
+                <ion-label floating color="primary">Description</ion-label>
                 <ion-input type="text" formControlName="description">
                 </ion-input>
             </ion-item>

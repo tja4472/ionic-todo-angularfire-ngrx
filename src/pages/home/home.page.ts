@@ -32,7 +32,7 @@ export class HomePage {
     this.todos$ = todoService.getData();
   }
 
-  ionViewLoaded() {
+  ionViewDidLoad() {
     this.todoService.initialise();
   }
 

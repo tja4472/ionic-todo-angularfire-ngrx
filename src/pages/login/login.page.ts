@@ -33,7 +33,7 @@ export class LoginPage {
     this.loginState$ = loginService.getLoginState();
   }
 
-  ionViewLoaded() {
+  ionViewDidLoad() {
     //
     this.loginForm = this.formBuilder.group({
       username: ['', Validators.required],

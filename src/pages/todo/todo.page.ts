@@ -10,8 +10,8 @@ import { assign } from '../../utils/assign';
 
 @Component({
   changeDetection: ChangeDetectionStrategy.OnPush,
-  // directives: [ControlMessages],
-  templateUrl: 'todo.page.html'
+  selector: 'page-todo',
+  templateUrl: 'todo.page.html',
 })
 export class TodoPage {
   public todoForm: FormGroup;
@@ -28,7 +28,7 @@ export class TodoPage {
   private isEditing: boolean;
 
   constructor(
-    private formBuilder: FormBuilder,
+    public formBuilder: FormBuilder,
     params: NavParams,
     public viewController: ViewController
   ) {
@@ -40,9 +40,16 @@ export class TodoPage {
     if (this.isEditing) {
       this.todo = paramTodo;
     }
+
+    this.todoForm = this.formBuilder.group({
+      name: [this.todo.name, Validators.required],
+      description: [this.todo.description],
+      isComplete: [this.todo.isComplete]
+    });    
   }
 
-  ionViewLoaded() {
+/*
+  ionViewDidLoad() {
     //
     this.todoForm = this.formBuilder.group({
       name: [this.todo.name, Validators.required],
@@ -50,6 +57,7 @@ export class TodoPage {
       isComplete: [this.todo.isComplete]
     });
   }
+*/
 
   dismiss() {
     console.log('dismiss');

@@ -7,6 +7,8 @@ import { Page2 } from '../pages/page2/page2';
 
 import { HomePage } from '../pages/home/home.page';
 
+import { LoginService } from '../services/login.service';
+
 @Component({
   templateUrl: 'app.html'
 })
@@ -14,19 +16,43 @@ export class MyApp {
   @ViewChild(Nav) nav: Nav;
 
   rootPage: any = Page1;
+  loginState$: any;
+  pages: Array<{ title: string, component: any }>;
+//  private subscription;
 
-  pages: Array<{title: string, component: any}>;
-
-  constructor(public platform: Platform) {
+  constructor(
+    private loginService: LoginService,
+    public platform: Platform,
+  ) {
     this.initializeApp();
 
     // used for an example of ngFor and navigation
     this.pages = [
       { title: 'Page One', component: Page1 },
       { title: 'Page Two', component: Page2 },
-      { title: 'Current todos', component: HomePage },      
+      { title: 'Current todos', component: HomePage },
     ];
 
+    loginService.initialise();
+
+    this.loginState$ = loginService.getLoginState();
+
+/*
+    this.subscription = loginService.getLoginState()
+      .subscribe(loginState => {
+        console.log('loginState>', loginState);
+        console.log('loginState.isAuthenticated>', loginState.isAuthenticated);
+        console.log('loginState.isAuthenticating>', loginState.isAuthenticating);
+
+        if (loginState.isAuthenticating) {
+          // this.rootPage = Page1;
+        } else if (loginState.isAuthenticated) {
+          this.rootPage = HomePage;
+        } else {
+          this.rootPage = LoginPage;
+        }
+      });
+*/      
   }
 
   initializeApp() {
