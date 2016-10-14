@@ -4,7 +4,7 @@ import { Observable } from 'rxjs/Observable';
 
 import { Store } from '@ngrx/store';
 
-import * as FromRootReducer from '../reducers';
+import * as FromRootReducer from '../reducers/index';
 import * as LoginActions from '../actions/login.action';
 import { AngularFire, FirebaseAuthState } from 'angularfire2';
 // tslint:disable-next-line:no-unused-variable

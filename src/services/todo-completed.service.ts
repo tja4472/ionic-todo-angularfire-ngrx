@@ -5,7 +5,7 @@ import { Store } from '@ngrx/store';
 
 import { TodoCompleted } from '../models/todo-completed';
 
-import * as FromRootReducer from '../reducers';
+import * as FromRootReducer from '../reducers/index';
 import * as TodoCompletedActions from '../actions/todo-completed.action';
 
 @Injectable()

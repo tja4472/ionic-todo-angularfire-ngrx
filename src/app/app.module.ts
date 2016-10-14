@@ -36,7 +36,7 @@ import { MyFirebaseAppConfig } from './my-firebase-app-config';
 import { EffectsModule } from '@ngrx/effects';
 import { StoreModule } from '@ngrx/store';
 
-import { reducer } from '../reducers';
+import { reducer } from '../reducers/index';
 
 import { LoginEffects } from '../effects/login.effect';
 import { TodoCompletedEffects } from '../effects/todo-completed.effect';
