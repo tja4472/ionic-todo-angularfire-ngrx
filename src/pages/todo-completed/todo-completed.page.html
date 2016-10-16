@@ -1,45 +1,45 @@
 <ion-header>
-    <ion-toolbar>
-        <ion-buttons left>
-            <button (click)="dismiss()">
+	<ion-toolbar>
+		<ion-buttons left>
+			<button ion-button (click)="dismiss()">
                 cancel      
             </button>
-        </ion-buttons>
-        <ion-buttons end>
-            <button (click)="save()">
+		</ion-buttons>
+		<ion-buttons end>
+			<button ion-button (click)="save()">
                 save      
             </button>
-        </ion-buttons>
-    </ion-toolbar>
+		</ion-buttons>
+	</ion-toolbar>
 </ion-header>
 
 <ion-content padding class="page1">
 
-    <ion-list>
-        <form [formGroup]="todoForm" novalidate>
-            <ion-item>
-                <ion-label primary>Complete?</ion-label>
-                <ion-checkbox formControlName="isComplete">
-                </ion-checkbox>
-            </ion-item>
+	<ion-list>
+		<form [formGroup]="todoForm" novalidate>
+			<ion-item>
+				<ion-label color="primary">Complete?</ion-label>
+				<ion-checkbox formControlName="isComplete">
+				</ion-checkbox>
+			</ion-item>
 
-            <ion-item>
-                <ion-label floating primary>Name</ion-label>
-                <ion-input type="text" formControlName="name">
-                </ion-input>
-            </ion-item>
+			<ion-item>
+				<ion-label floating color="primary">Name</ion-label>
+				<ion-input type="text" formControlName="name">
+				</ion-input>
+			</ion-item>
 
-            <control-messages [control]="todoForm.controls.name"></control-messages>
+			<control-messages [control]="todoForm.controls.name"></control-messages>
 
-            <ion-item>
-                <ion-label floating primary>Description</ion-label>
-                <ion-input type="text" formControlName="description">
-                </ion-input>
-            </ion-item>
+			<ion-item>
+				<ion-label floating color="primary">Description</ion-label>
+				<ion-input type="text" formControlName="description">
+				</ion-input>
+			</ion-item>
 
-            <control-messages [control]="todoForm.controls.description"></control-messages>
-            
-        </form>
-    </ion-list>
+			<control-messages [control]="todoForm.controls.description"></control-messages>
+
+		</form>
+	</ion-list>
 
 </ion-content>

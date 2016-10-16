@@ -1,14 +1,14 @@
 <ion-list>
-    <ion-item-sliding *ngFor="let item of data">
-        <button ion-item (click)="editItem.emit(item)">
+	<ion-item-sliding *ngFor="let item of data">
+		<button ion-item (click)="editItem.emit(item)">
             <h3>{{item.name}}</h3> 
             <p>{{item.description}}</p>        
         </button>
 
-        <ion-item-options>
-            <button danger (click)="removeItem.emit(item)">
+		<ion-item-options>
+			<button ion-button color="danger" (click)="removeItem.emit(item)">
             Remove
       </button>
-        </ion-item-options>
-    </ion-item-sliding>
+		</ion-item-options>
+	</ion-item-sliding>
 </ion-list>

@@ -38,16 +38,24 @@ export class TodoCompletedPage {
     if (this.isEditing) {
       this.todo = paramTodo;
     }
-  }
 
-  ionViewLoaded() {
-    //
     this.todoForm = this.formBuilder.group({
       name: [this.todo.name, Validators.required],
       description: [this.todo.description],
-      isComplete: [this.todo.isComplete]
+      isComplete: [this.todo.isComplete],
     });
   }
+
+  /*
+    ionViewDidLoad() {
+      //
+      this.todoForm = this.formBuilder.group({
+        name: [this.todo.name, Validators.required],
+        description: [this.todo.description],
+        isComplete: [this.todo.isComplete]
+      });
+    }
+  */
 
   dismiss() {
     console.log('dismiss');
@@ -67,11 +75,11 @@ export class TodoCompletedPage {
     // Get error here with private todo when using popover.
     // Hence local.
     let localTodo: TodoCompleted = {
-        $key: this.todo.$key,
-        description: this.todoForm.value.description,
-        name: this.todoForm.value.name,
-        isComplete: this.todoForm.value.isComplete
-      };
+      $key: this.todo.$key,
+      description: this.todoForm.value.description,
+      name: this.todoForm.value.name,
+      isComplete: this.todoForm.value.isComplete
+    };
 
     this.viewController.dismiss(localTodo);
   }

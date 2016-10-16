@@ -29,7 +29,7 @@ export class ViewCompletedPage {
     this.data$ = todoCompletedService.getData();
   }
 
-  ionViewLoaded() {
+  ionViewDidLoad() {
     this.todoCompletedService.initialise();
   }
 
