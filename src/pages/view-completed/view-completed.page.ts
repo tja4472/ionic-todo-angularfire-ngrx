@@ -14,7 +14,7 @@ import { TodoCompleted } from '../../models/todo-completed';
 import { TodoCompletedPage } from '../todo-completed/todo-completed.page';
 
 @Component({
-  // directives: [TodoCompletedListComponent],
+  selector: 'page-view-completed',
   templateUrl: 'view-completed.page.html'
 })
 export class ViewCompletedPage {

@@ -6,6 +6,9 @@ import { Page1 } from '../pages/page1/page1';
 import { Page2 } from '../pages/page2/page2';
 
 import { HomePage } from '../pages/home/home.page';
+import { LoginPage } from '../pages/login/login.page';
+import { SignupPage } from '../pages/signup/signup.page';
+import { ViewCompletedPage } from '../pages/view-completed/view-completed.page';
 
 import { LoginService } from '../services/login.service';
 
@@ -18,7 +21,7 @@ export class MyApp {
   rootPage: any = Page1;
   loginState$: any;
   pages: Array<{ title: string, component: any }>;
-//  private subscription;
+  //  private subscription;
 
   constructor(
     private loginService: LoginService,
@@ -31,28 +34,32 @@ export class MyApp {
       { title: 'Page One', component: Page1 },
       { title: 'Page Two', component: Page2 },
       { title: 'Current todos', component: HomePage },
+      { title: 'Completed todos', component: ViewCompletedPage },
+      { title: 'Login', component: LoginPage },
+      { title: 'Signup', component: SignupPage },
+      { title: 'Logout', component: LoginPage },
     ];
 
     loginService.initialise();
 
     this.loginState$ = loginService.getLoginState();
 
-/*
-    this.subscription = loginService.getLoginState()
-      .subscribe(loginState => {
-        console.log('loginState>', loginState);
-        console.log('loginState.isAuthenticated>', loginState.isAuthenticated);
-        console.log('loginState.isAuthenticating>', loginState.isAuthenticating);
-
-        if (loginState.isAuthenticating) {
-          // this.rootPage = Page1;
-        } else if (loginState.isAuthenticated) {
-          this.rootPage = HomePage;
-        } else {
-          this.rootPage = LoginPage;
-        }
-      });
-*/      
+    /*
+        this.subscription = loginService.getLoginState()
+          .subscribe(loginState => {
+            console.log('loginState>', loginState);
+            console.log('loginState.isAuthenticated>', loginState.isAuthenticated);
+            console.log('loginState.isAuthenticating>', loginState.isAuthenticating);
+    
+            if (loginState.isAuthenticating) {
+              // this.rootPage = Page1;
+            } else if (loginState.isAuthenticated) {
+              this.rootPage = HomePage;
+            } else {
+              this.rootPage = LoginPage;
+            }
+          });
+    */
   }
 
   initializeApp() {

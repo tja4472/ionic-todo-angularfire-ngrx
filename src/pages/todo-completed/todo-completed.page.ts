@@ -9,7 +9,7 @@ import { Validators, FormBuilder, FormGroup } from '@angular/forms';
 
 @Component({
   changeDetection: ChangeDetectionStrategy.OnPush,
-  // directives: [ControlMessages],
+  selector: 'page-todo-completed',
   templateUrl: 'todo-completed.page.html'
 })
 export class TodoCompletedPage {

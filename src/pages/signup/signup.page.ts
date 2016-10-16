@@ -1,4 +1,5 @@
 import { ChangeDetectionStrategy, Component } from '@angular/core';
+import { Validators, FormBuilder, FormGroup } from '@angular/forms';
 
 // import { Error } from '../../components/error/error.component';
 
@@ -9,14 +10,13 @@ import { Store } from '@ngrx/store';
 import * as FromRootReducer from '../../reducers';
 
 // import { LoginSelector } from '../../selectors';
-import { Validators, FormBuilder, FormGroup } from '@angular/forms';
 // import { ControlMessages } from '../../components/control-messages/control-messages.component';
 // import { ValidationService } from '../../validation.service';
 
 @Component({
   changeDetection: ChangeDetectionStrategy.OnPush,
-  // directives: [ControlMessages, Error],
-  templateUrl: 'signup.page.html'
+  selector: 'page-signup',
+  templateUrl: 'signup.page.html',
 })
 export class SignupPage {
   submitted = false;
