@@ -9,13 +9,12 @@ import {
   ReorderItemsOutput,
   TodosInput
 } from '../../components/todo-list/todo-list.component';
-// import { PopoverPage } from '../../components/popover/popover.component';
+import { MyPopoverPage } from '../../components/popover/popover.component';
 import { ToDo } from '../../models/todo';
 import { TodoPage } from '../todo/todo.page';
 // import { assign } from '../../utils';
 
 @Component({
-  // directives: [TodoListComponent],
   selector: 'page-home',
   templateUrl: 'home.page.html',
 })
@@ -25,7 +24,7 @@ export class HomePage {
   constructor(
     public navCtrl: NavController,
     public modalCtrl: ModalController,
-    private popoverCtrl: PopoverController,
+    public popoverCtrl: PopoverController,
     public actionSheetCtrl: ActionSheetController,
     private todoService: TodoService) {
     //
@@ -105,7 +104,7 @@ export class HomePage {
   }
 
   presentPopover(ev) {
-    let popover = this.popoverCtrl.create(PopoverPage);
+    let popover = this.popoverCtrl.create(MyPopoverPage);
 
     popover.onDidDismiss((data: string) => {
       if (data === 'ClearCompleted') {
@@ -133,7 +132,7 @@ export class HomePage {
   }
 }
 
-
+/*
 @Component({
   template: `
     <ion-list>
@@ -151,3 +150,4 @@ class PopoverPage {
     this.viewCtrl.dismiss(data);
   }
 }
+*/

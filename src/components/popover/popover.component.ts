@@ -12,8 +12,8 @@ import { ViewController } from 'ionic-angular';
     </ion-list>
   `
 })
-export class PopoverPage {
-  constructor(private viewCtrl: ViewController) {}
+export class MyPopoverPage {
+  constructor(public viewCtrl: ViewController) {}
 
   close(data: string) {
     this.viewCtrl.dismiss(data);

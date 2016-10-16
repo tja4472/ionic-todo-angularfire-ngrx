@@ -12,7 +12,7 @@ import { ViewCompletedPage } from '../pages/view-completed/view-completed.page';
 
 import { ControlMessages } from '../components/control-messages/control-messages.component';
 import { Error } from '../components/error/error.component';
-import { PopoverPage } from '../components/popover/popover.component';
+import { MyPopoverPage } from '../components/popover/popover.component';
 import { TodoCompletedListComponent } from '../components/todo-completed-list/todo-completed-list.component';
 import { TodoListComponent } from '../components/todo-list/todo-list.component';
 
@@ -51,7 +51,7 @@ firebase.initializeApp(MyFirebaseAppConfig.config)
   declarations: [
     ControlMessages,
     Error,
-    PopoverPage,
+    MyPopoverPage,
     TodoCompletedListComponent,
     TodoListComponent,    
     MyApp,
@@ -78,12 +78,12 @@ firebase.initializeApp(MyFirebaseAppConfig.config)
     Page1,
     Page2,
     HomePage,
-    PopoverPage,
     LoginPage,
     TodoCompletedPage,
     TodoPage,
     SignupPage,
     ViewCompletedPage,    
+    MyPopoverPage,    
   ],
   providers: [
     Fb1DataService,
