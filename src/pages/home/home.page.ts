@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { ActionSheetController, NavController, ModalController, PopoverController, ViewController } from 'ionic-angular';
+import { ActionSheetController, NavController, ModalController, PopoverController } from 'ionic-angular';
 import { Observable } from 'rxjs/Observable';
 import { TodoService } from '../../services/todo.service';
 import {

@@ -2,8 +2,7 @@ import { ChangeDetectionStrategy, Component } from '@angular/core';
 import { NavController } from 'ionic-angular';
 import { Validators, FormBuilder } from '@angular/forms';
 
-
-// import { SignupPage } from '../signup/signup.page';
+import { SignupPage } from '../signup/signup.page';
 
 // import { Error } from '../../components/error/error.component';
 
@@ -27,11 +26,11 @@ export class LoginPage {
   loginState$: any;
 
   constructor(
-    formBuilder: FormBuilder,
+    public formBuilder: FormBuilder,
     public loginService: LoginService,
     public nav: NavController,
     // private store: Store<FromRootReducer.State>,
-    ) {
+  ) {
     //
     this.loginState$ = loginService.getLoginState();
 
@@ -39,42 +38,41 @@ export class LoginPage {
       username: ['', Validators.required],
       password: ['', Validators.required],
     });
-       
+
   }
-/*
-  ionViewDidLoad() {
-    //
-    this.loginForm = this.formBuilder.group({
-      username: ['', Validators.required],
-      password: ['', Validators.required],
-    });
-  }
-*/
+  /*
+    ionViewDidLoad() {
+      //
+      this.loginForm = this.formBuilder.group({
+        username: ['', Validators.required],
+        password: ['', Validators.required],
+      });
+    }
+  */
   logForm() {
     // console.log(this.loginForm.value);
     // console.log('loginForm>', this.loginForm);
 
     this.submitted = true;
 
-//    if (this.loginForm.valid) {
-/*      
+    if (this.loginForm.valid) {
+
       this.loginService.emailAuthentication(
         this.loginForm.value.username,
         this.loginForm.value.password
       );
-*/      
-  //  }
+    }
   }
 
   onSignup() {
-    // this.nav.push(SignupPage);
+    this.nav.push(SignupPage);
   }
 
   signInAnonymously() {
-  //  this.loginService.anonymousAuthentication();
+    this.loginService.anonymousAuthentication();
   }
 
   signInWithGoogle() {
-    // this.loginService.googleAuthentication();
+    this.loginService.googleAuthentication();
   }
 }
