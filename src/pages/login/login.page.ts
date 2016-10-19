@@ -1,6 +1,6 @@
 import { ChangeDetectionStrategy, Component } from '@angular/core';
 import { NavController } from 'ionic-angular';
-import { Validators, FormBuilder, FormGroup } from '@angular/forms';
+import { Validators, FormBuilder } from '@angular/forms';
 
 
 // import { SignupPage } from '../signup/signup.page';
@@ -22,12 +22,12 @@ import { LoginService } from '../../services/login.service';
 })
 export class LoginPage {
   submitted = false;
-  public loginForm: FormGroup;
+  public loginForm;
 
   loginState$: any;
 
   constructor(
-    public formBuilder: FormBuilder,
+    formBuilder: FormBuilder,
     public loginService: LoginService,
     public nav: NavController,
     // private store: Store<FromRootReducer.State>,
@@ -35,7 +35,7 @@ export class LoginPage {
     //
     this.loginState$ = loginService.getLoginState();
 
-    this.loginForm = this.formBuilder.group({
+    this.loginForm = formBuilder.group({
       username: ['', Validators.required],
       password: ['', Validators.required],
     });

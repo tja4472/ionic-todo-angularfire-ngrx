@@ -1,5 +1,5 @@
 import { ChangeDetectionStrategy, Component } from '@angular/core';
-import { Validators, FormBuilder, FormGroup } from '@angular/forms';
+import { Validators, FormBuilder } from '@angular/forms';
 
 // import { Error } from '../../components/error/error.component';
 
@@ -20,7 +20,7 @@ import * as FromRootReducer from '../../reducers';
 })
 export class SignupPage {
   submitted = false;
-  public loginForm: FormGroup;
+  public loginForm;
 
   loginState$: any;
 
