@@ -25,6 +25,8 @@ export class LoginPage {
 
   loginState$: any;
 
+// aaaa: FormControl;
+
   constructor(
     public formBuilder: FormBuilder,
     public loginService: LoginService,
@@ -39,7 +41,24 @@ export class LoginPage {
       password: ['', Validators.required],
     });
 
+// this.aaaa = this.loginForm.username;
+
   }
+/*
+  ngOnInit() {
+    console.log('ngOnInit');
+    console.log('ngOnInit:this.loginForm>', this.loginForm);
+    console.log('ngOnInit:this.loginForm.controls[username]>', this.loginForm.controls['username']);
+    this.aaaa = this.loginForm.controls['username'];
+
+   
+this.aaaa.valueChanges.subscribe(value => {
+      // do something with value here
+      console.log('value>', value)
+    });
+  }
+*/
+
   /*
     ionViewDidLoad() {
       //

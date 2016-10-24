@@ -10,8 +10,8 @@
 <ion-content>
   <todo-completed-list 
       [data]="data$ | async" 
-      (editItem)="editItem($event)"
-      (removeItem)="removeItem($event)"        
+      (checkItem)="checkItem($event)"      
+      (editItem)="editItem($event)"   
   ></todo-completed-list>
 
   <!--

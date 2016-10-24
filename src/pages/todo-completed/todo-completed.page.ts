@@ -7,6 +7,12 @@ import { TodoCompleted } from '../../models/todo-completed';
 import { Validators, FormBuilder } from '@angular/forms';
 // import { ControlMessages } from '../../components/control-messages/control-messages.component';
 
+export interface ModalResult {
+  isRemoved: boolean;
+  isCancelled: boolean;
+  todo?: TodoCompleted;
+}
+
 @Component({
   changeDetection: ChangeDetectionStrategy.OnPush,
   selector: 'page-todo-completed',
@@ -24,6 +30,7 @@ export class TodoCompletedPage {
   };
 
   private isEditing: boolean;
+
 
   constructor(
     private formBuilder: FormBuilder,
@@ -59,7 +66,21 @@ export class TodoCompletedPage {
 
   dismiss() {
     console.log('dismiss');
-    this.viewController.dismiss();
+    let modalResult: ModalResult = {
+      isRemoved: false,
+      isCancelled: true,
+    };
+    this.viewController.dismiss(modalResult);
+  }
+
+  remove() {
+    console.log('remove');
+    let modalResult: ModalResult = {
+      isRemoved: true,
+      isCancelled: false,
+      todo: this.todo,
+    };
+    this.viewController.dismiss(modalResult);
   }
 
   save() {
@@ -81,6 +102,12 @@ export class TodoCompletedPage {
       isComplete: this.todoForm.value.isComplete
     };
 
-    this.viewController.dismiss(localTodo);
+    let modalResult: ModalResult = {
+      isRemoved: false,
+      isCancelled: false,
+      todo: localTodo,      
+    };
+    this.viewController.dismiss(modalResult);
+    // this.viewController.dismiss(localTodo);
   }
 }
