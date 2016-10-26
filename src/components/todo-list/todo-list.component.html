@@ -6,6 +6,28 @@
 
 <ion-list reorder="true" (ionItemReorder)="reorderItems.emit($event)">
 	<ion-item-sliding *ngFor="let item of todos">
+		<button ion-item (click)="toggleCompleteItem.emit(item)">
+				<h3 [style.text-decoration]="item.isComplete ? 'line-through': ''">{{item.name}}</h3>
+				<p>{{item.description}}</p>
+    </button>
+
+		<ion-item-options>
+			<button ion-button (click)="toggleCompleteItem.emit(item)">
+            Toggle Complete
+      </button>
+			<button ion-button (click)="editItem.emit(item)">
+            Edit
+      </button>      
+			<button ion-button color="danger" (click)="removeItem.emit(item)">
+            Remove
+      </button>
+		</ion-item-options>
+	</ion-item-sliding>
+</ion-list>
+
+<!--
+<ion-list reorder="true" (ionItemReorder)="reorderItems.emit($event)">
+	<ion-item-sliding *ngFor="let item of todos">
 		<button ion-item (click)="editItem.emit(item)">
       <div [style.text-decoration]="item.isComplete ? 'line-through': ''">
         <h3>{{item.name}} - {{item.isComplete}}</h3> 
@@ -16,15 +38,15 @@
 		<ion-item-options>
 			<button ion-button (click)="toggleCompleteItem.emit(item)">
             Toggle Complete
-          </button>
+      </button>
 			<button ion-button color="danger" (click)="removeItem.emit(item)">
             Remove
-          </button>
+      </button>
 		</ion-item-options>
 	</ion-item-sliding>
-
-
-	<!--
+</ion-list>
+-->  
+<!--
     <ion-item *ngFor="let item of todos">
           <h2>Item</h2>
       <ion-label (click)="bb()">{{item.name}} - {{item.isComplete}} </ion-label>
@@ -35,7 +57,7 @@
       {{item.description}}
       </ion-item>    
 -->
-	<!--    
+<!--    
     <ion-item *ngFor="let item of todos" (click)="itemSelected.emit(item)">
 
 
@@ -44,12 +66,7 @@
 
       <ion-checkbox [(ngModel)]="item.isComplete">{{item.isComplete}}</ion-checkbox>
 -->
-	<!--      
+<!--      
         <h3>{{item.name}}</h3>
         <p>{{item.description}}</p>
 -->
-
-
-
-
-</ion-list>
