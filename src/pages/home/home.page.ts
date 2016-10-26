@@ -9,10 +9,10 @@ import {
   ReorderItemsOutput,
   TodosInput
 } from '../../components/todo-list/todo-list.component';
-import { MyPopoverPage } from '../../components/popover/popover.component';
+import { MyPopoverPage, MyPopoverPageResult } from '../../components/popover/popover.component';
 import { ToDo } from '../../models/todo';
 import { TodoPage } from '../todo/todo.page';
-// import { assign } from '../../utils';
+import { assign } from '../../utils/assign';
 
 @Component({
   selector: 'page-home',
@@ -52,8 +52,21 @@ export class HomePage {
 
   toggleCompleteItem(item: ToggleCompleteItemOutput) {
     console.log('completeItem:item>', item);
-    item.isComplete = !item.isComplete;
-    this.todoService.save(item);
+    let newItem = assign(item, {});
+    newItem.isComplete = !newItem.isComplete;   
+    // item.isComplete = !item.isComplete;
+/*    
+    if (item.isComplete) {
+          console.log('was true');
+      item.isComplete = false;
+    } else {
+          console.log('was false');      
+      item.isComplete = true;
+    }
+*/    
+    console.log('completeItem:item:BBBB>', newItem);
+
+    this.todoService.save(newItem);
 
     /*
         if (item.isComplete) {
@@ -106,12 +119,29 @@ export class HomePage {
   presentPopover(ev) {
     let popover = this.popoverCtrl.create(MyPopoverPage);
 
-    popover.onDidDismiss((data: string) => {
-      if (data === 'ClearCompleted') {
+    popover.onDidDismiss((result: MyPopoverPageResult) => {
+      console.log('popover.onDidDismiss>', result);
+
+      if (!!!result) {
+        // no result.
+        console.log('result is null.');
+        return;
+      }
+
+      console.log('result.clearCompleted>', result.clearCompleted);
+      if (result.clearCompleted) {
         this.todoService.clearCompletedItems();
+        return;
       }
     });
 
+    /*  
+        popover.onDidDismiss((data: string) => {
+          if (data === 'ClearCompleted') {
+            this.todoService.clearCompletedItems();
+          }
+        });
+    */
     popover.present({
       ev: ev
     });
