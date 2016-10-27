@@ -45,6 +45,15 @@ export class LoginPage {
 
   }
 /*
+https://forum.ionicframework.com/t/form-validation-property-does-not-exist/68309/5
+
+isValid(field: string) {
+let formField = this.myForm.get(field);
+return formField.valid || formField.pristine;
+}
+*/
+
+/*
   ngOnInit() {
     console.log('ngOnInit');
     console.log('ngOnInit:this.loginForm>', this.loginForm);
