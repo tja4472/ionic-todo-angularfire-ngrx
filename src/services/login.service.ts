@@ -9,6 +9,7 @@ import * as LoginActions from '../actions/login.action';
 import { AngularFire, FirebaseAuthState } from 'angularfire2';
 // tslint:disable-next-line:no-unused-variable
 import * as LoginReducer from '../reducers/login.reducer';
+// import { assign } from '../utils/assign';
 
 @Injectable()
 export class LoginService {
@@ -26,7 +27,6 @@ export class LoginService {
         this.af.auth.take(1).subscribe((authState: FirebaseAuthState) => {
             // Run once.
             // af.auth.unsubscribe();
-
             console.log('af.auth.subscribe:authState>', authState);
             let authenticated: boolean = !!authState;
 
@@ -34,7 +34,11 @@ export class LoginService {
 
             if (authenticated) {
                 this.store.dispatch(
-                    new LoginActions.RestoreAuthenticationAction(authState));
+                    new LoginActions.RestoreAuthenticationAction({
+                        displayName: authState.auth.displayName,
+                        email: authState.auth.email,
+                        isAnonymous: authState.auth.isAnonymous,
+                    }));
             } else {
                 this.store.dispatch(
                     new LoginActions.BeginAuthenticationFailureAction());
@@ -58,7 +62,8 @@ export class LoginService {
         this.store.dispatch(
             new LoginActions.CreateUserAction({
                 userName,
-                password}));
+                password
+            }));
     }
 
     emailAuthentication(
@@ -68,7 +73,8 @@ export class LoginService {
         this.store.dispatch(
             new LoginActions.EmailAuthenticationAction({
                 userName,
-                password}));
+                password
+            }));
     }
 
     googleAuthentication() {
