@@ -32,8 +32,13 @@ export class SignupPage {
     //
     // this.loginState$ = this.store.let(LoginSelector.getLoginState());
     this.loginState$ = loginService.getLoginState();    
-  }
 
+    this.loginForm = this.formBuilder.group({
+      username: ['', Validators.required],
+      password: ['', Validators.required],
+    });    
+  }
+/*
   ionViewDidLoad() {
     //
     this.loginForm = this.formBuilder.group({
@@ -41,6 +46,7 @@ export class SignupPage {
       password: ['', Validators.required],
     });
   }
+*/
 
   logForm() {
     console.log(this.loginForm.value);
