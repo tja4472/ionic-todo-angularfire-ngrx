@@ -1,7 +1,4 @@
-import { Observable } from 'rxjs/Observable';
-
 import * as loginAction from '../actions/login.action';
-// import { FirebaseAuthState } from 'angularfire2';
 
 import { assign } from '../utils/assign';
 
@@ -95,18 +92,7 @@ function makeDisplayName(user: {
 // =========
 // Selectors
 // =========
-export function getDisplayName(state$: Observable<State>) {
-    return state$.select(state => state.displayName);
-}
-
-export function getError(state$: Observable<State>) {
-    return state$.select(state => state.error);
-}
-
-export function getIsAuthenticated(state$: Observable<State>) {
-    return state$.select(state => state.isAuthenticated);
-}
-
-export function getIsAuthenticating(state$: Observable<State>) {
-    return state$.select(state => state.isAuthenticating);
-}
+export const getDisplayName = (state: State) => state.displayName;
+export const getError = (state: State) => state.error;
+export const getIsAuthenticated = (state: State) => state.isAuthenticated;
+export const getIsAuthenticating = (state: State) => state.isAuthenticating;

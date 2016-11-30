@@ -1,5 +1,3 @@
-import { Observable } from 'rxjs/Observable';
-
 import * as todoCompletedAction from '../actions/todo-completed.action';
 import { TodoCompleted } from '../models/todo-completed';
 import { assign } from '../utils/assign';
@@ -46,14 +44,6 @@ export function reducer(
 // =========
 // Selectors
 // =========
-export function getLoaded(state$: Observable<State>) {
-    return state$.select(state => state.loaded);
-}
-
-export function getLoading(state$: Observable<State>) {
-    return state$.select(state => state.loading);
-}
-
-export function geTodoCompletedList(state$: Observable<State>) {
-    return state$.select(state => state.todoCompletedList);
-}
+export const getLoaded = (state: State) => state.loaded;
+export const getLoading = (state: State) => state.loading;
+export const getTodoCompletedList = (state: State) => state.todoCompletedList;

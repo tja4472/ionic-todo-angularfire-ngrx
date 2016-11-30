@@ -22,7 +22,7 @@ export class TodoCompletedService {
                 let a = this.store.select(s => s.todoCompleted.todoCompletedList);
                 return a;
         */
-        return this.store.let(FromRootReducer.getTodoCompleted_GetTodoCompletedList);
+        return this.store.select(FromRootReducer.getTodoCompleted_GetTodoCompletedList);
     }
 
     initialise(): void {
@@ -31,11 +31,11 @@ export class TodoCompletedService {
     }
 
     isLoaded(): Observable<boolean> {
-        return this.store.let(FromRootReducer.getTodoCompleted_GetLoaded);
+        return this.store.select(FromRootReducer.getTodoCompleted_GetLoaded);
     }
 
     isLoading(): Observable<boolean> {
-        return this.store.let(FromRootReducer.getTodoCompleted_GetLoading);
+        return this.store.select(FromRootReducer.getTodoCompleted_GetLoading);
     }
 
     moveToCurrent(item: TodoCompleted) {

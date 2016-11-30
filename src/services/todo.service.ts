@@ -23,7 +23,7 @@ export class TodoService {
     }
 
     getData(): Observable<ToDo[]> {
-        return this.store.let(FromRootReducer.getTodo_GetTodos);
+        return this.store.select(FromRootReducer.getTodo_GetTodos);
     }
 
     initialise(): void {
@@ -32,11 +32,11 @@ export class TodoService {
     }
 
     isLoaded(): Observable<boolean> {
-        return this.store.let(FromRootReducer.getTodo_GetLoaded);
+        return this.store.select(FromRootReducer.getTodo_GetLoaded);
     }
 
     isLoading(): Observable<boolean> {
-        return this.store.let(FromRootReducer.getTodo_GetLoading);
+        return this.store.select(FromRootReducer.getTodo_GetLoading);
     }
 
     reorderItems(indexes: Indexes) {

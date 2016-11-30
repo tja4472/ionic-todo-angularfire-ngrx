@@ -47,7 +47,7 @@ export class LoginService {
     }
 
     getLoginState() {
-        return this.store.let(FromRootReducer.getLoginState);
+        return this.store.select(FromRootReducer.getLoginState);
     }
 
     anonymousAuthentication() {
