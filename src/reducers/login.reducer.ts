@@ -21,19 +21,13 @@ export function reducer(
     action: loginAction.Actions,
 ): State {
     switch (action.type) {
-        case loginAction.ActionTypes.GOOGLE_AUTHENTICATION: {
+        case loginAction.GOOGLE_AUTHENTICATION: {
             return assign(state, {
                 isAuthenticating: true
             });
         }
 
-        // case loginAction.ActionTypes.ANONYMOUS_AUTHENTICATION_SUCCESS:
-        // case loginAction.ActionTypes.CREATE_USER_SUCCESS:
-        // case loginAction.ActionTypes.EMAIL_AUTHENTICATION_SUCCESS:
-        // case loginAction.ActionTypes.GOOGLE_AUTHENTICATION_SUCCESS:
-        case loginAction.ActionTypes.RESTORE_AUTHENTICATION: {
-            // let user: FirebaseAuthState = action.payload.authState;
-
+        case loginAction.RESTORE_AUTHENTICATION: {
             return assign(state, {
                 displayName: makeDisplayName(action.payload),
                 isAuthenticated: true,
@@ -41,7 +35,7 @@ export function reducer(
             });
         }
 
-        case loginAction.ActionTypes.LOGOUT: {
+        case loginAction.LOGOUT: {
             return assign(state, {
                 displayName: '',
                 isAuthenticated: false,
@@ -49,20 +43,19 @@ export function reducer(
             });
         }
 
-        case loginAction.ActionTypes.ANONYMOUS_AUTHENTICATION:
-        case loginAction.ActionTypes.BEGIN_AUTHENTICATION:
-        case loginAction.ActionTypes.CREATE_USER:
-        case loginAction.ActionTypes.EMAIL_AUTHENTICATION: {
+        case loginAction.ANONYMOUS_AUTHENTICATION:
+        case loginAction.BEGIN_AUTHENTICATION:
+        case loginAction.CREATE_USER:
+        case loginAction.EMAIL_AUTHENTICATION: {
             return assign(state, {
                 error: null,
                 isAuthenticating: true
             });
         }
 
-        // case LoginActionTypes.BEGIN_AUTHENTICATION_FAILURE:
-        case loginAction.ActionTypes.ANONYMOUS_AUTHENTICATION_FAILURE:
-        case loginAction.ActionTypes.CREATE_USER_FAILURE:
-        case loginAction.ActionTypes.EMAIL_AUTHENTICATION_FAILURE: {
+        case loginAction.ANONYMOUS_AUTHENTICATION_FAILURE:
+        case loginAction.CREATE_USER_FAILURE:
+        case loginAction.EMAIL_AUTHENTICATION_FAILURE: {
             return assign(state, {
                 error: action.payload,
                 isAuthenticated: false,

@@ -1,24 +1,13 @@
-// import 'rxjs/add/operator/catch';
-// import 'rxjs/add/operator/map';
-// import 'rxjs/add/operator/mapTo';
-// import 'rxjs/add/operator/filter';
-// import 'rxjs/add/operator/mergeMap';
-// import 'rxjs/add/operator/switchMap';
-// import 'rxjs/add/operator/switchMapTo';
-// import 'rxjs/add/operator/toArray';
-// import 'rxjs/add/observable/of';
 import { Injectable } from '@angular/core';
 import { Effect, Actions } from '@ngrx/effects';
 // tslint:disable-next-line:no-unused-variable
 import { Observable } from 'rxjs/Observable';
-// import { Database } from '@ngrx/db';
 
 import { State } from '../reducers';
 import { Store } from '@ngrx/store';
 
 import * as LoginActions from '../actions/login.action';
 
-// import { TextItem } from '../models';
 import {
   AngularFire, AuthMethods,
   AuthProviders
@@ -33,7 +22,7 @@ export class LoginEffects {
   ) { }
 
   @Effect({ dispatch: false }) anonymousAuthentication$ = this.actions$
-    .ofType(LoginActions.ActionTypes.ANONYMOUS_AUTHENTICATION)
+    .ofType(LoginActions.ANONYMOUS_AUTHENTICATION)
     .map(() =>
       this.af.auth.login(
         {
@@ -48,7 +37,7 @@ export class LoginEffects {
     );
 
   @Effect({ dispatch: false }) createUser$ = this.actions$
-    .ofType(LoginActions.ActionTypes.CREATE_USER)
+    .ofType(LoginActions.CREATE_USER)
     // .do(x => console.log('login.effect:createUser>', x))
     .map((action: LoginActions.CreateUserAction) => action.payload)
     .map(payload => {
@@ -63,7 +52,7 @@ export class LoginEffects {
     });
 
   @Effect({ dispatch: false }) emailAuthentication$ = this.actions$
-    .ofType(LoginActions.ActionTypes.EMAIL_AUTHENTICATION)
+    .ofType(LoginActions.EMAIL_AUTHENTICATION)
     // .do(x => console.log('login.effect:emailAuthentication>', x))
     .map((action: LoginActions.EmailAuthenticationAction) => action.payload)
     .map(payload => {
@@ -82,7 +71,7 @@ export class LoginEffects {
     });    
 
   @Effect({ dispatch: false }) authorizeWithGoogle$ = this.actions$
-    .ofType(LoginActions.ActionTypes.GOOGLE_AUTHENTICATION)
+    .ofType(LoginActions.GOOGLE_AUTHENTICATION)
     // .do(x => console.log('login.effect:authorizeWithGoogle>', x))
     // .map((action: LoginActions.GoogleAuthenticationAction) => action.payload)
     .map(()=> {

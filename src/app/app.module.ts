@@ -1,3 +1,4 @@
+import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { IonicApp, IonicModule } from 'ionic-angular';
 import { MyApp } from './app.component';
@@ -22,7 +23,7 @@ import { Fb1DataService } from '../services/fb1.data.service';
 import { LoginService } from '../services/login.service';
 import { TodoCompletedDataService } from '../services/todo-completed.data.service';
 import { TodoCompletedService } from '../services/todo-completed.service';
-import { TodoDataService} from '../services/todo.data.service';
+import { TodoDataService } from '../services/todo.data.service';
 import { TodoService } from '../services/todo.service';
 import { ValidationService } from '../services/validation.service';
 
@@ -33,8 +34,9 @@ import { MyFirebaseAppConfig } from './my-firebase-app-config';
 
 import { EffectsModule } from '@ngrx/effects';
 import { StoreModule } from '@ngrx/store';
+import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 
-import { reducer } from '../reducers/index';
+import { reducers } from '../reducers/index';
 
 import { LoginEffects } from '../effects/login.effect';
 import { TodoCompletedEffects } from '../effects/todo-completed.effect';
@@ -43,7 +45,7 @@ import { TodoEffects } from '../effects/todo.effect';
 // Add the RxJS Observable operators we need in this app.
 import './rxjs-operators';
 
-firebase.initializeApp(MyFirebaseAppConfig.config)
+// firebase.initializeApp(MyFirebaseAppConfig.config)
 
 @NgModule({
   declarations: [
@@ -51,7 +53,7 @@ firebase.initializeApp(MyFirebaseAppConfig.config)
     Error,
     MyPopoverPage,
     TodoCompletedListComponent,
-    TodoListComponent,    
+    TodoListComponent,
     MyApp,
     Page1,
     Page2,
@@ -63,12 +65,16 @@ firebase.initializeApp(MyFirebaseAppConfig.config)
     ViewCompletedPage,
   ],
   imports: [
+    BrowserModule,
     IonicModule.forRoot(MyApp),
-    AngularFireModule.initializeApp(MyFirebaseAppConfig.config),    
-    StoreModule.provideStore(reducer),
-    EffectsModule.run(LoginEffects),    
-    EffectsModule.run(TodoCompletedEffects),
-    EffectsModule.run(TodoEffects),    
+    AngularFireModule.initializeApp(MyFirebaseAppConfig.config),
+    StoreModule.forRoot(reducers),
+    StoreDevtoolsModule.instrument(),
+    EffectsModule.forRoot([
+      LoginEffects,
+      TodoCompletedEffects,
+      TodoEffects,
+    ]),
   ],
   bootstrap: [IonicApp],
   entryComponents: [
@@ -80,8 +86,8 @@ firebase.initializeApp(MyFirebaseAppConfig.config)
     TodoCompletedPage,
     TodoPage,
     SignupPage,
-    ViewCompletedPage,    
-    MyPopoverPage,    
+    ViewCompletedPage,
+    MyPopoverPage,
   ],
   providers: [
     Fb1DataService,
@@ -94,7 +100,7 @@ firebase.initializeApp(MyFirebaseAppConfig.config)
     ValidationService,
   ]
 })
-export class AppModule {}
+export class AppModule { }
 
 /*
 so I need some initial state loaded before angular does anything.. for example 

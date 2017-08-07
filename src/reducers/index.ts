@@ -1,10 +1,12 @@
-import { createSelector } from 'reselect';
-import { ActionReducer } from '@ngrx/store';
-import { compose } from '@ngrx/core/compose';
-import { storeLogger } from 'ngrx-store-logger';
-import { storeFreeze } from 'ngrx-store-freeze';
-import { localStorageSync } from 'ngrx-store-localstorage';
-import { combineReducers } from '@ngrx/store';
+import {
+    ActionReducerMap,
+    createSelector,
+} from '@ngrx/store';
+
+// import { storeLogger } from 'ngrx-store-logger';
+// import { storeFreeze } from 'ngrx-store-freeze';
+// import { localStorageSync } from 'ngrx-store-localstorage';
+// import { combineReducers } from '@ngrx/store';
 
 import * as fromLoginReducer from './login.reducer';
 import * as fromTodoCompletedReducer from './todo-completed.reducer';
@@ -17,34 +19,23 @@ export interface State {
     todoCompleted: fromTodoCompletedReducer.State;
 }
 
-const reducers = {
+export const reducers: ActionReducerMap<State> = {
     login: fromLoginReducer.reducer,
     todo: fromTodoReducer.reducer,
     todoCompleted: fromTodoCompletedReducer.reducer,
 };
 
+/*
 const developmentReducer: ActionReducer<State> = compose(
     localStorageSync(['todo'], true),
     storeFreeze,
     storeLogger(),
     combineReducers)(reducers);
-// const productionReducer: ActionReducer<State>  = combineReducers(reducers);
-
-/*
-Don't know where PROD is set.
 
 export function reducer(state: any, action: any) {
-  if (PROD) {
-    return productionReducer(state, action);
-  }
-  else {
     return developmentReducer(state, action);
-  }
 }
 */
-export function reducer(state: any, action: any) {
-    return developmentReducer(state, action);
-}
 
 /***********
  * Selectors

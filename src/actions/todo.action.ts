@@ -1,50 +1,47 @@
 import { Action } from '@ngrx/store';
-import { type } from '../utils/util';
 
 import { Indexes } from '../models/indexes';
 import { ToDo } from '../models/todo';
 
-export const ActionTypes = {
-    CLEAR_COMPLETED: type('[ToDoActions] Clear Completed'),
-    LOAD: type('[ToDoActions] Load'),
-    LOAD_SUCCESS: type('[ToDoActions] Load Success'),
-    REORDER_LIST: type('[ToDoActions] Reorder List'),
-    REMOVE: type('[ToDoActions] Remove'),
-    SAVE: type('[ToDoActions] Save'),
-}
+export const CLEAR_COMPLETED = '[ToDoActions] Clear Completed';
+export const LOAD = '[ToDoActions] Load';
+export const LOAD_SUCCESS = '[ToDoActions] Load Success';
+export const REORDER_LIST = '[ToDoActions] Reorder List';
+export const REMOVE = '[ToDoActions] Remove';
+export const SAVE = '[ToDoActions] Save';
 
 export class ClearCompletedAction implements Action {
-    type = ActionTypes.CLEAR_COMPLETED;
+    readonly type = CLEAR_COMPLETED;
 
     constructor() { }
 }
 
 export class LoadAction implements Action {
-    type = ActionTypes.LOAD;
+    readonly type = LOAD;
 
     constructor() { }
 }
 
 export class LoadSuccessAction implements Action {
-    type = ActionTypes.LOAD_SUCCESS;
+    readonly type = LOAD_SUCCESS;
 
     constructor(public payload: ToDo[]) { }
 }
 
 export class RemoveAction implements Action {
-    type = ActionTypes.REMOVE;
+    readonly type = REMOVE;
 
     constructor(public payload: string) { } // itemKey
 }
 
 export class ReorderListAction implements Action {
-    type = ActionTypes.REORDER_LIST;
+    readonly type = REORDER_LIST;
 
     constructor(public payload: Indexes) { }
 }
 
 export class SaveAction implements Action {
-    type = ActionTypes.SAVE;
+    readonly type = SAVE;
 
     constructor(public payload: ToDo) { }
 }

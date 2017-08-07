@@ -18,13 +18,13 @@ export function reducer(
     state = initialState,
     action: todoAction.Actions): State {
     switch (action.type) {
-        case todoAction.ActionTypes.LOAD: {
+        case todoAction.LOAD: {
             return assign(state, {
                 loading: true
             });
         }
 
-        case todoAction.ActionTypes.LOAD_SUCCESS: {
+        case todoAction.LOAD_SUCCESS: {
             const items: ToDo[] = action.payload;
 
             return {

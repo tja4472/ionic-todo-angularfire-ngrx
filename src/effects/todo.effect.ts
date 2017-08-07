@@ -23,7 +23,7 @@ export class TodoEffects {
   ) { }
 
   @Effect({ dispatch: false }) clearCompleted$ = this.actions$
-    .ofType(TodoAction.ActionTypes.CLEAR_COMPLETED)
+    .ofType(TodoAction.CLEAR_COMPLETED)
     .withLatestFrom(this.state$)
     .do(([, state]) => {
       let completed = state.todo.todos.filter(a => a.isComplete);
@@ -41,7 +41,7 @@ export class TodoEffects {
 */
 
   @Effect() loadCollection$ = this.actions$
-    .ofType(TodoAction.ActionTypes.LOAD)
+    .ofType(TodoAction.LOAD)
     .do(x => { console.log('Effect:loadCollection$:A', x); })
     .withLatestFrom(this.state$)
     // tslint:disable-next-line:no-unused-variable    
@@ -66,7 +66,7 @@ export class TodoEffects {
   // .ignoreElements());  
 */
   @Effect({ dispatch: false }) reorderList$ = this.actions$
-    .ofType(TodoAction.ActionTypes.REORDER_LIST)
+    .ofType(TodoAction.REORDER_LIST)
     .withLatestFrom(this.state$)
     .map(([action, state]) => ({ action: <TodoAction.ReorderListAction>action, state }))
     .do(x => {
@@ -90,7 +90,7 @@ export class TodoEffects {
 */
 
   @Effect({ dispatch: false }) removeItem$ = this.actions$
-    .ofType(TodoAction.ActionTypes.REMOVE)
+    .ofType(TodoAction.REMOVE)
     .map((action: TodoAction.RemoveAction) => action.payload)
     .do(payload => {
       console.log('Effect:removeItem$:A', payload);
@@ -110,7 +110,7 @@ export class TodoEffects {
     .ignoreElements();
 */
   @Effect({ dispatch: false }) save$ = this.actions$
-    .ofType(TodoAction.ActionTypes.SAVE)
+    .ofType(TodoAction.SAVE)
     .map((action: TodoAction.SaveAction) => action.payload)
     .do(payload => {
       console.log('Effect:save$:A', payload);
