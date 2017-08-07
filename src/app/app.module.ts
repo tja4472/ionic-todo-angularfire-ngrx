@@ -27,9 +27,9 @@ import { TodoDataService } from '../services/todo.data.service';
 import { TodoService } from '../services/todo.service';
 import { ValidationService } from '../services/validation.service';
 
-
 import { AngularFireModule } from 'angularfire2';
-
+import { AngularFireAuthModule } from 'angularfire2/auth';
+import { AngularFireDatabaseModule } from 'angularfire2/database';
 import { MyFirebaseAppConfig } from './my-firebase-app-config';
 
 import { EffectsModule } from '@ngrx/effects';
@@ -44,8 +44,6 @@ import { TodoEffects } from '../effects/todo.effect';
 
 // Add the RxJS Observable operators we need in this app.
 import './rxjs-operators';
-
-// firebase.initializeApp(MyFirebaseAppConfig.config)
 
 @NgModule({
   declarations: [
@@ -67,7 +65,9 @@ import './rxjs-operators';
   imports: [
     BrowserModule,
     IonicModule.forRoot(MyApp),
-    AngularFireModule.initializeApp(MyFirebaseAppConfig.config),
+    AngularFireModule.initializeApp(MyFirebaseAppConfig),
+    AngularFireAuthModule,
+    AngularFireDatabaseModule,
     StoreModule.forRoot(reducers),
     StoreDevtoolsModule.instrument(),
     EffectsModule.forRoot([

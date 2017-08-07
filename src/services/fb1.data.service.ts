@@ -1,7 +1,5 @@
 import { Injectable } from '@angular/core';
-// import { Observable } from 'rxjs/Observable';
 
-import { AngularFire } from 'angularfire2';
 import { ToDo } from '../models/todo';
 import { TodoCompleted } from '../models/todo-completed';
 import { TodoDataService } from '../services/todo.data.service';
@@ -12,7 +10,6 @@ import { TodoCompletedDataService } from '../services/todo-completed.data.servic
 @Injectable()
 export class Fb1DataService {
     constructor(
-        public af: AngularFire,
         private todoCompletedDataService: TodoCompletedDataService,
         private todoDataService: TodoDataService
     ) { }

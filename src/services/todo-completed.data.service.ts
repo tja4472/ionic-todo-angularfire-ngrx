@@ -1,7 +1,8 @@
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs/Observable';
 
-import { AngularFire } from 'angularfire2';
+import { AngularFireDatabase, FirebaseListObservable } from 'angularfire2/database';
+
 import { TodoCompleted } from '../models/todo-completed';
 
 const FIREBASE_COMPLETED_TODOS = '/todo/completedTodos';
@@ -11,13 +12,13 @@ export class TodoCompletedDataService {
     private fb_CompletedTodos: any; // readonly
 
     constructor(
-        public af: AngularFire
+        public af: AngularFireDatabase
     ) {
-        this.fb_CompletedTodos = af.database.list(FIREBASE_COMPLETED_TODOS);
+        this.fb_CompletedTodos = af.list(FIREBASE_COMPLETED_TODOS);
     }
 
     getData(): Observable<TodoCompleted[]> {
-        return this.af.database.list(FIREBASE_COMPLETED_TODOS)
+        return this.af.list(FIREBASE_COMPLETED_TODOS)
             .map(x => x.map(d => fromFirebaseRecord(d)));
     }
 

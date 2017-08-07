@@ -6,15 +6,18 @@ import { Store } from '@ngrx/store';
 
 import * as FromRootReducer from '../reducers/index';
 import * as LoginActions from '../actions/login.action';
-import { AngularFire, FirebaseAuthState } from 'angularfire2';
+
+import { AngularFireAuth } from 'angularfire2/auth';
+// Do not import from 'firebase' as you'd lose the tree shaking benefits
+import * as firebase from 'firebase/app';
+
 // tslint:disable-next-line:no-unused-variable
 import * as LoginReducer from '../reducers/login.reducer';
-// import { assign } from '../utils/assign';
 
 @Injectable()
 export class LoginService {
     constructor(
-        private af: AngularFire,
+        private af: AngularFireAuth,
         private store: Store<FromRootReducer.State>,
     ) { }
 
@@ -24,7 +27,7 @@ export class LoginService {
 
         // Subscribe to the auth object to check for the login status
         // of the user.      
-        this.af.auth.take(1).subscribe((authState: FirebaseAuthState) => {
+        this.af.authState.take(1).subscribe((authState: firebase.User) => {
             // Run once.
             // af.auth.unsubscribe();
             console.log('af.auth.subscribe:authState>', authState);
@@ -35,9 +38,9 @@ export class LoginService {
             if (authenticated) {
                 this.store.dispatch(
                     new LoginActions.RestoreAuthenticationAction({
-                        displayName: authState.auth.displayName,
-                        email: authState.auth.email,
-                        isAnonymous: authState.auth.isAnonymous,
+                        displayName: authState.displayName,
+                        email: authState.email,
+                        isAnonymous: authState.isAnonymous,
                     }));
             } else {
                 this.store.dispatch(
@@ -85,6 +88,6 @@ export class LoginService {
     logout() {
         this.store.dispatch(
             new LoginActions.LogoutAction());
-        this.af.auth.logout();
+        this.af.auth.signOut();
     }
 }

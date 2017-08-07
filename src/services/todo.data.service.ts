@@ -1,7 +1,8 @@
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs/Observable';
 
-import { AngularFire } from 'angularfire2';
+import { AngularFireDatabase, FirebaseListObservable } from 'angularfire2/database';
+
 import { Indexes } from '../models/indexes';
 import { ToDo } from '../models/todo';
 
@@ -14,13 +15,13 @@ export class TodoDataService {
     private fb_CurrentTodos: any; // readonly
 
     constructor(
-        public af: AngularFire
+        public af: AngularFireDatabase
     ) {
-        this.fb_CurrentTodos = af.database.list(FIREBASE_CURRENT_TODOS);
+        this.fb_CurrentTodos = af.list(FIREBASE_CURRENT_TODOS);
     }
 
     getData(): Observable<ToDo[]> {
-        return this.af.database.list(FIREBASE_CURRENT_TODOS, {
+        return this.af.list(FIREBASE_CURRENT_TODOS, {
             query: {
                 orderByChild: 'index'
             }
