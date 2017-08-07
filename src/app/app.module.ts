@@ -10,6 +10,8 @@ import { TodoCompletedPage } from '../pages/todo-completed/todo-completed.page';
 import { SignupPage } from '../pages/signup/signup.page';
 import { ViewCompletedPage } from '../pages/view-completed/view-completed.page';
 
+import { StatusBar } from '@ionic-native/status-bar';
+
 import { ControlMessages } from '../components/control-messages/control-messages.component';
 import { Error } from '../components/error/error.component';
 import { MyPopoverPage } from '../components/popover/popover.component';
@@ -84,6 +86,7 @@ firebase.initializeApp(MyFirebaseAppConfig.config)
   providers: [
     Fb1DataService,
     LoginService,
+    StatusBar,
     TodoCompletedDataService,
     TodoCompletedService,
     TodoDataService,
