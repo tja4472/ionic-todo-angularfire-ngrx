@@ -16,38 +16,61 @@ import * as LoginReducer from '../reducers/login.reducer';
 
 @Injectable()
 export class LoginService {
+    private readonly CLASS_NAME = 'LoginService';
+
     constructor(
         private af: AngularFireAuth,
         private store: Store<FromRootReducer.State>,
-    ) { }
+    ) {
+        console.log(`%s:constructor`, this.CLASS_NAME);
+        // store.dispatch(
+        //     new LoginActions.BeginAuthenticationAction());
 
-    initialise(): void {
-        this.store.dispatch(
-            new LoginActions.BeginAuthenticationAction());
-
-        // Subscribe to the auth object to check for the login status
-        // of the user.      
-        this.af.authState.take(1).subscribe((authState: firebase.User) => {
-            // Run once.
-            // af.auth.unsubscribe();
-            console.log('af.auth.subscribe:authState>', authState);
-            let authenticated: boolean = !!authState;
-
-            console.log('authenticated:', authenticated);
-
-            if (authenticated) {
+        af.auth.onAuthStateChanged((user: firebase.User) => {
+            if (user) {
+                // User is signed in.
+                console.log(`%s:User is signed in>`, this.CLASS_NAME, user.uid);
                 this.store.dispatch(
                     new LoginActions.RestoreAuthenticationAction({
-                        displayName: authState.displayName,
-                        email: authState.email,
-                        isAnonymous: authState.isAnonymous,
+                        displayName: user.displayName,
+                        email: user.email,
+                        isAnonymous: user.isAnonymous,
                     }));
             } else {
-                this.store.dispatch(
-                    new LoginActions.BeginAuthenticationFailureAction());
+                // No user is signed in.
+                console.log(`%s: No user is signed in.`, this.CLASS_NAME);
             }
-        });
+        })
     }
+    /*
+        initialise(): void {
+            this.store.dispatch(
+                new LoginActions.BeginAuthenticationAction());
+    
+            // Subscribe to the auth object to check for the login status
+            // of the user.      
+            this.af.authState.take(1).subscribe((authState: firebase.User) => {
+                // Run once.
+                // af.auth.unsubscribe();
+                console.log('af.auth.subscribe:authState>', authState);
+                let authenticated: boolean = !!authState;
+    
+                console.log('authenticated:', authenticated);
+    
+                if (authenticated) {
+                    this.store.dispatch(
+                        new LoginActions.RestoreAuthenticationAction({
+                            displayName: authState.displayName,
+                            email: authState.email,
+                            isAnonymous: authState.isAnonymous,
+                        }));
+                } else {
+                    this.store.dispatch(
+                        new LoginActions.BeginAuthenticationFailureAction());
+                }
+            });
+        }
+    */
 
     getLoginState() {
         return this.store.select(FromRootReducer.getLoginState);
@@ -73,11 +96,24 @@ export class LoginService {
         userName: string,
         password: string
     ) {
+        /*        
+                this.store.dispatch(
+                    new LoginActions.EmailAuthenticationAction({
+                        userName,
+                        password
+                    }));
+        */
         this.store.dispatch(
-            new LoginActions.EmailAuthenticationAction({
-                userName,
-                password
-            }));
+            new LoginActions.BeginAuthenticationAction());
+        this.af.auth.signInWithEmailAndPassword(userName, password).catch((error: firebase.FirebaseError) => {
+            // Handle Errors here.
+            var errorCode = error.code;
+            var errorMessage = error.message;
+
+            this.store.dispatch(
+                new LoginActions.EmailAuthenticationFailureAction(error));
+            // ...
+        });
     }
 
     googleAuthentication() {

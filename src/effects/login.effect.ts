@@ -49,6 +49,7 @@ export class LoginEffects {
         .catch(error => this.state$.dispatch(new LoginActions.CreateUserFailureAction(error)))
     });
 
+/*    
   @Effect({ dispatch: false }) emailAuthentication$ = this.actions$
     .ofType(LoginActions.EMAIL_AUTHENTICATION)
     // .do(x => console.log('login.effect:emailAuthentication>', x))
@@ -63,8 +64,13 @@ export class LoginEffects {
           email: user.auth.email,
           isAnonymous: user.auth.isAnonymous,
         })))
-        .catch(error => this.state$.dispatch(new LoginActions.EmailAuthenticationFailureAction(error)))
+        .catch(error => {
+          console.log('error>', error);
+           this.state$.dispatch(new LoginActions.EmailAuthenticationFailureAction(error))
+        })
+        
     });
+*/
 
   @Effect({ dispatch: false }) authorizeWithGoogle$ = this.actions$
     .ofType(LoginActions.GOOGLE_AUTHENTICATION)

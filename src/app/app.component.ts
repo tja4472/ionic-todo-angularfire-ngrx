@@ -12,6 +12,12 @@ import { ViewCompletedPage } from '../pages/view-completed/view-completed.page';
 
 import { LoginService } from '../services/login.service';
 
+export interface PageInterface {
+  title: string;
+  component: any;
+  logsOut?: boolean;
+}
+
 @Component({
   templateUrl: 'app.html'
 })
@@ -20,13 +26,12 @@ export class MyApp {
 
   rootPage: any = Page1;
   loginState$: any;
-  pages: Array<{ title: string, component: any }>;
-  //  private subscription;
+  pages: PageInterface[];
 
   constructor(
     private loginService: LoginService,
     public platform: Platform,
-        public statusBar: StatusBar,
+    public statusBar: StatusBar,
   ) {
     this.initializeApp();
 
@@ -38,29 +43,29 @@ export class MyApp {
       { title: 'Completed todos', component: ViewCompletedPage },
       { title: 'Login', component: LoginPage },
       { title: 'Signup', component: SignupPage },
-      { title: 'Logout', component: LoginPage },
+      { title: 'Logout', component: LoginPage, logsOut: true },
     ];
 
-    loginService.initialise();
+    // loginService.initialise();
 
     this.loginState$ = loginService.getLoginState();
 
-    /*
-        this.subscription = loginService.getLoginState()
-          .subscribe(loginState => {
-            console.log('loginState>', loginState);
-            console.log('loginState.isAuthenticated>', loginState.isAuthenticated);
-            console.log('loginState.isAuthenticating>', loginState.isAuthenticating);
-    
-            if (loginState.isAuthenticating) {
-              // this.rootPage = Page1;
-            } else if (loginState.isAuthenticated) {
-              this.rootPage = HomePage;
-            } else {
-              this.rootPage = LoginPage;
-            }
-          });
-    */
+
+    loginService.getLoginState()
+      .subscribe(loginState => {
+        console.log('loginState>', loginState);
+        console.log('loginState.isAuthenticated>', loginState.isAuthenticated);
+        console.log('loginState.isAuthenticating>', loginState.isAuthenticating);
+
+        if (loginState.isAuthenticating) {
+          // this.rootPage = Page1;
+        } else if (loginState.isAuthenticated) {
+          this.rootPage = HomePage;
+        } else {
+          this.rootPage = LoginPage;
+        }
+      });
+
   }
 
   initializeApp() {
@@ -71,9 +76,16 @@ export class MyApp {
     });
   }
 
-  openPage(page) {
+  openPage(page: PageInterface) {
     // Reset the content nav to have just this page
     // we wouldn't want the back button to show in this scenario
     this.nav.setRoot(page.component);
+
+    if (page.logsOut === true) {
+      // Give the menu time to close before changing to logged out
+      setTimeout(() => {
+        this.loginService.logout()
+      }, 1000);
+    }
   }
 }
