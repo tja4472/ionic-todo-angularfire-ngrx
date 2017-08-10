@@ -24,7 +24,7 @@ export interface PageInterface {
 export class MyApp {
   @ViewChild(Nav) nav: Nav;
 
-  rootPage: any = Page1;
+  rootPage: any; // = Page1;
   loginState$: any;
   pages: PageInterface[];
 
@@ -50,30 +50,47 @@ export class MyApp {
 
     this.loginState$ = loginService.getLoginState();
 
-
-    loginService.getLoginState()
-      .subscribe(loginState => {
-        console.log('loginState>', loginState);
-        console.log('loginState.isAuthenticated>', loginState.isAuthenticated);
-        console.log('loginState.isAuthenticating>', loginState.isAuthenticating);
-
-        if (loginState.isAuthenticating) {
-          // this.rootPage = Page1;
-        } else if (loginState.isAuthenticated) {
-          this.rootPage = HomePage;
-        } else {
-          this.rootPage = LoginPage;
-        }
-      });
-
+    /*
+        loginService.getLoginState()
+          .subscribe(loginState => {
+            console.log('loginState>', loginState);
+            console.log('loginState.isAuthenticated>', loginState.isAuthenticated);
+            console.log('loginState.isAuthenticating>', loginState.isAuthenticating);
+    
+            if (loginState.isAuthenticating) {
+              // this.rootPage = Page1;
+            } else if (loginState.isAuthenticated) {
+              this.rootPage = HomePage;
+            } else {
+              this.rootPage = LoginPage;
+            }
+          });
+    */
   }
 
   initializeApp() {
     this.platform.ready().then(() => {
+      console.log('platform.ready()');
       // Okay, so the platform is ready and our plugins are available.
       // Here you can do any higher level native things you might need.
       this.statusBar.styleDefault();
+
+      this.loginService.getLoginState()
+        .subscribe(loginState => {
+          console.log('loginState>', loginState);
+          console.log('loginState.isAuthenticated>', loginState.isAuthenticated);
+          console.log('loginState.isAuthenticating>', loginState.isAuthenticating);
+
+          if (loginState.isAuthenticating) {
+            // this.rootPage = Page1;
+          } else if (loginState.isAuthenticated) {
+            this.rootPage = HomePage;
+          } else {
+            this.rootPage = LoginPage;
+          }
+        });
     });
+      
   }
 
   openPage(page: PageInterface) {

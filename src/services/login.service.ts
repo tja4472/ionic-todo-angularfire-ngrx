@@ -23,22 +23,26 @@ export class LoginService {
         private store: Store<FromRootReducer.State>,
     ) {
         console.log(`%s:constructor`, this.CLASS_NAME);
-        // store.dispatch(
-        //     new LoginActions.BeginAuthenticationAction());
+        store.dispatch(
+            new LoginActions.BeginAuthenticationAction());
 
         af.auth.onAuthStateChanged((user: firebase.User) => {
             if (user) {
                 // User is signed in.
                 console.log(`%s:User is signed in>`, this.CLASS_NAME, user.uid);
+
                 this.store.dispatch(
                     new LoginActions.RestoreAuthenticationAction({
                         displayName: user.displayName,
                         email: user.email,
                         isAnonymous: user.isAnonymous,
                     }));
+
             } else {
                 // No user is signed in.
                 console.log(`%s: No user is signed in.`, this.CLASS_NAME);
+                store.dispatch(
+                    new LoginActions.LogoutAction());
             }
         })
     }
@@ -122,8 +126,8 @@ export class LoginService {
     }
 
     logout() {
-        this.store.dispatch(
-            new LoginActions.LogoutAction());
+        // this.store.dispatch(
+        //    new LoginActions.LogoutAction());
         this.af.auth.signOut();
     }
 }
