@@ -75,6 +75,15 @@ export class MyApp {
       // Here you can do any higher level native things you might need.
       this.statusBar.styleDefault();
 
+      this.loginService.auth$.subscribe(firebaseUser => {
+        console.log('>>>>>>>>>>firebaseUser>', firebaseUser);
+        if (firebaseUser) {
+          this.rootPage = HomePage;
+        } else {
+          this.rootPage = LoginPage;
+        }
+      });
+/*
       this.loginService.getLoginState()
         .subscribe(loginState => {
           console.log('loginState>', loginState);
@@ -89,8 +98,9 @@ export class MyApp {
             this.rootPage = LoginPage;
           }
         });
+*/
     });
-      
+
   }
 
   openPage(page: PageInterface) {
