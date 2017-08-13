@@ -3,6 +3,8 @@ import { Observable } from 'rxjs/Observable';
 
 import { AngularFireDatabase, FirebaseListObservable } from 'angularfire2/database';
 
+import { AfoListObservable, AngularFireOfflineDatabase } from 'angularfire2-offline/database';
+
 import { Indexes } from '../models/indexes';
 import { ToDo } from '../models/todo';
 
@@ -15,18 +17,23 @@ export class TodoDataService {
     private fb_CurrentTodos: any; // readonly
 
     constructor(
-        public af: AngularFireDatabase
+        public af: AngularFireOfflineDatabase
     ) {
+        console.log('TodoDataService:constructor');
         this.fb_CurrentTodos = af.list(FIREBASE_CURRENT_TODOS);
+
+        this.fb_CurrentTodos.subscribe(x => {
+            console.log('>>>>>>>>>>AngularFireOfflineDatabase.list>', x);
+        });
     }
 
-    getData(): Observable<ToDo[]> {
+    getData(): Observable<ToDo[]> { 
         return this.af.list(FIREBASE_CURRENT_TODOS, {
             query: {
                 orderByChild: 'index'
             }
         })
-            .map(x => x.map(d => fromFirebaseTodo(d)));
+            .map(x => x.map(d => fromFirebaseTodo(d)));            
     }
 
     reorderItemsAndUpdate(indexes: Indexes, todos: ToDo[]) {
