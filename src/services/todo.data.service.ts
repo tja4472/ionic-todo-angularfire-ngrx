@@ -70,12 +70,14 @@ interface FirebaseTodo {
 }
 
 function toFirebaseTodo(todo: ToDo): FirebaseTodo {
-    //
+    // Important!
+    // angularfire2-offline: Properties have to be alphabetical.
+    // https://github.com/adriancarriger/angularfire2-offline/issues/57
     let result: FirebaseTodo = {
         description: todo.description,
         index: todo.index,
+        isComplete: todo.isComplete,        
         name: todo.name,
-        isComplete: todo.isComplete
     };
 
     console.log('toFirebaseTodo>', result);
