@@ -1,9 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs/Observable';
 
-import { AngularFireDatabase, FirebaseListObservable } from 'angularfire2/database';
-
-import { AfoListObservable, AngularFireOfflineDatabase } from 'angularfire2-offline/database';
+import { AngularFireOfflineDatabase } from 'angularfire2-offline/database';
 
 import { Indexes } from '../models/indexes';
 import { ToDo } from '../models/todo';
@@ -22,18 +20,18 @@ export class TodoDataService {
         console.log('TodoDataService:constructor');
         this.fb_CurrentTodos = af.list(FIREBASE_CURRENT_TODOS);
 
-        this.fb_CurrentTodos.subscribe(x => {
+        this.fb_CurrentTodos.subscribe((x: any) => {
             console.log('>>>>>>>>>>AngularFireOfflineDatabase.list>', x);
         });
     }
 
-    getData(): Observable<ToDo[]> { 
+    getData(): Observable<ToDo[]> {
         return this.af.list(FIREBASE_CURRENT_TODOS, {
             query: {
                 orderByChild: 'index'
             }
         })
-            .map(x => x.map(d => fromFirebaseTodo(d)));            
+            .map(x => x.map(d => fromFirebaseTodo(d)));
     }
 
     reorderItemsAndUpdate(indexes: Indexes, todos: ToDo[]) {
@@ -76,7 +74,7 @@ function toFirebaseTodo(todo: ToDo): FirebaseTodo {
     let result: FirebaseTodo = {
         description: todo.description,
         index: todo.index,
-        isComplete: todo.isComplete,        
+        isComplete: todo.isComplete,
         name: todo.name,
     };
 
@@ -92,11 +90,11 @@ function fromFirebaseTodo(x: any): ToDo {
         isComplete: x.isComplete,
         name: x.name
     };
-
+/*
     if (result.description === undefined) {
         result.description = null;
     }
-
+*/
     if (result.isComplete === undefined) {
         result.isComplete = false;
     }

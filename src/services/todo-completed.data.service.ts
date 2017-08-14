@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs/Observable';
 
-import { AngularFireDatabase, FirebaseListObservable } from 'angularfire2/database';
+import { AngularFireDatabase } from 'angularfire2/database';
 
 import { TodoCompleted } from '../models/todo-completed';
 
@@ -19,7 +19,7 @@ export class TodoCompletedDataService {
 
     getData(): Observable<TodoCompleted[]> {
         return this.af.list(FIREBASE_COMPLETED_TODOS)
-            .map(x => x.map(d => fromFirebaseRecord(d)));
+            .map(x => x.map((d: any) => fromFirebaseRecord(d)));
     }
 
     removeItem(itemKey: string) {
@@ -65,9 +65,10 @@ function fromFirebaseRecord(x: any): TodoCompleted {
         isComplete: x.isComplete
     };
 
+    /*
     if (result.description === undefined) {
         result.description = null;
     }
-
+*/
     return result;
 }

@@ -71,8 +71,8 @@ export function reducer(
 
 function makeDisplayName(user: {
         isAnonymous: boolean;
-        displayName: string,
-        email: string,
+        displayName: string | null,
+        email: string | null,
     }) {
     if (user.isAnonymous) return 'Anonymous';
 

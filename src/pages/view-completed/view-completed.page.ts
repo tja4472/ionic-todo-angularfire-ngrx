@@ -53,6 +53,10 @@ export class ViewCompletedPage {
         return;
       }
 
+      if (modalResult.todo === undefined) {
+        return;
+        
+      }
       if (modalResult.isRemoved) {
         this.todoCompletedService.remove(modalResult.todo);
         return;

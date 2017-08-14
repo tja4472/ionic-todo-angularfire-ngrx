@@ -16,7 +16,7 @@ export class TodoCompletedListComponent {
   // @Output() public removeItem = new EventEmitter<RemoveItemOutput>();
 
   // public searchControl;
-public myGroup;
+public myGroup: any;
 
   constructor() {
     this.myGroup = new FormGroup({
@@ -31,7 +31,7 @@ public myGroup;
     this.checkItem.emit(item);
   }
 
-  ionItem(item) {
+  ionItem(item: any) {
     console.log("ionItem>>", item);
   }  
 }

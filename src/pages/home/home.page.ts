@@ -116,7 +116,7 @@ export class HomePage {
     actionSheet.present();
   }
 
-  presentPopover(ev) {
+  presentPopover(ev: any) {
     let popover = this.popoverCtrl.create(MyPopoverPage);
 
     popover.onDidDismiss((result: MyPopoverPageResult) => {

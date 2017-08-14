@@ -14,12 +14,12 @@ import { assign } from '../../utils/assign';
   templateUrl: 'todo.page.html',
 })
 export class TodoPage {
-  public todoForm;
+  public todoForm: any;
 
   private todo: ToDo =
   {
     $key: '',
-    description: null,
+    description: undefined,
     name: '',
     index: 0,
     isComplete: false

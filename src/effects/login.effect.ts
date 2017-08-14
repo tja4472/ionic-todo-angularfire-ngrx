@@ -1,7 +1,5 @@
 import { Injectable } from '@angular/core';
 import { Effect, Actions } from '@ngrx/effects';
-// tslint:disable-next-line:no-unused-variable
-import { Observable } from 'rxjs/Observable';
 
 import { State } from '../reducers';
 import { Store } from '@ngrx/store';

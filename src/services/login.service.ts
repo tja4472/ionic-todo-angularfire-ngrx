@@ -1,6 +1,4 @@
 import { Injectable } from '@angular/core';
-// tslint:disable-next-line:no-unused-variable
-import { Observable } from 'rxjs/Observable';
 
 import { Store } from '@ngrx/store';
 
@@ -10,9 +8,6 @@ import * as LoginActions from '../actions/login.action';
 import { AngularFireAuth } from 'angularfire2/auth';
 // Do not import from 'firebase' as you'd lose the tree shaking benefits
 import * as firebase from 'firebase/app';
-
-// tslint:disable-next-line:no-unused-variable
-import * as LoginReducer from '../reducers/login.reducer';
 
 // https://github.com/davidanaya/bi-dashboard-v1/blob/db0e3b71ef70d48453f776eb687aa465507146b0/src/app/auth/shared/services/auth.service.ts
 @Injectable()
@@ -140,8 +135,8 @@ export class LoginService {
             new LoginActions.BeginAuthenticationAction());
         this.af.auth.signInWithEmailAndPassword(userName, password).catch((error: firebase.FirebaseError) => {
             // Handle Errors here.
-            var errorCode = error.code;
-            var errorMessage = error.message;
+            // var errorCode = error.code;
+            // var errorMessage = error.message;
 
             this.store.dispatch(
                 new LoginActions.EmailAuthenticationFailureAction(error));

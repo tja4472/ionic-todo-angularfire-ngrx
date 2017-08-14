@@ -21,7 +21,7 @@ import { LoginService } from '../../services/login.service';
 })
 export class LoginPage {
   submitted = false;
-  public loginForm;
+  public loginForm: any;
 
   loginState$: any;
 

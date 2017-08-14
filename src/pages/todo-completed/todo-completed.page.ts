@@ -19,12 +19,12 @@ export interface ModalResult {
   templateUrl: 'todo-completed.page.html'
 })
 export class TodoCompletedPage {
-  public todoForm;
+  public todoForm: any;
 
   private todo: TodoCompleted =
   {
     $key: '',
-    description: null,
+    description: undefined,
     name: '',
     isComplete: false
   };

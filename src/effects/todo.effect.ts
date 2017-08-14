@@ -1,10 +1,7 @@
 import { Injectable } from '@angular/core';
+
 import { Effect, Actions } from '@ngrx/effects';
-// error TS4029: https://github.com/Microsoft/TypeScript/issues/5938
-// tslint:disable-next-line:no-unused-variable
-import { Observable } from 'rxjs/Observable';
-// tslint:disable-next-line:no-unused-variable 
-import { Action, Store } from '@ngrx/store'
+import { Store } from '@ngrx/store'
 
 import * as FromRootReducer from '../reducers';
 
@@ -45,9 +42,9 @@ export class TodoEffects {
     .do(x => { console.log('Effect:loadCollection$:A', x); })
     .withLatestFrom(this.state$)
     // tslint:disable-next-line:no-unused-variable    
-    .filter(([action, state]) => state.login.isAuthenticated)
+    .filter(([, state]) => state.login.isAuthenticated)
     // Watch database node and get items.
-    .switchMap(x => this.todoDataService.getData())
+    .switchMap(() => this.todoDataService.getData())
     .do(x => { console.log('Effect:loadCollection$:B', x); })
     .map((items: ToDo[]) => new TodoAction.LoadSuccessAction(items));
 

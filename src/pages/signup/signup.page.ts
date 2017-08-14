@@ -5,10 +5,6 @@ import { Validators, FormBuilder } from '@angular/forms';
 
 import { LoginService } from '../../services/login.service';
 
-import { Store } from '@ngrx/store';
-// import { LoginActions } from '../../actions';
-import * as FromRootReducer from '../../reducers';
-
 // import { LoginSelector } from '../../selectors';
 // import { ControlMessages } from '../../components/control-messages/control-messages.component';
 // import { ValidationService } from '../../validation.service';
@@ -20,7 +16,7 @@ import * as FromRootReducer from '../../reducers';
 })
 export class SignupPage {
   submitted = false;
-  public loginForm;
+  public loginForm: any;
 
   loginState$: any;
 
@@ -28,7 +24,7 @@ export class SignupPage {
     private formBuilder: FormBuilder,
     private loginService: LoginService,
     // private loginActions: LoginActions,
-    private store: Store<FromRootReducer.State>) {
+    ) {
     //
     // this.loginState$ = this.store.let(LoginSelector.getLoginState());
     this.loginState$ = loginService.getLoginState();    
