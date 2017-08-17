@@ -4,4 +4,5 @@ export interface IToDo {
     name: string;
     description?: string;
     isComplete: boolean;
+    userId: string;
 }

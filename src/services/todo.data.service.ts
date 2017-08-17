@@ -5,7 +5,7 @@ import { AngularFireDatabase } from 'angularfire2/database';
 // import { AngularFireOfflineDatabase } from 'angularfire2-offline/database';
 
 import { Indexes } from '../models/indexes';
-import { IToDo } from '../models/todo';
+import { IToDo } from '../models/todo.model';
 
 import { reorderArray } from 'ionic-angular';
 
@@ -88,7 +88,8 @@ function fromFirebaseTodo(x: any): IToDo {
         description: x.description,
         index: x.index,
         isComplete: x.isComplete,
-        name: x.name
+        name: x.name,
+        userId: '',
     };
 /*
     if (result.description === undefined) {

@@ -10,7 +10,7 @@ import {
   TodosInput
 } from '../../components/todo-list/todo-list.component';
 import { MyPopoverPage, IMyPopoverPageResult } from '../../components/popover/popover.component';
-import { IToDo } from '../../models/todo';
+import { IToDo } from '../../models/todo.model';
 import { TodoPage } from '../todo/todo.page';
 
 @Component({

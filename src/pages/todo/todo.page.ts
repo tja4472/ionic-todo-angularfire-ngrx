@@ -1,7 +1,7 @@
 import { ChangeDetectionStrategy, Component } from '@angular/core';
 import { NavParams, ViewController } from 'ionic-angular';
 
-import { IToDo } from '../../models/todo';
+import { IToDo } from '../../models/todo.model';
 import { Validators, FormBuilder } from '@angular/forms';
 
 @Component({
@@ -19,6 +19,7 @@ export class TodoPage {
     index: 0,
     isComplete: false,
     name: '',
+    userId: '',
   };
 
   private isEditing: boolean;

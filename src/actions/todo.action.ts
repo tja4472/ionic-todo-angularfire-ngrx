@@ -3,7 +3,7 @@
 import { Action } from '@ngrx/store';
 
 import { Indexes } from '../models/indexes';
-import { IToDo } from '../models/todo';
+import { IToDo } from '../models/todo.model';
 
 export const CLEAR_COMPLETED = '[ToDoActions] Clear Completed';
 export const LOAD = '[ToDoActions] Load';

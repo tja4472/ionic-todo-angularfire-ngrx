@@ -1,5 +1,5 @@
 import { ChangeDetectionStrategy, Component, EventEmitter, Input, Output } from '@angular/core';
-import { IToDo } from '../../models/todo';
+import { IToDo } from '../../models/todo.model';
 
 
 export type ToggleCompleteItemOutput = IToDo;

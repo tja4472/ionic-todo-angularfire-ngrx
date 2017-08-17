@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 
-import { IToDo } from '../models/todo';
+import { IToDo } from '../models/todo.model';
 import { ITodoCompleted } from '../models/todo-completed';
 import { TodoDataService } from '../services/todo.data.service';
 import { TodoCompletedDataService } from '../services/todo-completed.data.service';
@@ -39,6 +39,7 @@ export class Fb1DataService {
             index: 0,
             isComplete: item.isComplete,
             name: item.name,
+            userId: '',
         };
 
         this.todoDataService.save(todo);
