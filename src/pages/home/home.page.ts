@@ -10,7 +10,7 @@ import {
   TodosInput
 } from '../../components/todo-list/todo-list.component';
 import { MyPopoverPage, IMyPopoverPageResult } from '../../components/popover/popover.component';
-import { IToDo } from '../../models/todo.model';
+import { ITodo } from '../../models/todo.model';
 import { TodoPage } from '../todo/todo.page';
 
 @Component({
@@ -38,7 +38,7 @@ export class HomePage {
     console.log('addItem');
     const modal = this.modalCtrl.create(TodoPage);
 
-    modal.onDidDismiss((data: IToDo) => {
+    modal.onDidDismiss((data: ITodo) => {
       console.log('onDidDismiss>', data);
 
       if (!!data) {
@@ -82,7 +82,7 @@ export class HomePage {
 
     const modal = this.modalCtrl.create(TodoPage, { todo: item });
 
-    modal.onDidDismiss((data: IToDo) => {
+    modal.onDidDismiss((data: ITodo) => {
       console.log('onDidDismiss>', data);
 
       if (!!data) {

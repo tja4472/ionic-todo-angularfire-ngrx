@@ -1,16 +1,16 @@
 import { ChangeDetectionStrategy, Component, EventEmitter, Input, Output } from '@angular/core';
-import { IToDo } from '../../models/todo.model';
+import { ITodo } from '../../models/todo.model';
 
 
-export type ToggleCompleteItemOutput = IToDo;
-export type EditItemOutput = IToDo;
+export type ToggleCompleteItemOutput = ITodo;
+export type EditItemOutput = ITodo;
 // tslint:disable-next-line:interface-over-type-literal
 export type ReorderItemsOutput = {
   from: number,
   to: number
 };
-export type RemoveItemOutput = IToDo;
-export type TodosInput = IToDo[];
+export type RemoveItemOutput = ITodo;
+export type TodosInput = ITodo[];
 
 @Component({
   changeDetection: ChangeDetectionStrategy.OnPush,

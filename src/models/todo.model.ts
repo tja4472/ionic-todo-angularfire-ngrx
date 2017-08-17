@@ -1,4 +1,4 @@
-export interface IToDo {
+export interface ITodo {
     $key?: string;
     index: number;
     name: string;

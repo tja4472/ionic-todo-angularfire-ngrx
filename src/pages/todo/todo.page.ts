@@ -1,7 +1,7 @@
 import { ChangeDetectionStrategy, Component } from '@angular/core';
 import { NavParams, ViewController } from 'ionic-angular';
 
-import { IToDo } from '../../models/todo.model';
+import { ITodo } from '../../models/todo.model';
 import { Validators, FormBuilder } from '@angular/forms';
 
 @Component({
@@ -12,7 +12,7 @@ import { Validators, FormBuilder } from '@angular/forms';
 export class TodoPage {
   public todoForm: any;
 
-  private todo: IToDo =
+  private todo: ITodo =
   {
     $key: '',
     description: undefined,
@@ -31,7 +31,7 @@ export class TodoPage {
   ) {
     console.log('params:get>', params.get('todo'));
 
-    const paramTodo: IToDo = params.get('todo');
+    const paramTodo: ITodo = params.get('todo');
     this.isEditing = !!paramTodo;
 
     if (this.isEditing) {

@@ -5,7 +5,7 @@ import { AngularFireDatabase } from 'angularfire2/database';
 // import { AngularFireOfflineDatabase } from 'angularfire2-offline/database';
 
 import { Indexes } from '../models/indexes';
-import { IToDo } from '../models/todo.model';
+import { ITodo } from '../models/todo.model';
 
 import { reorderArray } from 'ionic-angular';
 
@@ -22,7 +22,7 @@ export class TodoDataService {
         this.fbCurrentTodos = af.list(FIREBASE_CURRENT_TODOS);
     }
 
-    getData(): Observable<IToDo[]> {
+    getData(): Observable<ITodo[]> {
         return this.af.list(FIREBASE_CURRENT_TODOS, {
             query: {
                 orderByChild: 'index'
@@ -31,7 +31,7 @@ export class TodoDataService {
             .map((x) => x.map((d:any) => fromFirebaseTodo(d)));
     }
 
-    reorderItemsAndUpdate(indexes: Indexes, todos: IToDo[]) {
+    reorderItemsAndUpdate(indexes: Indexes, todos: ITodo[]) {
         const itemsToSave = [...todos];
         reorderArray(itemsToSave, indexes);
 
@@ -44,7 +44,7 @@ export class TodoDataService {
         this.fbCurrentTodos.remove(itemKey);
     }
 
-    save(todo: IToDo) {
+    save(todo: ITodo) {
         console.log('save>', todo);
 
         if (todo.$key === undefined) {
@@ -64,7 +64,7 @@ interface IFirebaseTodo {
     isComplete: boolean;
 }
 
-function toFirebaseTodo(todo: IToDo): IFirebaseTodo {
+function toFirebaseTodo(todo: ITodo): IFirebaseTodo {
     // Important!
     // angularfire2-offline: Properties have to be alphabetical.
     // https://github.com/adriancarriger/angularfire2-offline/issues/57
@@ -79,11 +79,11 @@ function toFirebaseTodo(todo: IToDo): IFirebaseTodo {
     return result;
 }
 
-function fromFirebaseTodo(x: any): IToDo {
+function fromFirebaseTodo(x: any): ITodo {
     //
     console.log('TodoDataService:fromFirebaseTodo>', x);
 
-    const result: IToDo = {
+    const result: ITodo = {
         $key: x.$key,
         description: x.description,
         index: x.index,
