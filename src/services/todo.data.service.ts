@@ -47,7 +47,7 @@ export class TodoDataService {
     save(todo: IToDo) {
         console.log('save>', todo);
 
-        if (todo.$key === '') {
+        if (todo.$key === undefined) {
             // insert.
             this.fbCurrentTodos.push(toFirebaseTodo(todo));
         } else {

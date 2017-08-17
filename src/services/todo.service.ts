@@ -45,6 +45,9 @@ export class TodoService {
     }
 
     remove(todo: IToDo) {
+        if (todo.$key === undefined) {
+            return;
+        }
         this.store.dispatch(
             new TodoActions.RemoveAction(todo.$key));
     }

@@ -1,5 +1,5 @@
 export interface IToDo {
-    $key: string;
+    $key?: string;
     index: number;
     name: string;
     description?: string;

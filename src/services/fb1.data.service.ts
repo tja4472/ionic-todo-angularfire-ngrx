@@ -17,8 +17,11 @@ export class Fb1DataService {
     clearCompletedTodos(items: IToDo[]) {
         console.log('clearCompletedTodos>', items);
 
-        items.map((x) => {
+        items.map((x: IToDo) => {
             console.log('x>', x);
+            if (x.$key === undefined) {
+                return;
+            }
             const todoCompleted: ITodoCompleted = {
                 $key: '',
                 description: x.description,
@@ -27,6 +30,7 @@ export class Fb1DataService {
             };
 
             this.todoCompletedDataService.save(todoCompleted);
+
             this.todoDataService.removeItem(x.$key);
         });
     }
