@@ -1,14 +1,13 @@
 import * as todoCompletedAction from '../actions/todo-completed.action';
 import { TodoCompleted } from '../models/todo-completed';
-import { assign } from '../utils/assign';
 
-export interface State {
+export interface IState {
     loaded: boolean;
     loading: boolean;
     todoCompletedList: TodoCompleted[];
 }
 
-const initialState: State = {
+const initialState: IState = {
     loaded: false,
     loading: false,
     todoCompletedList: []
@@ -17,10 +16,10 @@ const initialState: State = {
 export function reducer(
     state = initialState,
     action: todoCompletedAction.Actions,
-): State {
+): IState {
     switch (action.type) {
         case todoCompletedAction.LOAD: {
-            return assign(state, {
+            return Object.assign(state, {
                 loading: true
             });
         }
@@ -31,7 +30,7 @@ export function reducer(
             return {
                 loaded: true,
                 loading: false,
-                todoCompletedList: items.map(book => book)
+                todoCompletedList: items.map((book) => book)
             };
         }
 
@@ -44,6 +43,6 @@ export function reducer(
 // =========
 // Selectors
 // =========
-export const getLoaded = (state: State) => state.loaded;
-export const getLoading = (state: State) => state.loading;
-export const getTodoCompletedList = (state: State) => state.todoCompletedList;
+export const getLoaded = (state: IState) => state.loaded;
+export const getLoading = (state: IState) => state.loading;
+export const getTodoCompletedList = (state: IState) => state.todoCompletedList;

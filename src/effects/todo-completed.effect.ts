@@ -14,7 +14,7 @@ import { TodoCompleted } from '../models/todo-completed';
 export class TodoCompletedEffects {
   constructor(
     private actions$: Actions,
-    private state$: Store<FromRootReducer.State>,
+    private state$: Store<FromRootReducer.IState>,
     private dataService: TodoCompletedDataService,
     private fb1DataService: Fb1DataService,
   ) { }

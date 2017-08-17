@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Effect, Actions } from '@ngrx/effects';
 
-import { State } from '../reducers';
+import { IState } from '../reducers';
 import { Store } from '@ngrx/store';
 
 import * as LoginActions from '../actions/login.action';
@@ -14,7 +14,7 @@ import * as firebase from 'firebase/app';
 export class LoginEffects {
   constructor(
     private actions$: Actions,
-    private state$: Store<State>,
+    private state$: Store<IState>,
     public af: AngularFireAuth,
   ) { }
 

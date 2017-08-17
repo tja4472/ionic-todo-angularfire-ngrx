@@ -11,7 +11,7 @@ import * as TodoCompletedActions from '../actions/todo-completed.action';
 @Injectable()
 export class TodoCompletedService {
     constructor(
-        private store: Store<FromRootReducer.State>
+        private store: Store<FromRootReducer.IState>
     ) {
     }
 

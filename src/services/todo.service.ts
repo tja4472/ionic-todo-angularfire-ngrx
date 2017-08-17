@@ -12,7 +12,7 @@ import * as TodoActions from '../actions/todo.action';
 @Injectable()
 export class TodoService {
     constructor(
-        private store: Store<FromRootReducer.State>
+        private store: Store<FromRootReducer.IState>
     ) {
     }
 

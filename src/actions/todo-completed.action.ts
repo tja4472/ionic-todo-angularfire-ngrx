@@ -1,3 +1,5 @@
+// tslint:disable:max-classes-per-file
+// tslint:disable:no-empty
 import { Action } from '@ngrx/store';
 
 import { TodoCompleted } from '../models/todo-completed';

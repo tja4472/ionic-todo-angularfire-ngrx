@@ -22,17 +22,18 @@ export class Page2 {
     this.items = [];
     for (let i = 1; i < 11; i++) {
       this.items.push({
-        title: 'Item ' + i,
+        icon: this.icons[Math.floor(Math.random() * this.icons.length)],
         note: 'This is item #' + i,
-        icon: this.icons[Math.floor(Math.random() * this.icons.length)]
+        title: 'Item ' + i,
       });
     }
   }
 
+  // tslint:disable-next-line:variable-name
   itemTapped(_event: any, item: any) {
     // That's right, we're pushing to ourselves!
     this.navCtrl.push(Page2, {
-      item: item
+      item
     });
   }
 }

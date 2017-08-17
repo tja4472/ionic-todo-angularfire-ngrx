@@ -1,34 +1,32 @@
 import * as loginAction from '../actions/login.action';
 
-import { assign } from '../utils/assign';
-
-export interface State {
+export interface IState {
     displayName: string;
     isAuthenticated: boolean;
     isAuthenticating: boolean;
     error: any;
-};
+}
 
-const initialState: State = {
+const initialState: IState = {
     displayName: '',
+    error: null,
     isAuthenticated: false,
     isAuthenticating: false,
-    error: null
 };
 
 export function reducer(
     state = initialState,
     action: loginAction.Actions,
-): State {
+): IState {
     switch (action.type) {
         case loginAction.GOOGLE_AUTHENTICATION: {
-            return assign(state, {
+            return Object.assign(state, {
                 isAuthenticating: true
             });
         }
 
         case loginAction.RESTORE_AUTHENTICATION: {
-            return assign(state, {
+            return Object.assign(state, {
                 displayName: makeDisplayName(action.payload),
                 isAuthenticated: true,
                 isAuthenticating: false
@@ -36,7 +34,7 @@ export function reducer(
         }
 
         case loginAction.LOGOUT: {
-            return assign(state, {
+            return Object.assign(state, {
                 displayName: '',
                 isAuthenticated: false,
                 isAuthenticating: false
@@ -47,7 +45,7 @@ export function reducer(
         case loginAction.BEGIN_AUTHENTICATION:
         case loginAction.CREATE_USER:
         case loginAction.EMAIL_AUTHENTICATION: {
-            return assign(state, {
+            return Object.assign(state, {
                 error: null,
                 isAuthenticating: true
             });
@@ -56,7 +54,7 @@ export function reducer(
         case loginAction.ANONYMOUS_AUTHENTICATION_FAILURE:
         case loginAction.CREATE_USER_FAILURE:
         case loginAction.EMAIL_AUTHENTICATION_FAILURE: {
-            return assign(state, {
+            return Object.assign(state, {
                 error: action.payload,
                 isAuthenticated: false,
                 isAuthenticating: false
@@ -70,22 +68,22 @@ export function reducer(
 }
 
 function makeDisplayName(user: {
-        isAnonymous: boolean;
-        displayName: string | null,
-        email: string | null,
-    }) {
-    if (user.isAnonymous) return 'Anonymous';
+    isAnonymous: boolean;
+    displayName: string | null,
+    email: string | null,
+}) {
+    if (user.isAnonymous) { return 'Anonymous'; }
 
-    if (user.displayName) return user.displayName;
+    if (user.displayName) { return user.displayName; }
 
-    if (user.email) return user.email;
+    if (user.email) { return user.email; }
     return '';
 }
 
 // =========
 // Selectors
 // =========
-export const getDisplayName = (state: State) => state.displayName;
-export const getError = (state: State) => state.error;
-export const getIsAuthenticated = (state: State) => state.isAuthenticated;
-export const getIsAuthenticating = (state: State) => state.isAuthenticating;
+export const getDisplayName = (state: IState) => state.displayName;
+export const getError = (state: IState) => state.error;
+export const getIsAuthenticated = (state: IState) => state.isAuthenticated;
+export const getIsAuthenticating = (state: IState) => state.isAuthenticating;

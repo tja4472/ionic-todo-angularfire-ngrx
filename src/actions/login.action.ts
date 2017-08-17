@@ -1,5 +1,6 @@
+// tslint:disable:max-classes-per-file
+// tslint:disable:no-empty
 import { Action } from '@ngrx/store';
-
 
 export const ANONYMOUS_AUTHENTICATION = '[Login] Anonymous Authentication';
 export const ANONYMOUS_AUTHENTICATION_FAILURE = '[Login] Anonymous Authentication Failure';
@@ -50,7 +51,7 @@ export class CreateUserAction implements Action {
 export class CreateUserFailureAction implements Action {
     readonly type = CREATE_USER_FAILURE;
 
-    constructor(public payload: any) { } // error 
+    constructor(public payload: any) { } // error
 }
 
 export class EmailAuthenticationAction implements Action {
@@ -65,7 +66,7 @@ export class EmailAuthenticationAction implements Action {
 export class EmailAuthenticationFailureAction implements Action {
     readonly type = EMAIL_AUTHENTICATION_FAILURE;
 
-    constructor(public payload: any) { } // error 
+    constructor(public payload: any) { } // error
 }
 
 export class GoogleAuthenticationAction implements Action {
@@ -77,7 +78,7 @@ export class GoogleAuthenticationAction implements Action {
 export class GoogleAuthenticationFailureAction implements Action {
     readonly type = GOOGLE_AUTHENTICATION_FAILURE;
 
-    constructor(public payload: any) { } // error 
+    constructor(public payload: any) { } // error
 }
 
 export class LogoutAction implements Action {

@@ -12,14 +12,14 @@ import * as fromLoginReducer from './login.reducer';
 import * as fromTodoCompletedReducer from './todo-completed.reducer';
 import * as fromTodoReducer from './todo.reducer';
 
-export interface State {
+export interface IState {
     // These property names have to match those in the compose.
-    login: fromLoginReducer.State;
-    todo: fromTodoReducer.State;
-    todoCompleted: fromTodoCompletedReducer.State;
+    login: fromLoginReducer.IState;
+    todo: fromTodoReducer.IState;
+    todoCompleted: fromTodoCompletedReducer.IState;
 }
 
-export const reducers: ActionReducerMap<State> = {
+export const reducers: ActionReducerMap<IState> = {
     login: fromLoginReducer.reducer,
     todo: fromTodoReducer.reducer,
     todoCompleted: fromTodoCompletedReducer.reducer,
@@ -41,23 +41,36 @@ export function reducer(state: any, action: any) {
  * Selectors
  ***********/
 // login
-export const getLoginState = (state: State) => state.login;
+export const getLoginState = (state: IState) => state.login;
 
+// tslint:disable-next-line:variable-name
 export const getLogin_GetDisplayName = createSelector(getLoginState, fromLoginReducer.getDisplayName);
+// tslint:disable-next-line:variable-name
 export const getLogin_GetError = createSelector(getLoginState, fromLoginReducer.getError);
+// tslint:disable-next-line:variable-name
 export const getLogin_GetIsAuthenticated = createSelector(getLoginState, fromLoginReducer.getIsAuthenticated);
+// tslint:disable-next-line:variable-name
 export const getLogin_GetIsAuthenticating = createSelector(getLoginState, fromLoginReducer.getIsAuthenticating);
 //
 // todo
-export const getTodoState = (state: State) => state.todo;
+export const getTodoState = (state: IState) => state.todo;
 
+// tslint:disable-next-line:variable-name
 export const getTodo_GetLoaded = createSelector(getTodoState, fromTodoReducer.getLoaded);
+// tslint:disable-next-line:variable-name
 export const getTodo_GetLoading = createSelector(getTodoState, fromTodoReducer.getLoading);
+// tslint:disable-next-line:variable-name
 export const getTodo_GetTodos = createSelector(getTodoState, fromTodoReducer.getTodos);
 //
 // todoCompleted
-export const getTodoCompletedState = (state: State) => state.todoCompleted;
+export const getTodoCompletedState = (state: IState) => state.todoCompleted;
 
+// tslint:disable-next-line:variable-name
 export const getTodoCompleted_GetLoaded = createSelector(getTodoCompletedState, fromTodoCompletedReducer.getLoaded);
+// tslint:disable-next-line:variable-name
 export const getTodoCompleted_GetLoading = createSelector(getTodoCompletedState, fromTodoCompletedReducer.getLoaded);
-export const getTodoCompleted_GetTodoCompletedList = createSelector(getTodoCompletedState, fromTodoCompletedReducer.getTodoCompletedList);
+// tslint:disable-next-line:variable-name
+export const getTodoCompleted_GetTodoCompletedList
+    = createSelector(
+        getTodoCompletedState,
+        fromTodoCompletedReducer.getTodoCompletedList);
