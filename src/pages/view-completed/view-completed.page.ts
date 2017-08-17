@@ -12,15 +12,15 @@ import {
 } from '../../components/todo-completed-list/todo-completed-list.component';
 */
 
-import { TodoCompleted } from '../../models/todo-completed';
-import { ModalResult, TodoCompletedPage } from '../todo-completed/todo-completed.page';
+import { ITodoCompleted } from '../../models/todo-completed';
+import { IModalResult, TodoCompletedPage } from '../todo-completed/todo-completed.page';
 
 @Component({
   selector: 'page-view-completed',
   templateUrl: 'view-completed.page.html'
 })
 export class ViewCompletedPage {
-  data$: Observable<TodoCompleted[]>;
+  data$: Observable<ITodoCompleted[]>;
 
   constructor(
     public navCtrl: NavController,
@@ -35,18 +35,18 @@ export class ViewCompletedPage {
     this.todoCompletedService.initialise();
   }
 
-  checkItem(item: TodoCompleted) {
+  checkItem(item: ITodoCompleted) {
     if (!item.isComplete) {
       this.todoCompletedService.moveToCurrent(item);
     }
   }
 
-  editItem(item: TodoCompleted) {
+  editItem(item: ITodoCompleted) {
     console.log('editItem:item>', item);
-    let modal = this.modalCtrl.create(TodoCompletedPage, { todo: item });
+    const modal = this.modalCtrl.create(TodoCompletedPage, { todo: item });
 
     //    modal.onDidDismiss(data => {
-    modal.onDidDismiss((modalResult: ModalResult) => {
+    modal.onDidDismiss((modalResult: IModalResult) => {
       console.log('editItem:onDidDismiss>: modalResult', modalResult);
 
       if (modalResult.isCancelled) {
@@ -55,7 +55,7 @@ export class ViewCompletedPage {
 
       if (modalResult.todo === undefined) {
         return;
-        
+
       }
       if (modalResult.isRemoved) {
         this.todoCompletedService.remove(modalResult.todo);

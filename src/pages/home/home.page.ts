@@ -9,10 +9,9 @@ import {
   ReorderItemsOutput,
   TodosInput
 } from '../../components/todo-list/todo-list.component';
-import { MyPopoverPage, MyPopoverPageResult } from '../../components/popover/popover.component';
-import { ToDo } from '../../models/todo';
+import { MyPopoverPage, IMyPopoverPageResult } from '../../components/popover/popover.component';
+import { IToDo } from '../../models/todo';
 import { TodoPage } from '../todo/todo.page';
-import { assign } from '../../utils/assign';
 
 @Component({
   selector: 'page-home',
@@ -37,9 +36,9 @@ export class HomePage {
 
   addItem() {
     console.log('addItem');
-    let modal = this.modalCtrl.create(TodoPage);
+    const modal = this.modalCtrl.create(TodoPage);
 
-    modal.onDidDismiss((data: ToDo) => {
+    modal.onDidDismiss((data: IToDo) => {
       console.log('onDidDismiss>', data);
 
       if (!!data) {
@@ -52,18 +51,18 @@ export class HomePage {
 
   toggleCompleteItem(item: ToggleCompleteItemOutput) {
     console.log('completeItem:item>', item);
-    let newItem = assign(item, {});
-    newItem.isComplete = !newItem.isComplete;   
+    const newItem = Object.assign(item, {});
+    newItem.isComplete = !newItem.isComplete;
     // item.isComplete = !item.isComplete;
-/*    
-    if (item.isComplete) {
-          console.log('was true');
-      item.isComplete = false;
-    } else {
-          console.log('was false');      
-      item.isComplete = true;
-    }
-*/    
+    /*
+        if (item.isComplete) {
+              console.log('was true');
+          item.isComplete = false;
+        } else {
+              console.log('was false');
+          item.isComplete = true;
+        }
+    */
     console.log('completeItem:item:BBBB>', newItem);
 
     this.todoService.save(newItem);
@@ -81,9 +80,9 @@ export class HomePage {
     // todo = assign(todo, item);
 
 
-    let modal = this.modalCtrl.create(TodoPage, { todo: item });
+    const modal = this.modalCtrl.create(TodoPage, { todo: item });
 
-    modal.onDidDismiss((data: ToDo) => {
+    modal.onDidDismiss((data: IToDo) => {
       console.log('onDidDismiss>', data);
 
       if (!!data) {
@@ -95,21 +94,21 @@ export class HomePage {
   }
 
   presentActionSheet() {
-    let actionSheet = this.actionSheetCtrl.create({
+    const actionSheet = this.actionSheetCtrl.create({
       // title: 'Modify your album',
       buttons: [
         {
-          text: 'Clear completed?',
           handler: () => {
             console.log('Clear completed clicked');
             this.todoService.clearCompletedItems();
-          }
+          },
+          text: 'Clear completed?',
         }, {
-          text: 'Cancel',
-          role: 'cancel',
           handler: () => {
             console.log('Cancel clicked');
-          }
+          },
+          role: 'cancel',
+          text: 'Cancel',
         }
       ]
     });
@@ -117,9 +116,9 @@ export class HomePage {
   }
 
   presentPopover(ev: any) {
-    let popover = this.popoverCtrl.create(MyPopoverPage);
+    const popover = this.popoverCtrl.create(MyPopoverPage);
 
-    popover.onDidDismiss((result: MyPopoverPageResult) => {
+    popover.onDidDismiss((result: IMyPopoverPageResult) => {
       console.log('popover.onDidDismiss>', result);
 
       if (!!!result) {
@@ -135,7 +134,7 @@ export class HomePage {
       }
     });
 
-    /*  
+    /*
         popover.onDidDismiss((data: string) => {
           if (data === 'ClearCompleted') {
             this.todoService.clearCompletedItems();
@@ -143,7 +142,7 @@ export class HomePage {
         });
     */
     popover.present({
-      ev: ev
+      ev
     });
   }
 
@@ -168,7 +167,7 @@ export class HomePage {
     <ion-list>
     <!--
       <ion-list-header>Ionic</ion-list-header>
--->      
+-->
       <button ion-item (click)="close('ClearCompleted')">Clear completed</button>
     </ion-list>
   `

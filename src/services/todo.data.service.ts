@@ -5,7 +5,7 @@ import { AngularFireDatabase } from 'angularfire2/database';
 // import { AngularFireOfflineDatabase } from 'angularfire2-offline/database';
 
 import { Indexes } from '../models/indexes';
-import { ToDo } from '../models/todo';
+import { IToDo } from '../models/todo';
 
 import { reorderArray } from 'ionic-angular';
 
@@ -13,62 +13,62 @@ const FIREBASE_CURRENT_TODOS = '/todo/currentTodos';
 
 @Injectable()
 export class TodoDataService {
-    private fb_CurrentTodos: any; // readonly
+    private fbCurrentTodos: any; // readonly
 
     constructor(
         public af: AngularFireDatabase
     ) {
         console.log('TodoDataService:constructor');
-        this.fb_CurrentTodos = af.list(FIREBASE_CURRENT_TODOS);
+        this.fbCurrentTodos = af.list(FIREBASE_CURRENT_TODOS);
     }
 
-    getData(): Observable<ToDo[]> {
+    getData(): Observable<IToDo[]> {
         return this.af.list(FIREBASE_CURRENT_TODOS, {
             query: {
                 orderByChild: 'index'
             }
         })
-            .map(x => x.map((d:any) => fromFirebaseTodo(d)));
+            .map((x) => x.map((d:any) => fromFirebaseTodo(d)));
     }
 
-    reorderItemsAndUpdate(indexes: Indexes, todos: ToDo[]) {
+    reorderItemsAndUpdate(indexes: Indexes, todos: IToDo[]) {
         const itemsToSave = [...todos];
         reorderArray(itemsToSave, indexes);
 
         for (let x = 0; x < itemsToSave.length; x++) {
-            this.fb_CurrentTodos.update(itemsToSave[x].$key, { index: x });
+            this.fbCurrentTodos.update(itemsToSave[x].$key, { index: x });
         }
     }
 
     removeItem(itemKey: string) {
-        this.fb_CurrentTodos.remove(itemKey);
+        this.fbCurrentTodos.remove(itemKey);
     }
 
-    save(todo: ToDo) {
+    save(todo: IToDo) {
         console.log('save>', todo);
 
         if (todo.$key === '') {
             // insert.
-            this.fb_CurrentTodos.push(toFirebaseTodo(todo));
+            this.fbCurrentTodos.push(toFirebaseTodo(todo));
         } else {
             // update.
-            this.fb_CurrentTodos.update(todo.$key, toFirebaseTodo(todo));
+            this.fbCurrentTodos.update(todo.$key, toFirebaseTodo(todo));
         }
     }
 }
 
-interface FirebaseTodo {
+interface IFirebaseTodo {
     description?: string;
     index: number;
     name: string;
     isComplete: boolean;
 }
 
-function toFirebaseTodo(todo: ToDo): FirebaseTodo {
+function toFirebaseTodo(todo: IToDo): IFirebaseTodo {
     // Important!
     // angularfire2-offline: Properties have to be alphabetical.
     // https://github.com/adriancarriger/angularfire2-offline/issues/57
-    let result: FirebaseTodo = {
+    const result: IFirebaseTodo = {
         description: todo.description,
         index: todo.index,
         isComplete: todo.isComplete,
@@ -79,11 +79,11 @@ function toFirebaseTodo(todo: ToDo): FirebaseTodo {
     return result;
 }
 
-function fromFirebaseTodo(x: any): ToDo {
+function fromFirebaseTodo(x: any): IToDo {
     //
     console.log('TodoDataService:fromFirebaseTodo>', x);
 
-    let result: ToDo = {
+    const result: IToDo = {
         $key: x.$key,
         description: x.description,
         index: x.index,

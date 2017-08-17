@@ -3,67 +3,67 @@ import { Observable } from 'rxjs/Observable';
 
 import { AngularFireDatabase } from 'angularfire2/database';
 
-import { TodoCompleted } from '../models/todo-completed';
+import { ITodoCompleted } from '../models/todo-completed';
 
 const FIREBASE_COMPLETED_TODOS = '/todo/completedTodos';
 
 @Injectable()
 export class TodoCompletedDataService {
-    private fb_CompletedTodos: any; // readonly
+    private fbCompletedTodos: any; // readonly
 
     constructor(
         public af: AngularFireDatabase
     ) {
-        this.fb_CompletedTodos = af.list(FIREBASE_COMPLETED_TODOS);
+        this.fbCompletedTodos = af.list(FIREBASE_COMPLETED_TODOS);
     }
 
-    getData(): Observable<TodoCompleted[]> {
+    getData(): Observable<ITodoCompleted[]> {
         return this.af.list(FIREBASE_COMPLETED_TODOS)
-            .map(x => x.map((d: any) => fromFirebaseRecord(d)));
+            .map((x) => x.map((d: any) => fromFirebaseRecord(d)));
     }
 
     removeItem(itemKey: string) {
-        this.fb_CompletedTodos.remove(itemKey);
+        this.fbCompletedTodos.remove(itemKey);
     }
 
-    save(item: TodoCompleted) {
+    save(item: ITodoCompleted) {
         console.log('save>', item);
 
         if (item.$key === '') {
             // insert.
-            this.fb_CompletedTodos.push(toFirebaseRecord(item));
+            this.fbCompletedTodos.push(toFirebaseRecord(item));
         } else {
             // update.
-            this.fb_CompletedTodos.update(item.$key, toFirebaseRecord(item));
+            this.fbCompletedTodos.update(item.$key, toFirebaseRecord(item));
         }
     }
 }
 
-interface FirebaseRecord {
+interface IFirebaseRecord {
     description?: string;
     name: string;
     isComplete: boolean;
 }
 
-function toFirebaseRecord(item: TodoCompleted): FirebaseRecord {
+function toFirebaseRecord(item: ITodoCompleted): IFirebaseRecord {
     //
-    let result: FirebaseRecord = {
+    const result: IFirebaseRecord = {
         description: item.description,
+        isComplete: item.isComplete,
         name: item.name,
-        isComplete: item.isComplete
     };
 
     console.log('toFirebaseRecord>', result);
     return result;
 }
 
-function fromFirebaseRecord(x: any): TodoCompleted {
+function fromFirebaseRecord(x: any): ITodoCompleted {
     console.log('TodoCompletedDataService:fromFirebaseRecord>', x);
-    let result: TodoCompleted = {
+    const result: ITodoCompleted = {
         $key: x.$key,
         description: x.description,
+        isComplete: x.isComplete,
         name: x.name,
-        isComplete: x.isComplete
     };
 
     /*

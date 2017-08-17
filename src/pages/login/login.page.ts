@@ -37,8 +37,8 @@ export class LoginPage {
     this.loginState$ = loginService.getLoginState();
 
     this.loginForm = formBuilder.group({
-      username: ['', Validators.required],
       password: ['', Validators.required],
+      username: ['', Validators.required],
     });
 
 // this.aaaa = this.loginForm.username;
@@ -60,7 +60,7 @@ return formField.valid || formField.pristine;
     console.log('ngOnInit:this.loginForm.controls[username]>', this.loginForm.controls['username']);
     this.aaaa = this.loginForm.controls['username'];
 
-   
+
 this.aaaa.valueChanges.subscribe(value => {
       // do something with value here
       console.log('value>', value)

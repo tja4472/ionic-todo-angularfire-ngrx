@@ -3,7 +3,7 @@
 import { Action } from '@ngrx/store';
 
 import { Indexes } from '../models/indexes';
-import { ToDo } from '../models/todo';
+import { IToDo } from '../models/todo';
 
 export const CLEAR_COMPLETED = '[ToDoActions] Clear Completed';
 export const LOAD = '[ToDoActions] Load';
@@ -27,7 +27,7 @@ export class LoadAction implements Action {
 export class LoadSuccessAction implements Action {
     readonly type = LOAD_SUCCESS;
 
-    constructor(public payload: ToDo[]) { }
+    constructor(public payload: IToDo[]) { }
 }
 
 export class RemoveAction implements Action {
@@ -45,7 +45,7 @@ export class ReorderListAction implements Action {
 export class SaveAction implements Action {
     readonly type = SAVE;
 
-    constructor(public payload: ToDo) { }
+    constructor(public payload: IToDo) { }
 }
 
 export type Actions =

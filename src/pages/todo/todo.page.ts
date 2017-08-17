@@ -1,12 +1,8 @@
 import { ChangeDetectionStrategy, Component } from '@angular/core';
 import { NavParams, ViewController } from 'ionic-angular';
-// import { Observable } from 'rxjs/Observable';
-// import { TodoService } from '../../services/todo.service';
-// import { ItemSelectedOutput, ReorderItemsOutput, TodosInput, TodoListComponent } from '../../components/todo-list/todo-list.component';
-import { ToDo } from '../../models/todo';
+
+import { IToDo } from '../../models/todo';
 import { Validators, FormBuilder } from '@angular/forms';
-// import { ControlMessages } from '../../components/control-messages/control-messages.component';
-import { assign } from '../../utils/assign';
 
 @Component({
   changeDetection: ChangeDetectionStrategy.OnPush,
@@ -16,13 +12,13 @@ import { assign } from '../../utils/assign';
 export class TodoPage {
   public todoForm: any;
 
-  private todo: ToDo =
+  private todo: IToDo =
   {
     $key: '',
     description: undefined,
-    name: '',
     index: 0,
-    isComplete: false
+    isComplete: false,
+    name: '',
   };
 
   private isEditing: boolean;
@@ -34,7 +30,7 @@ export class TodoPage {
   ) {
     console.log('params:get>', params.get('todo'));
 
-    let paramTodo: ToDo = params.get('todo');
+    const paramTodo: IToDo = params.get('todo');
     this.isEditing = !!paramTodo;
 
     if (this.isEditing) {
@@ -42,22 +38,22 @@ export class TodoPage {
     }
 
     this.todoForm = this.formBuilder.group({
-      name: [this.todo.name, Validators.required],
       description: [this.todo.description],
-      isComplete: [this.todo.isComplete]
-    });    
-  }
-
-/*
-  ionViewDidLoad() {
-    //
-    this.todoForm = this.formBuilder.group({
+      isComplete: [this.todo.isComplete],
       name: [this.todo.name, Validators.required],
-      description: [this.todo.description],
-      isComplete: [this.todo.isComplete]
     });
   }
-*/
+
+  /*
+    ionViewDidLoad() {
+      //
+      this.todoForm = this.formBuilder.group({
+        name: [this.todo.name, Validators.required],
+        description: [this.todo.description],
+        isComplete: [this.todo.isComplete]
+      });
+    }
+  */
 
   dismiss() {
     console.log('dismiss');
@@ -77,9 +73,9 @@ export class TodoPage {
     // Get error here with private todo when using popover.
     // Hence local.
 
-    let localTodo = assign(this.todo, {
+    const localTodo = Object.assign(this.todo, {
+      isComplete: this.todoForm.value.isComplete,
       name: this.todoForm.value.name,
-      isComplete: this.todoForm.value.isComplete
     });
 
     // assign did not like optional property.

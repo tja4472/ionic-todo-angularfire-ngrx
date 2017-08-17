@@ -12,7 +12,7 @@ import { ViewCompletedPage } from '../pages/view-completed/view-completed.page';
 
 import { LoginService } from '../services/login.service';
 
-export interface PageInterface {
+export interface IPageInterface {
   title: string;
   component: any;
   logsOut?: boolean;
@@ -26,7 +26,7 @@ export class MyApp {
 
   rootPage: any; // = Page1;
   loginState$: any;
-  pages: PageInterface[];
+  pages: IPageInterface[];
 
   constructor(
     private loginService: LoginService,
@@ -56,7 +56,7 @@ export class MyApp {
             console.log('loginState>', loginState);
             console.log('loginState.isAuthenticated>', loginState.isAuthenticated);
             console.log('loginState.isAuthenticating>', loginState.isAuthenticating);
-    
+
             if (loginState.isAuthenticating) {
               // this.rootPage = Page1;
             } else if (loginState.isAuthenticated) {
@@ -75,7 +75,7 @@ export class MyApp {
       // Here you can do any higher level native things you might need.
       this.statusBar.styleDefault();
 
-      this.loginService.auth$.subscribe(firebaseUser => {
+      this.loginService.auth$.subscribe((firebaseUser) => {
         console.log('>>>>>>>>>>firebaseUser>', firebaseUser);
         if (firebaseUser) {
           this.rootPage = HomePage;
@@ -103,7 +103,7 @@ export class MyApp {
 
   }
 
-  openPage(page: PageInterface) {
+  openPage(page: IPageInterface) {
     // Reset the content nav to have just this page
     // we wouldn't want the back button to show in this scenario
     this.nav.setRoot(page.component);
@@ -111,7 +111,7 @@ export class MyApp {
     if (page.logsOut === true) {
       // Give the menu time to close before changing to logged out
       setTimeout(() => {
-        this.loginService.logout()
+        this.loginService.logout();
       }, 1000);
     }
   }

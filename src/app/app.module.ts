@@ -67,7 +67,7 @@ import './rxjs-operators';
     BrowserModule,
     IonicModule.forRoot(MyApp),
     AngularFireModule.initializeApp(MyFirebaseAppConfig),
-    // AngularFireOfflineModule,    
+    // AngularFireOfflineModule,
     AngularFireAuthModule,
     AngularFireDatabaseModule,
     StoreModule.forRoot(reducers),
@@ -78,6 +78,7 @@ import './rxjs-operators';
       TodoEffects,
     ]),
   ],
+  // tslint:disable-next-line:object-literal-sort-keys
   bootstrap: [IonicApp],
   entryComponents: [
     MyApp,
@@ -105,10 +106,10 @@ import './rxjs-operators';
 export class AppModule { }
 
 /*
-so I need some initial state loaded before angular does anything.. for example 
-the user may already be logged in and I need to load up their user information.. 
-where should I put that code? currently I put it in my services constructor 
-(where it dispatches the load user action) but I'm hitting auth guards before 
+so I need some initial state loaded before angular does anything.. for example
+the user may already be logged in and I need to load up their user information..
+where should I put that code? currently I put it in my services constructor
+(where it dispatches the load user action) but I'm hitting auth guards before
 the services constructor
 
 AppModule constructor

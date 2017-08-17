@@ -3,7 +3,7 @@ import { Observable } from 'rxjs/Observable';
 
 import { Store } from '@ngrx/store';
 
-import { TodoCompleted } from '../models/todo-completed';
+import { ITodoCompleted } from '../models/todo-completed';
 
 import * as FromRootReducer from '../reducers/index';
 import * as TodoCompletedActions from '../actions/todo-completed.action';
@@ -15,10 +15,10 @@ export class TodoCompletedService {
     ) {
     }
 
-    getData(): Observable<TodoCompleted[]> {
-        /*  
+    getData(): Observable<ITodoCompleted[]> {
+        /*
                 this.store.select(s => s.todoCompleted)
-                .subscribe(x => console.log('sssss>', x));      
+                .subscribe(x => console.log('sssss>', x));
                 let a = this.store.select(s => s.todoCompleted.todoCompletedList);
                 return a;
         */
@@ -38,17 +38,17 @@ export class TodoCompletedService {
         return this.store.select(FromRootReducer.getTodoCompleted_GetLoading);
     }
 
-    moveToCurrent(item: TodoCompleted) {
+    moveToCurrent(item: ITodoCompleted) {
         this.store.dispatch(
             new TodoCompletedActions.MoveToCurrentAction(item));
     }
 
-    remove(todo: TodoCompleted) {
+    remove(todo: ITodoCompleted) {
         this.store.dispatch(
             new TodoCompletedActions.RemoveAction(todo.$key));
     }
 
-    save(item: TodoCompleted) {
+    save(item: ITodoCompleted) {
         this.store.dispatch(
             new TodoCompletedActions.SaveAction(item));
     }

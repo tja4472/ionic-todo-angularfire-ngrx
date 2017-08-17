@@ -1,15 +1,16 @@
 import { ChangeDetectionStrategy, Component, EventEmitter, Input, Output } from '@angular/core';
-import { ToDo } from '../../models/todo';
+import { IToDo } from '../../models/todo';
 
 
-export type ToggleCompleteItemOutput = ToDo;
-export type EditItemOutput = ToDo;
+export type ToggleCompleteItemOutput = IToDo;
+export type EditItemOutput = IToDo;
+// tslint:disable-next-line:interface-over-type-literal
 export type ReorderItemsOutput = {
   from: number,
   to: number
 };
-export type RemoveItemOutput = ToDo;
-export type TodosInput = ToDo[];
+export type RemoveItemOutput = IToDo;
+export type TodosInput = IToDo[];
 
 @Component({
   changeDetection: ChangeDetectionStrategy.OnPush,
@@ -23,7 +24,4 @@ export class TodoListComponent {
   @Output() public editItem = new EventEmitter<EditItemOutput>();
   @Output() public reorderItems = new EventEmitter<ReorderItemsOutput>();
   @Output() public removeItem = new EventEmitter<RemoveItemOutput>();
-
-  constructor() {
-  }
 }

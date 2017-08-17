@@ -24,25 +24,25 @@ export class SignupPage {
     private formBuilder: FormBuilder,
     private loginService: LoginService,
     // private loginActions: LoginActions,
-    ) {
+  ) {
     //
     // this.loginState$ = this.store.let(LoginSelector.getLoginState());
-    this.loginState$ = loginService.getLoginState();    
+    this.loginState$ = loginService.getLoginState();
 
     this.loginForm = this.formBuilder.group({
-      username: ['', Validators.required],
       password: ['', Validators.required],
-    });    
-  }
-/*
-  ionViewDidLoad() {
-    //
-    this.loginForm = this.formBuilder.group({
       username: ['', Validators.required],
-      password: ['', Validators.required],
     });
   }
-*/
+  /*
+    ionViewDidLoad() {
+      //
+      this.loginForm = this.formBuilder.group({
+        username: ['', Validators.required],
+        password: ['', Validators.required],
+      });
+    }
+  */
 
   logForm() {
     console.log(this.loginForm.value);

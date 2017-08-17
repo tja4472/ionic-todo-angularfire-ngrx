@@ -1,16 +1,13 @@
 import { ChangeDetectionStrategy, Component } from '@angular/core';
 import { NavParams, ViewController } from 'ionic-angular';
-// import { Observable } from 'rxjs/Observable';
-// import { TodoService } from '../../services/todo.service';
-// import { ItemSelectedOutput, ReorderItemsOutput, TodosInput, TodoListComponent } from '../../components/todo-list/todo-list.component';
-import { TodoCompleted } from '../../models/todo-completed';
-import { Validators, FormBuilder } from '@angular/forms';
-// import { ControlMessages } from '../../components/control-messages/control-messages.component';
 
-export interface ModalResult {
+import { ITodoCompleted } from '../../models/todo-completed';
+import { Validators, FormBuilder } from '@angular/forms';
+
+export interface IModalResult {
   isRemoved: boolean;
   isCancelled: boolean;
-  todo?: TodoCompleted;
+  todo?: ITodoCompleted;
 }
 
 @Component({
@@ -21,12 +18,12 @@ export interface ModalResult {
 export class TodoCompletedPage {
   public todoForm: any;
 
-  private todo: TodoCompleted =
+  private todo: ITodoCompleted =
   {
     $key: '',
     description: undefined,
+    isComplete: false,
     name: '',
-    isComplete: false
   };
 
   private isEditing: boolean;
@@ -39,7 +36,7 @@ export class TodoCompletedPage {
   ) {
     console.log('params:get>', params.get('todo'));
 
-    let paramTodo: TodoCompleted = params.get('todo');
+    const paramTodo: ITodoCompleted = params.get('todo');
     this.isEditing = !!paramTodo;
 
     if (this.isEditing) {
@@ -47,9 +44,9 @@ export class TodoCompletedPage {
     }
 
     this.todoForm = this.formBuilder.group({
-      name: [this.todo.name, Validators.required],
       description: [this.todo.description],
       isComplete: [this.todo.isComplete],
+      name: [this.todo.name, Validators.required],
     });
   }
 
@@ -66,18 +63,18 @@ export class TodoCompletedPage {
 
   dismiss() {
     console.log('dismiss');
-    let modalResult: ModalResult = {
-      isRemoved: false,
+    const modalResult: IModalResult = {
       isCancelled: true,
+      isRemoved: false,
     };
     this.viewController.dismiss(modalResult);
   }
 
   remove() {
     console.log('remove');
-    let modalResult: ModalResult = {
-      isRemoved: true,
+    const modalResult: IModalResult = {
       isCancelled: false,
+      isRemoved: true,
       todo: this.todo,
     };
     this.viewController.dismiss(modalResult);
@@ -95,17 +92,17 @@ export class TodoCompletedPage {
 
     // Get error here with private todo when using popover.
     // Hence local.
-    let localTodo: TodoCompleted = {
+    const localTodo: ITodoCompleted = {
       $key: this.todo.$key,
       description: this.todoForm.value.description,
+      isComplete: this.todoForm.value.isComplete,
       name: this.todoForm.value.name,
-      isComplete: this.todoForm.value.isComplete
     };
 
-    let modalResult: ModalResult = {
-      isRemoved: false,
+    const modalResult: IModalResult = {
       isCancelled: false,
-      todo: localTodo,      
+      isRemoved: false,
+      todo: localTodo,
     };
     this.viewController.dismiss(modalResult);
     // this.viewController.dismiss(localTodo);

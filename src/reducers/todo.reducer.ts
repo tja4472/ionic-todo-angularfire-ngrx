@@ -1,10 +1,10 @@
 import * as todoAction from '../actions/todo.action';
-import { ToDo } from '../models/todo';
+import { IToDo } from '../models/todo';
 
 export interface IState {
     loaded: boolean;
     loading: boolean;
-    todos: ToDo[];
+    todos: IToDo[];
 }
 
 const initialState: IState = {
@@ -24,7 +24,7 @@ export function reducer(
         }
 
         case todoAction.LOAD_SUCCESS: {
-            const items: ToDo[] = action.payload;
+            const items: IToDo[] = action.payload;
 
             return {
                 loaded: true,
