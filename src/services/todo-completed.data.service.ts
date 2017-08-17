@@ -58,6 +58,7 @@ function toFirebaseRecord(item: TodoCompleted): FirebaseRecord {
 }
 
 function fromFirebaseRecord(x: any): TodoCompleted {
+    console.log('TodoCompletedDataService:fromFirebaseRecord>', x);
     let result: TodoCompleted = {
         $key: x.$key,
         description: x.description,
