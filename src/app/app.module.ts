@@ -17,7 +17,9 @@ import { ControlMessages } from '../components/control-messages/control-messages
 import { Error } from '../components/error/error.component';
 import { MyPopoverPage } from '../components/popover/popover.component';
 import { TodoCompletedListComponent } from '../components/todo-completed-list/todo-completed-list.component';
-import { TodoListComponent } from '../components/todo-list/todo-list.component';
+// import { TodoListComponent } from '../components/todo-list/todo-list.component';
+
+import { CurrentTodoListComponent } from '../shared/components/current-todo-list/current-todo-list.component';
 
 import { Fb1DataService } from '../services/fb1.data.service';
 import { LoginService } from '../services/login.service';
@@ -51,8 +53,9 @@ import './rxjs-operators';
     ControlMessages,
     Error,
     MyPopoverPage,
+    CurrentTodoListComponent,
     TodoCompletedListComponent,
-    TodoListComponent,
+    // TodoListComponent,
     MyApp,
     Page1,
     Page2,

@@ -1,0 +1,62 @@
+<ion-fab bottom
+         right>
+    <button ion-fab
+            color=primary
+            (click)="addItem.emit()">
+    <ion-icon name="add"></ion-icon>
+  </button>
+</ion-fab>
+
+<ion-list reorder="true"
+          (ionItemReorder)="reorderItems.emit($event)">
+    <ion-item-sliding *ngFor="let item of todos">
+        <ion-item>
+            <ion-grid item-content>
+                <ion-row center>
+                    <ion-col col-auto>
+                        <ion-checkbox [checked]="item.isComplete"
+                                      (ionChange)="toggleCompleteItem.emit(item)">
+                        </ion-checkbox>
+                    </ion-col>
+                    <ion-col
+                      (click)="editItem.emit(item)">
+                        <h3 [style.text-decoration]="item.isComplete ? 'line-through': ''">{{item.name}}</h3>
+                        <p>{{item.description}}</p>
+                    </ion-col>
+                </ion-row>
+            </ion-grid>
+        </ion-item>
+        <ion-item-options>
+            <button ion-button
+                    (click)="toggleCompleteItem.emit(item)">
+                Toggle Complete
+            </button>
+
+            <button ion-button
+                    color="danger"
+                    (click)="removeItem.emit(item)">
+                Remove
+            </button>
+        </ion-item-options>
+    </ion-item-sliding>
+</ion-list>
+<!--
+<ion-list reorder="true" (ionItemReorder)="reorderItems.emit($event)">
+    <ion-item-sliding *ngFor="let item of todos">
+        <button ion-item (click)="editItem.emit(item)">
+				<h3 [style.text-decoration]="item.isComplete ? 'line-through': ''">{{item.name}}</h3>
+				<p>{{item.description}}</p>
+        </button>
+
+        <ion-item-options>
+            <button ion-button (click)="toggleCompleteItem.emit(item)">
+                Toggle Complete
+            </button>
+
+            <button ion-button color="danger" (click)="removeItem.emit(item)">
+                Remove
+            </button>
+        </ion-item-options>
+    </ion-item-sliding>
+</ion-list>
+-->

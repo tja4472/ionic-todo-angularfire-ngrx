@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { ChangeDetectionStrategy, Component } from '@angular/core';
 import { ActionSheetController, NavController, ModalController, PopoverController } from 'ionic-angular';
 import { Observable } from 'rxjs/Observable';
 import { TodoService } from '../../services/todo.service';
@@ -14,6 +14,7 @@ import { ITodo } from '../../models/todo.model';
 import { TodoPage } from '../todo/todo.page';
 
 @Component({
+  changeDetection: ChangeDetectionStrategy.OnPush,
   selector: 'page-home',
   templateUrl: 'home.page.html',
 })
