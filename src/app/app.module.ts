@@ -13,13 +13,16 @@ import { ViewCompletedPage } from '../pages/view-completed/view-completed.page';
 
 import { StatusBar } from '@ionic-native/status-bar';
 
-import { ControlMessages } from '../components/control-messages/control-messages.component';
+
 import { Error } from '../components/error/error.component';
 import { MyPopoverPage } from '../components/popover/popover.component';
 import { TodoCompletedListComponent } from '../components/todo-completed-list/todo-completed-list.component';
 // import { TodoListComponent } from '../components/todo-list/todo-list.component';
 
+import { ControlMessagesComponent } from '../shared/components/control-messages/control-messages.component';
 import { CurrentTodoListComponent } from '../shared/components/current-todo-list/current-todo-list.component';
+
+import { ValidationService } from '../shared/services/validation.service';
 
 import { Fb1DataService } from '../services/fb1.data.service';
 import { LoginService } from '../services/login.service';
@@ -27,7 +30,7 @@ import { TodoCompletedDataService } from '../services/todo-completed.data.servic
 import { TodoCompletedService } from '../services/todo-completed.service';
 import { TodoDataService } from '../services/todo.data.service';
 import { TodoService } from '../services/todo.service';
-import { ValidationService } from '../services/validation.service';
+
 
 import { AngularFireModule } from 'angularfire2';
 import { AngularFireAuthModule } from 'angularfire2/auth';
@@ -50,7 +53,7 @@ import './rxjs-operators';
 
 @NgModule({
   declarations: [
-    ControlMessages,
+    ControlMessagesComponent,
     Error,
     MyPopoverPage,
     CurrentTodoListComponent,

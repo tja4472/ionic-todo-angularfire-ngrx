@@ -3,13 +3,13 @@ import { FormControl } from '@angular/forms';
 import { ValidationService } from '../../services/validation.service';
 
 // Angular 2 Form Builder and Validation Management
-// https://coryrylan.com/blog/angular-2-form-builder-and-validation-management
+// https://coryrylan.com/blog/angular-form-builder-and-validation-management
 
 @Component({
-  selector: 'control-messages',
+  selector: 'tja-control-messages',
   template: `<div *ngIf="errorMessage !== null">{{errorMessage}}</div>`,
 })
-export class ControlMessages {
+export class ControlMessagesComponent {
   @Input() control: FormControl;
 
   get errorMessage() {

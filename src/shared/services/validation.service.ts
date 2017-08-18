@@ -1,14 +1,14 @@
 // Angular 2 Form Builder and Validation Management
-// https://coryrylan.com/blog/angular-2-form-builder-and-validation-management
+// https://coryrylan.com/blog/angular-form-builder-and-validation-management
 
 export class ValidationService {
     static getValidatorErrorMessage(validatorName: string, validatorValue?: any): any {
-        const config: any  = {
+        const config: any = {
             invalidCreditCard: 'Is invalid credit card number',
             invalidEmailAddress: 'Invalid email address',
             invalidPassword: 'Invalid password. Password must be at least 6 characters long, and contain a number.',
             minlength: `Minimum length ${validatorValue.requiredLength}`,
-            required: 'Required',
+            required: 'Required####',
         };
 
         return config[validatorName];
