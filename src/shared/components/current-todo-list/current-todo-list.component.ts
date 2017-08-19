@@ -4,7 +4,7 @@ import { IReorderArrayIndexes } from '../../models/reorder-array-indexes';
 import { ITodo } from '../../models/todo.model';
 
 @Component({
-  selector: 'current-todo-list',
+  selector: 'tja-current-todo-list',
   templateUrl: 'current-todo-list.component.html',
 })
 export class CurrentTodoListComponent {
