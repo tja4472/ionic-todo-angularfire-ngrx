@@ -1,11 +1,11 @@
-import { ChangeDetectionStrategy, Component } from '@angular/core';
+import { Component } from '@angular/core';
 import { NavParams, ViewController } from 'ionic-angular';
 
 import { ITodo } from '../../models/todo.model';
 import { Validators, FormBuilder } from '@angular/forms';
 
 @Component({
-  changeDetection: ChangeDetectionStrategy.OnPush,
+  // changeDetection: ChangeDetectionStrategy.OnPush,
   selector: 'page-todo',
   templateUrl: 'todo.page.html',
 })
@@ -41,7 +41,7 @@ export class TodoPage {
 
     this.todoForm = this.formBuilder.group({
       description: [this.todo.description],
-      isComplete: [this.todo.isComplete],
+      isComplete: [{value:this.todo.isComplete,disabled: false}],
       name: [this.todo.name, Validators.required],
     });
   }
@@ -92,5 +92,9 @@ export class TodoPage {
       };
 */
     this.viewController.dismiss(localTodo);
+  }
+
+  toggle() {
+    console.log('toggle');
   }
 }
