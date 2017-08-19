@@ -14,7 +14,7 @@ export class TodoPage {
 
   private todo: ITodo =
   {
-    $key: '',
+    $key: undefined,
     description: undefined,
     index: 0,
     isComplete: false,
@@ -35,6 +35,7 @@ export class TodoPage {
     this.isEditing = !!paramTodo;
 
     if (this.isEditing) {
+      console.log('isEditing');
       this.todo = paramTodo;
     }
 

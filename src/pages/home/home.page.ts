@@ -37,17 +37,20 @@ export class HomePage {
 
   addItem() {
     console.log('addItem');
-    const modal = this.modalCtrl.create(TodoPage);
+    this.showModal();
+    /*
+        const modal = this.modalCtrl.create(TodoPage);
 
-    modal.onDidDismiss((data: ITodo) => {
-      console.log('onDidDismiss>', data);
+        modal.onDidDismiss((data: ITodo) => {
+          console.log('onDidDismiss>', data);
 
-      if (!!data) {
-        this.todoService.save(data);
-      }
-    });
+          if (!!data) {
+            this.todoService.save(data);
+          }
+        });
 
-    modal.present();
+        modal.present();
+    */
   }
 
   toggleCompleteItem(item: ToggleCompleteItemOutput) {
@@ -77,21 +80,21 @@ export class HomePage {
 
   editItem(item: EditItemOutput) {
     console.log('editItem:item>', item);
-    // let todo: ToDo;
-    // todo = assign(todo, item);
+    this.showModal(item);
 
+    /*
+        const modal = this.modalCtrl.create(TodoPage, { todo: item });
 
-    const modal = this.modalCtrl.create(TodoPage, { todo: item });
+        modal.onDidDismiss((data: ITodo) => {
+          console.log('onDidDismiss>', data);
 
-    modal.onDidDismiss((data: ITodo) => {
-      console.log('onDidDismiss>', data);
+          if (!!data) {
+            this.todoService.save(data);
+          }
+        });
 
-      if (!!data) {
-        this.todoService.save(data);
-      }
-    });
-
-    modal.present();
+        modal.present();
+    */
   }
 
   presentActionSheet() {
@@ -160,24 +163,19 @@ export class HomePage {
     console.log('removeItem:item>', item);
     this.todoService.remove(item);
   }
-}
 
-/*
-@Component({
-  template: `
-    <ion-list>
-    <!--
-      <ion-list-header>Ionic</ion-list-header>
--->
-      <button ion-item (click)="close('ClearCompleted')">Clear completed</button>
-    </ion-list>
-  `
-})
-class PopoverPage {
-  constructor(private viewCtrl: ViewController) { }
+  private showModal(item?: ITodo) {
+    //
+    const modal = this.modalCtrl.create(TodoPage, { todo: item });
 
-  close(data: string) {
-    this.viewCtrl.dismiss(data);
+    modal.onDidDismiss((data: ITodo) => {
+      console.log('onDidDismiss>', data);
+
+      if (!!data) {
+        this.todoService.save(data);
+      }
+    });
+
+    modal.present();
   }
 }
-*/
