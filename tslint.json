@@ -13,6 +13,7 @@
     "quotemark": [true, "single"],
     "trailing-comma": [false],
     "typedef-whitespace": [false],
+    "variable-name": [true, "ban-keywords", "check-format", "allow-leading-underscore"],     
     "whitespace": [false]   
   },
   "rulesDirectory": [

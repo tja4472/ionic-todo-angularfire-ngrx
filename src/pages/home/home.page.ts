@@ -2,16 +2,11 @@ import { ChangeDetectionStrategy, Component } from '@angular/core';
 import { ActionSheetController, NavController, ModalController, PopoverController } from 'ionic-angular';
 import { Observable } from 'rxjs/Observable';
 import { TodoService } from '../../services/todo.service';
-import {
-  EditItemOutput,
-  RemoveItemOutput,
-  ToggleCompleteItemOutput,
-  ReorderItemsOutput,
-  TodosInput
-} from '../../components/todo-list/todo-list.component';
+
 import { MyPopoverPage, IMyPopoverPageResult } from '../../components/popover/popover.component';
 import { ITodo } from '../../models/todo.model';
 import { TodoPage } from '../todo/todo.page';
+import { IReorderArrayIndexes } from '../../shared/models/reorder-array-indexes';
 
 @Component({
   changeDetection: ChangeDetectionStrategy.OnPush,
@@ -19,7 +14,7 @@ import { TodoPage } from '../todo/todo.page';
   templateUrl: 'home.page.html',
 })
 export class HomePage {
-  todos$: Observable<TodosInput>;
+  todos$: Observable<ITodo[]>;
 
   constructor(
     public navCtrl: NavController,
@@ -38,22 +33,9 @@ export class HomePage {
   addItem() {
     console.log('addItem');
     this.showModal();
-    /*
-        const modal = this.modalCtrl.create(TodoPage);
-
-        modal.onDidDismiss((data: ITodo) => {
-          console.log('onDidDismiss>', data);
-
-          if (!!data) {
-            this.todoService.save(data);
-          }
-        });
-
-        modal.present();
-    */
   }
 
-  toggleCompleteItem(item: ToggleCompleteItemOutput) {
+  toggleCompleteItem(item: ITodo) {
     console.log('completeItem:item>', item);
     const newItem = Object.assign(item, {});
     newItem.isComplete = !newItem.isComplete;
@@ -78,23 +60,9 @@ export class HomePage {
     */
   }
 
-  editItem(item: EditItemOutput) {
+  editItem(item: ITodo) {
     console.log('editItem:item>', item);
     this.showModal(item);
-
-    /*
-        const modal = this.modalCtrl.create(TodoPage, { todo: item });
-
-        modal.onDidDismiss((data: ITodo) => {
-          console.log('onDidDismiss>', data);
-
-          if (!!data) {
-            this.todoService.save(data);
-          }
-        });
-
-        modal.present();
-    */
   }
 
   presentActionSheet() {
@@ -150,7 +118,7 @@ export class HomePage {
     });
   }
 
-  reorderItems(indexes: ReorderItemsOutput) {
+  reorderItems(indexes: IReorderArrayIndexes) {
     console.log('reorderItems:indexes>', indexes);
     console.log('reorderItems:indexes.from>', indexes.from);
     console.log('reorderItems:indexes.to>', indexes.to);
@@ -159,7 +127,7 @@ export class HomePage {
     // this.items = reorderArray(this.items, indexes);
   }
 
-  removeItem(item: RemoveItemOutput) {
+  removeItem(item: ITodo) {
     console.log('removeItem:item>', item);
     this.todoService.remove(item);
   }

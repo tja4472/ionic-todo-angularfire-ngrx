@@ -2,7 +2,6 @@ import { Component } from '@angular/core';
 import { NavParams, ViewController } from 'ionic-angular';
 
 import { ITodo } from '../../models/todo.model';
-import { Validators, FormBuilder } from '@angular/forms';
 
 @Component({
   // changeDetection: ChangeDetectionStrategy.OnPush,
@@ -10,9 +9,10 @@ import { Validators, FormBuilder } from '@angular/forms';
   templateUrl: 'todo.page.html',
 })
 export class TodoPage {
-  public todoForm: any;
+    // Called from template.
+    public todo: ITodo;
 
-  private todo: ITodo =
+  private _todo: ITodo =
   {
     $key: undefined,
     description: undefined,
@@ -25,7 +25,6 @@ export class TodoPage {
   private isEditing: boolean;
 
   constructor(
-    public formBuilder: FormBuilder,
     params: NavParams,
     public viewController: ViewController
   ) {
@@ -36,65 +35,22 @@ export class TodoPage {
 
     if (this.isEditing) {
       console.log('isEditing');
-      this.todo = paramTodo;
+      this._todo = paramTodo;
     }
+    this.todo = this._todo;
+    console.log('+++this.todo>', this.todo);
 
-    this.todoForm = this.formBuilder.group({
-      description: [this.todo.description],
-      isComplete: [{value:this.todo.isComplete,disabled: false}],
-      name: [this.todo.name, Validators.required],
-    });
   }
 
-  /*
-    ionViewDidLoad() {
-      //
-      this.todoForm = this.formBuilder.group({
-        name: [this.todo.name, Validators.required],
-        description: [this.todo.description],
-        isComplete: [this.todo.isComplete]
-      });
-    }
-  */
-
-  dismiss() {
-    console.log('dismiss');
+  // Called from template.
+  itemCancelled() {
+    console.log('itemCancelled>');
     this.viewController.dismiss();
   }
 
-  save() {
-    console.log('save');
-
-    if (!this.todoForm.valid) {
-      return;
-    }
-
-    console.log(this.todoForm.value);
-    console.log('this.todo>', this.todo);
-
-    // Get error here with private todo when using popover.
-    // Hence local.
-
-    const localTodo = Object.assign(this.todo, {
-      isComplete: this.todoForm.value.isComplete,
-      name: this.todoForm.value.name,
-    });
-
-    // assign did not like optional property.
-    localTodo.description = this.todoForm.value.description;
-    /*
-    let localTodo: ToDo = {
-        $key: this.todo.$key,
-        description: this.todoForm.value.description,
-        name: this.todoForm.value.name,
-        index: this.todo.index,
-        isComplete: this.todoForm.value.isComplete
-      };
-*/
-    this.viewController.dismiss(localTodo);
-  }
-
-  toggle() {
-    console.log('toggle');
+  // Called from template.
+  itemSaved(item: ITodo) {
+    console.log('itemSaved>', item);
+    this.viewController.dismiss(item);
   }
 }

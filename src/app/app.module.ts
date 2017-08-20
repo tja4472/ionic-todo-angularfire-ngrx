@@ -1,3 +1,4 @@
+import { CurrentTodoDetailsComponent } from '../shared/components/current-todo-details/current-todo-details.component';
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { IonicApp, IonicModule } from 'ionic-angular';
@@ -56,6 +57,7 @@ import './rxjs-operators';
     ControlMessagesComponent,
     Error,
     MyPopoverPage,
+    CurrentTodoDetailsComponent,
     CurrentTodoListComponent,
     TodoCompletedListComponent,
     // TodoListComponent,
