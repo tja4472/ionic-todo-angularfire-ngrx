@@ -2,7 +2,7 @@
 // tslint:disable:no-empty
 import { Action } from '@ngrx/store';
 
-import { Indexes } from '../models/indexes';
+import { IReorderArrayIndexes } from '../shared/models/reorder-array-indexes';
 import { ITodo } from '../shared/models/todo.model';
 
 export const CLEAR_COMPLETED = '[ToDoActions] Clear Completed';
@@ -39,7 +39,7 @@ export class RemoveAction implements Action {
 export class ReorderListAction implements Action {
     readonly type = REORDER_LIST;
 
-    constructor(public payload: Indexes) { }
+    constructor(public payload: IReorderArrayIndexes) { }
 }
 
 export class SaveAction implements Action {

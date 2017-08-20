@@ -4,8 +4,7 @@ import { Observable } from 'rxjs/Observable';
 import { AngularFireDatabase } from 'angularfire2/database';
 // import { AngularFireOfflineDatabase } from 'angularfire2-offline/database';
 
-import { Indexes } from '../models/indexes';
-
+import { IReorderArrayIndexes } from '../shared/models/reorder-array-indexes';
 import { ITodo, Todo } from '../shared/models/todo.model';
 
 import { reorderArray } from 'ionic-angular';
@@ -32,7 +31,7 @@ export class TodoDataService {
             .map((x) => x.map((d: any) => fromFirebaseTodo(d)));
     }
 
-    reorderItemsAndUpdate(indexes: Indexes, todos: ITodo[]) {
+    reorderItemsAndUpdate(indexes: IReorderArrayIndexes, todos: ITodo[]) {
         const itemsToSave = [...todos];
         reorderArray(itemsToSave, indexes);
 

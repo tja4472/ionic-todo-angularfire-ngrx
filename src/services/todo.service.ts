@@ -3,7 +3,7 @@ import { Observable } from 'rxjs/Observable';
 
 import { Store } from '@ngrx/store';
 
-import { Indexes } from '../models/indexes';
+import { IReorderArrayIndexes } from '../shared/models/reorder-array-indexes';
 import { ITodo } from '../shared/models/todo.model';
 
 import * as FromRootReducer from '../reducers/index';
@@ -39,7 +39,7 @@ export class TodoService {
         return this.store.select(FromRootReducer.getTodo_GetLoading);
     }
 
-    reorderItems(indexes: Indexes) {
+    reorderItems(indexes: IReorderArrayIndexes) {
         this.store.dispatch(
             new TodoActions.ReorderListAction(indexes));
     }
