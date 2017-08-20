@@ -14,7 +14,7 @@ export class CurrentTodoDetailsComponent {
 
     public todoForm: any;
 
-    private isEditing: boolean = true;
+    // private isEditing: boolean = true;
 
     private readonly CLASS_NAME = 'CurrentTodoDetailsComponent';
 
@@ -26,10 +26,12 @@ export class CurrentTodoDetailsComponent {
 
     ngOnInit() {
         console.log('###%s:ngOnInit>', this.CLASS_NAME, this.todo);
-
-        if (this.todo.$key === undefined) {
-            this.isEditing = false;
-        }
+        console.log('this.todo.isNew()>', this.todo.isNew());
+        /*
+                if (this.todo.$key === undefined) {
+                    this.isEditing = false;
+                }
+        */
         this.todoForm = this.formBuilder.group({
             description: [this.todo.description],
             isComplete: [this.todo.isComplete],

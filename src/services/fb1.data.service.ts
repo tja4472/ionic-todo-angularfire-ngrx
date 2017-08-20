@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 
-import { ITodo } from '../models/todo.model';
+import { ITodo, Todo } from '../shared/models/todo.model';
+
 import { ITodoCompleted } from '../models/todo-completed';
 import { TodoDataService } from '../services/todo.data.service';
 import { TodoCompletedDataService } from '../services/todo-completed.data.service';
@@ -37,15 +38,22 @@ export class Fb1DataService {
 
     moveToCuurent(item: ITodoCompleted) {
         console.log('moveToCuurent>', item);
-        const todo: ITodo = {
-            $key: item.$key,
-            description: item.description,
-            index: 0,
-            isComplete: item.isComplete,
-            name: item.name,
-            userId: '',
-        };
 
+        const todo: Todo = new Todo();
+        todo.description = item.description;
+        todo.isComplete = item.isComplete;
+        todo.name = item.name;
+
+        /*
+                const todo: ITodo = {
+                    $key: item.$key,
+                    description: item.description,
+                    index: 0,
+                    isComplete: item.isComplete,
+                    name: item.name,
+                    userId: '',
+                };
+        */
         this.todoDataService.save(todo);
         this.todoCompletedDataService.removeItem(item.$key);
     }

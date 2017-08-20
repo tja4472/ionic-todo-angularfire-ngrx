@@ -4,7 +4,7 @@ import { Observable } from 'rxjs/Observable';
 import { TodoService } from '../../services/todo.service';
 
 import { MyPopoverPage, IMyPopoverPageResult } from '../../components/popover/popover.component';
-import { ITodo } from '../../models/todo.model';
+import { ITodo } from '../../shared/models/todo.model';
 import { TodoPage } from '../todo/todo.page';
 import { IReorderArrayIndexes } from '../../shared/models/reorder-array-indexes';
 

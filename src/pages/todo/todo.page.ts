@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { NavParams, ViewController } from 'ionic-angular';
 
-import { ITodo } from '../../models/todo.model';
+import { ITodo, Todo } from '../../shared/models/todo.model';
 
 @Component({
   // changeDetection: ChangeDetectionStrategy.OnPush,
@@ -9,36 +9,48 @@ import { ITodo } from '../../models/todo.model';
   templateUrl: 'todo.page.html',
 })
 export class TodoPage {
-    // Called from template.
-    public todo: ITodo;
+  // Called from template.
+  public todo: ITodo;
 
-  private _todo: ITodo =
-  {
-    $key: undefined,
-    description: undefined,
-    index: 0,
-    isComplete: false,
-    name: '',
-    userId: '',
-  };
-
-  private isEditing: boolean;
+  /*
+    private _todo: ITodo =
+    {
+      $key: undefined,
+      description: undefined,
+      index: 0,
+      isComplete: false,
+      name: '',
+      userId: '',
+    };
+  */
+  // private isEditing: boolean;
 
   constructor(
     params: NavParams,
     public viewController: ViewController
   ) {
     console.log('params:get>', params.get('todo'));
-
     const paramTodo: ITodo = params.get('todo');
-    this.isEditing = !!paramTodo;
+    this.todo = new Todo();
 
-    if (this.isEditing) {
-      console.log('isEditing');
-      this._todo = paramTodo;
+    if (paramTodo) {
+      this.todo = Object.assign(this.todo, paramTodo);
+      console.log('paramTodo = true');
+    } else {
+      console.log('paramTodo = false');
     }
-    this.todo = this._todo;
-    console.log('+++this.todo>', this.todo);
+    console.log('this.todo>', this.todo);
+
+    /*
+        this.isEditing = !!paramTodo;
+
+        if (this.isEditing) {
+          console.log('isEditing');
+          this._todo = paramTodo;
+        }
+        this.todo = this._todo;
+        console.log('+++this.todo>', this.todo);
+    */
 
   }
 

@@ -4,7 +4,7 @@ import { Observable } from 'rxjs/Observable';
 import { Store } from '@ngrx/store';
 
 import { Indexes } from '../models/indexes';
-import { ITodo } from '../models/todo.model';
+import { ITodo } from '../shared/models/todo.model';
 
 import * as FromRootReducer from '../reducers/index';
 import * as TodoActions from '../actions/todo.action';

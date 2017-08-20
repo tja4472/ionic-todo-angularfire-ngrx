@@ -8,7 +8,7 @@ import * as FromRootReducer from '../reducers';
 import * as TodoAction from '../actions/todo.action';
 import { Fb1DataService } from '../services/fb1.data.service';
 import { TodoDataService } from '../services/todo.data.service';
-import { ITodo } from '../models/todo.model';
+import { ITodo } from '../shared/models/todo.model';
 
 @Injectable()
 export class TodoEffects {

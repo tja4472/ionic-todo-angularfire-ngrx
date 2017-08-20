@@ -1,5 +1,5 @@
 import * as todoAction from '../actions/todo.action';
-import { ITodo } from '../models/todo.model';
+import { ITodo } from '../shared/models/todo.model';
 
 export interface IState {
     loaded: boolean;

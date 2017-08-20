@@ -5,7 +5,8 @@ import { AngularFireDatabase } from 'angularfire2/database';
 // import { AngularFireOfflineDatabase } from 'angularfire2-offline/database';
 
 import { Indexes } from '../models/indexes';
-import { ITodo } from '../models/todo.model';
+
+import { ITodo, Todo } from '../shared/models/todo.model';
 
 import { reorderArray } from 'ionic-angular';
 
@@ -28,7 +29,7 @@ export class TodoDataService {
                 orderByChild: 'index'
             }
         })
-            .map((x) => x.map((d:any) => fromFirebaseTodo(d)));
+            .map((x) => x.map((d: any) => fromFirebaseTodo(d)));
     }
 
     reorderItemsAndUpdate(indexes: Indexes, todos: ITodo[]) {
@@ -83,19 +84,31 @@ function fromFirebaseTodo(x: any): ITodo {
     //
     console.log('TodoDataService:fromFirebaseTodo>', x);
 
-    const result: ITodo = {
-        $key: x.$key,
-        description: x.description,
-        index: x.index,
-        isComplete: x.isComplete,
-        name: x.name,
-        userId: '',
-    };
-/*
-    if (result.description === undefined) {
-        result.description = null;
-    }
-*/
+    // const result: Todo = new Todo();
+    const result = Object.assign(new Todo(),
+        {
+            $key: x.$key,
+            description: x.description,
+            index: x.index,
+            isComplete: x.isComplete,
+            name: x.name,
+        });
+    console.log('TodoDataService:fromFirebaseTodo:result>', result);
+    /*
+        const result: ITodo = {
+            $key: x.$key,
+            description: x.description,
+            index: x.index,
+            isComplete: x.isComplete,
+            name: x.name,
+            userId: '',
+        };
+    */
+    /*
+        if (result.description === undefined) {
+            result.description = null;
+        }
+    */
     if (result.isComplete === undefined) {
         result.isComplete = false;
     }
