@@ -1,16 +1,16 @@
 import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { Validators, FormBuilder } from '@angular/forms';
 
-import { ITodo } from '../../models/todo.model';
+import { Todo } from '../../models/todo.model';
 
 @Component({
     selector: 'tja-current-todo-details',
     templateUrl: 'current-todo-details.component.html',
 })
 export class CurrentTodoDetailsComponent {
-    @Input() public todo: ITodo;
-    @Output() public itemCancelled = new EventEmitter<ITodo>();
-    @Output() public itemSaved = new EventEmitter<ITodo>();
+    @Input() public todo: Todo;
+    @Output() public itemCancelled = new EventEmitter<Todo>();
+    @Output() public itemSaved = new EventEmitter<Todo>();
 
     public todoForm: any;
 
@@ -54,7 +54,8 @@ export class CurrentTodoDetailsComponent {
         console.log('this.todoForm.value>', this.todoForm.value);
         console.log('this.todo>', this.todo);
 
-        const editedItem: ITodo = { ...this.todo, ...this.todoForm.value };
+        // const editedItem: ITodo = { ...this.todo, ...this.todoForm.value };
+        const editedItem: Todo = Object.assign(new Todo(), this.todo, this.todoForm.value);
         console.log('editedItem>', editedItem);
 
         this.itemSaved.emit(editedItem);

@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { NavParams, ViewController } from 'ionic-angular';
 
-import { ITodo, Todo } from '../../shared/models/todo.model';
+import { Todo } from '../../shared/models/todo.model';
 
 @Component({
   // changeDetection: ChangeDetectionStrategy.OnPush,
@@ -10,7 +10,7 @@ import { ITodo, Todo } from '../../shared/models/todo.model';
 })
 export class TodoPage {
   // Called from template.
-  public todo: ITodo;
+  public todo: Todo;
 
   /*
     private _todo: ITodo =
@@ -29,15 +29,20 @@ export class TodoPage {
     params: NavParams,
     public viewController: ViewController
   ) {
+    console.log('params>', params);
     console.log('params:get>', params.get('todo'));
-    const paramTodo: ITodo = params.get('todo');
-    this.todo = new Todo();
+
+    const paramTodo: Todo = params.get('todo');
+
+
 
     if (paramTodo) {
-      this.todo = Object.assign(this.todo, paramTodo);
+      //  this.todo = Object.assign(this.todo, paramTodo);
       console.log('paramTodo = true');
+      this.todo = paramTodo;
     } else {
       console.log('paramTodo = false');
+      this.todo = new Todo();
     }
     console.log('this.todo>', this.todo);
 
@@ -61,7 +66,7 @@ export class TodoPage {
   }
 
   // Called from template.
-  itemSaved(item: ITodo) {
+  itemSaved(item: Todo) {
     console.log('itemSaved>', item);
     this.viewController.dismiss(item);
   }

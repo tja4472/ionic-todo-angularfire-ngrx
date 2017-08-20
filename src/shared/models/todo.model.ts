@@ -1,4 +1,5 @@
-export interface ITodo {
+/*
+export interface Todo {
     $key?: string;
     index: number;
     name: string;
@@ -7,8 +8,8 @@ export interface ITodo {
     userId: string;
     isNew(): boolean;
 }
-
-export class Todo implements ITodo {
+*/
+export class Todo {
     $key?: string = undefined;
     description?: string = undefined;
     index: number = 0;

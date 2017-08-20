@@ -3,7 +3,7 @@
 import { Action } from '@ngrx/store';
 
 import { IReorderArrayIndexes } from '../shared/models/reorder-array-indexes';
-import { ITodo } from '../shared/models/todo.model';
+import { Todo } from '../shared/models/todo.model';
 
 export const CLEAR_COMPLETED = '[ToDoActions] Clear Completed';
 export const LOAD = '[ToDoActions] Load';
@@ -27,7 +27,7 @@ export class LoadAction implements Action {
 export class LoadSuccessAction implements Action {
     readonly type = LOAD_SUCCESS;
 
-    constructor(public payload: ITodo[]) { }
+    constructor(public payload: Todo[]) { }
 }
 
 export class RemoveAction implements Action {
@@ -45,7 +45,7 @@ export class ReorderListAction implements Action {
 export class SaveAction implements Action {
     readonly type = SAVE;
 
-    constructor(public payload: ITodo) { }
+    constructor(public payload: Todo) { }
 }
 
 export type Actions =

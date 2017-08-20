@@ -4,7 +4,7 @@ import { Observable } from 'rxjs/Observable';
 import { TodoService } from '../../services/todo.service';
 
 import { MyPopoverPage, IMyPopoverPageResult } from '../../components/popover/popover.component';
-import { ITodo } from '../../shared/models/todo.model';
+import { Todo } from '../../shared/models/todo.model';
 import { TodoPage } from '../todo/todo.page';
 import { IReorderArrayIndexes } from '../../shared/models/reorder-array-indexes';
 
@@ -14,7 +14,7 @@ import { IReorderArrayIndexes } from '../../shared/models/reorder-array-indexes'
   templateUrl: 'home.page.html',
 })
 export class HomePage {
-  todos$: Observable<ITodo[]>;
+  todos$: Observable<Todo[]>;
 
   constructor(
     public navCtrl: NavController,
@@ -35,7 +35,7 @@ export class HomePage {
     this.showModal();
   }
 
-  toggleCompleteItem(item: ITodo) {
+  toggleCompleteItem(item: Todo) {
     console.log('completeItem:item>', item);
     const newItem = Object.assign(item, {});
     newItem.isComplete = !newItem.isComplete;
@@ -60,7 +60,7 @@ export class HomePage {
     */
   }
 
-  editItem(item: ITodo) {
+  editItem(item: Todo) {
     console.log('editItem:item>', item);
     this.showModal(item);
   }
@@ -127,16 +127,16 @@ export class HomePage {
     // this.items = reorderArray(this.items, indexes);
   }
 
-  removeItem(item: ITodo) {
+  removeItem(item: Todo) {
     console.log('removeItem:item>', item);
     this.todoService.remove(item);
   }
 
-  private showModal(item?: ITodo) {
+  private showModal(item?: Todo) {
     //
     const modal = this.modalCtrl.create(TodoPage, { todo: item });
 
-    modal.onDidDismiss((data: ITodo) => {
+    modal.onDidDismiss((data: Todo) => {
       console.log('onDidDismiss>', data);
 
       if (!!data) {

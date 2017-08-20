@@ -8,7 +8,7 @@ import * as FromRootReducer from '../reducers';
 import * as TodoAction from '../actions/todo.action';
 import { Fb1DataService } from '../services/fb1.data.service';
 import { TodoDataService } from '../services/todo.data.service';
-import { ITodo } from '../shared/models/todo.model';
+import { Todo } from '../shared/models/todo.model';
 
 @Injectable()
 export class TodoEffects {
@@ -48,7 +48,7 @@ export class TodoEffects {
     // Watch database node and get items.
     .switchMap(() => this.todoDataService.getData())
     .do((x) => { console.log('Effect:loadCollection$:B', x); })
-    .map((items: ITodo[]) => new TodoAction.LoadSuccessAction(items));
+    .map((items: Todo[]) => new TodoAction.LoadSuccessAction(items));
 
 
 /*

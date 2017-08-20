@@ -4,7 +4,7 @@ import { Observable } from 'rxjs/Observable';
 import { Store } from '@ngrx/store';
 
 import { IReorderArrayIndexes } from '../shared/models/reorder-array-indexes';
-import { ITodo } from '../shared/models/todo.model';
+import { Todo } from '../shared/models/todo.model';
 
 import * as FromRootReducer from '../reducers/index';
 import * as TodoActions from '../actions/todo.action';
@@ -22,7 +22,7 @@ export class TodoService {
         );
     }
 
-    getData(): Observable<ITodo[]> {
+    getData(): Observable<Todo[]> {
         return this.store.select(FromRootReducer.getTodo_GetTodos);
     }
 
@@ -44,7 +44,7 @@ export class TodoService {
             new TodoActions.ReorderListAction(indexes));
     }
 
-    remove(todo: ITodo) {
+    remove(todo: Todo) {
         if (todo.$key === undefined) {
             return;
         }
@@ -52,7 +52,7 @@ export class TodoService {
             new TodoActions.RemoveAction(todo.$key));
     }
 
-    save(todo: ITodo) {
+    save(todo: Todo) {
         this.store.dispatch(
             new TodoActions.SaveAction(todo));
     }
