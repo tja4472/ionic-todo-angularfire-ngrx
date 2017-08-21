@@ -39,7 +39,7 @@ import { AngularFireModule } from 'angularfire2';
 import { AngularFireAuthModule } from 'angularfire2/auth';
 import { AngularFireDatabaseModule } from 'angularfire2/database';
 // import { AngularFireOfflineModule } from 'angularfire2-offline';
-import { MyFirebaseAppConfig } from './my-firebase-app-config';
+import { MY_FIREBASE_APP_CONFIG } from './my-firebase-app-config';
 
 import { EffectsModule } from '@ngrx/effects';
 import { StoreModule } from '@ngrx/store';
@@ -76,7 +76,7 @@ import './rxjs-operators';
   imports: [
     BrowserModule,
     IonicModule.forRoot(MyApp),
-    AngularFireModule.initializeApp(MyFirebaseAppConfig),
+    AngularFireModule.initializeApp(MY_FIREBASE_APP_CONFIG),
     // AngularFireOfflineModule,
     AngularFireAuthModule,
     AngularFireDatabaseModule,
