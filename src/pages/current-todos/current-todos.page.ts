@@ -10,10 +10,10 @@ import { IReorderArrayIndexes } from '../../shared/models/reorder-array-indexes'
 
 @Component({
   changeDetection: ChangeDetectionStrategy.OnPush,
-  selector: 'page-home',
-  templateUrl: 'home.page.html',
+  selector: 'tja-page-current-todos',
+  templateUrl: 'current-todos.page.html',
 })
-export class HomePage {
+export class CurrentTodosPage {
   todos$: Observable<Todo[]>;
 
   constructor(

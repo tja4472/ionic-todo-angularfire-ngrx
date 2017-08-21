@@ -5,7 +5,7 @@ import { StatusBar } from '@ionic-native/status-bar';
 import { Page1 } from '../pages/page1/page1';
 import { Page2 } from '../pages/page2/page2';
 
-import { HomePage } from '../pages/home/home.page';
+import { CurrentTodosPage } from '../pages/current-todos/current-todos.page';
 import { LoginPage } from '../pages/login/login.page';
 import { SignupPage } from '../pages/signup/signup.page';
 import { ViewCompletedPage } from '../pages/view-completed/view-completed.page';
@@ -39,7 +39,7 @@ export class MyApp {
     this.pages = [
       { title: 'Page One', component: Page1 },
       { title: 'Page Two', component: Page2 },
-      { title: 'Current todos', component: HomePage },
+      { title: 'Current todos', component: CurrentTodosPage },
       { title: 'Completed todos', component: ViewCompletedPage },
       { title: 'Login', component: LoginPage },
       { title: 'Signup', component: SignupPage },
@@ -78,7 +78,7 @@ export class MyApp {
       this.loginService.auth$.subscribe((firebaseUser) => {
         console.log('>>>>>>>>>>firebaseUser>', firebaseUser);
         if (firebaseUser) {
-          this.rootPage = HomePage;
+          this.rootPage = CurrentTodosPage;
         } else {
           this.rootPage = LoginPage;
         }
