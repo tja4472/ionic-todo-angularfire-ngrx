@@ -18,13 +18,7 @@ export interface IModalResult {
 export class TodoCompletedPage {
   public todoForm: any;
 
-  private todo: TodoCompleted =
-  {
-    $key: '',
-    description: undefined,
-    isComplete: false,
-    name: '',
-  };
+  private todo: TodoCompleted = new TodoCompleted();
 
   private isEditing: boolean;
 
@@ -92,12 +86,12 @@ export class TodoCompletedPage {
 
     // Get error here with private todo when using popover.
     // Hence local.
-    const localTodo: TodoCompleted = {
-      $key: this.todo.$key,
-      description: this.todoForm.value.description,
-      isComplete: this.todoForm.value.isComplete,
-      name: this.todoForm.value.name,
-    };
+    const localTodo = Object.assign(new TodoCompleted(),
+      {
+        $key: this.todo.$key,
+        description: this.todoForm.value.description,
+        name: this.todoForm.value.name,
+      });
 
     const modalResult: IModalResult = {
       isCancelled: false,

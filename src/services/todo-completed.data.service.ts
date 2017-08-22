@@ -59,12 +59,12 @@ function toFirebaseRecord(item: TodoCompleted): IFirebaseRecord {
 
 function fromFirebaseRecord(x: any): TodoCompleted {
     console.log('TodoCompletedDataService:fromFirebaseRecord>', x);
-    const result: TodoCompleted = {
-        $key: x.$key,
-        description: x.description,
-        isComplete: x.isComplete,
-        name: x.name,
-    };
+    const result = Object.assign(new TodoCompleted(),
+        {
+            $key: x.$key,
+            description: x.description,
+            name: x.name,
+        });
 
     /*
     if (result.description === undefined) {

@@ -44,6 +44,10 @@ export class TodoCompletedService {
     }
 
     remove(todo: TodoCompleted) {
+        if (todo.$key === undefined) {
+            return;
+        }
+
         this.store.dispatch(
             new TodoCompletedActions.RemoveAction(todo.$key));
     }

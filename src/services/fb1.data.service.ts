@@ -23,12 +23,11 @@ export class Fb1DataService {
             if (x.$key === undefined) {
                 return;
             }
-            const todoCompleted: TodoCompleted = {
-                $key: '',
-                description: x.description,
-                isComplete: x.isComplete,
-                name: x.name,
-            };
+            const todoCompleted = Object.assign(new TodoCompleted(),
+                {
+                    description: x.description,
+                    name: x.name,
+                });
 
             this.todoCompletedDataService.save(todoCompleted);
 
@@ -55,6 +54,10 @@ export class Fb1DataService {
                 };
         */
         this.todoDataService.save(todo);
+
+        if (item.$key === undefined) {
+            return;
+        }
         this.todoCompletedDataService.removeItem(item.$key);
     }
 }
