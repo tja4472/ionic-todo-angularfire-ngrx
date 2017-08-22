@@ -6,7 +6,7 @@ import { TodoService } from '../../services/todo.service';
 import { MyPopoverPage, IMyPopoverPageResult } from '../../components/popover/popover.component';
 import { Todo } from '../../shared/models/todo.model';
 import { CurrentTodoDetailModal } from '../current-todo-detail-modal/current-todo-detail.modal';
-import { IReorderArrayIndexes } from '../../shared/models/reorder-array-indexes';
+import { IReorderArrayIndexes } from '../../shared/models/reorder-array-indexes.model';
 
 @Component({
   changeDetection: ChangeDetectionStrategy.OnPush,

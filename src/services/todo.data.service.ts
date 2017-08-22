@@ -4,7 +4,7 @@ import { Observable } from 'rxjs/Observable';
 import { AngularFireDatabase } from 'angularfire2/database';
 // import { AngularFireOfflineDatabase } from 'angularfire2-offline/database';
 
-import { IReorderArrayIndexes } from '../shared/models/reorder-array-indexes';
+import { IReorderArrayIndexes } from '../shared/models/reorder-array-indexes.model';
 import { Todo } from '../shared/models/todo.model';
 
 import { reorderArray } from 'ionic-angular';

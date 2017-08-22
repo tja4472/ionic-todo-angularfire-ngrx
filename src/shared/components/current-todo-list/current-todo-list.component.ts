@@ -1,6 +1,6 @@
 import { Component, EventEmitter, Input, Output } from '@angular/core';
 
-import { IReorderArrayIndexes } from '../../models/reorder-array-indexes';
+import { IReorderArrayIndexes } from '../../models/reorder-array-indexes.model';
 import { Todo } from '../../models/todo.model';
 
 @Component({

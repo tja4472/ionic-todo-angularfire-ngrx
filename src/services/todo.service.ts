@@ -3,7 +3,7 @@ import { Observable } from 'rxjs/Observable';
 
 import { Store } from '@ngrx/store';
 
-import { IReorderArrayIndexes } from '../shared/models/reorder-array-indexes';
+import { IReorderArrayIndexes } from '../shared/models/reorder-array-indexes.model';
 import { Todo } from '../shared/models/todo.model';
 
 import * as FromRootReducer from '../reducers/index';

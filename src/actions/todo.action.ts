@@ -2,7 +2,7 @@
 // tslint:disable:no-empty
 import { Action } from '@ngrx/store';
 
-import { IReorderArrayIndexes } from '../shared/models/reorder-array-indexes';
+import { IReorderArrayIndexes } from '../shared/models/reorder-array-indexes.model';
 import { Todo } from '../shared/models/todo.model';
 
 export const CLEAR_COMPLETED = '[ToDoActions] Clear Completed';
