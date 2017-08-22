@@ -9,7 +9,7 @@ import { LoginPage } from '../pages/login/login.page';
 import { CurrentTodoDetailModal } from '../pages/current-todo-detail-modal/current-todo-detail.modal';
 import { TodoCompletedPage } from '../pages/todo-completed/todo-completed.page';
 import { SignupPage } from '../pages/signup/signup.page';
-import { ViewCompletedPage } from '../pages/view-completed/view-completed.page';
+import { TodoCompletedListPage } from '../pages/todo-completed-list/todo-completed-list.page';
 
 import { StatusBar } from '@ionic-native/status-bar';
 
@@ -71,7 +71,7 @@ import './rxjs-operators';
     TodoCompletedPage,
     CurrentTodoDetailModal,
     SignupPage,
-    ViewCompletedPage,
+    TodoCompletedListPage,
   ],
   imports: [
     BrowserModule,
@@ -99,7 +99,7 @@ import './rxjs-operators';
     TodoCompletedPage,
     CurrentTodoDetailModal,
     SignupPage,
-    ViewCompletedPage,
+    TodoCompletedListPage,
     MyPopoverPage,
   ],
   providers: [

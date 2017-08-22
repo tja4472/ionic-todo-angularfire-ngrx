@@ -4,22 +4,14 @@ import { Observable } from 'rxjs/Observable';
 
 import { TodoCompletedService } from '../../services/todo-completed.service';
 
-/*
-import {
-  DataInput,
-  EditItemOutput,
-  RemoveItemOutput
-} from '../../components/todo-completed-list/todo-completed-list.component';
-*/
-
 import { TodoCompleted } from '../../shared/models/todo-completed.model';
 import { IModalResult, TodoCompletedPage } from '../todo-completed/todo-completed.page';
 
 @Component({
-  selector: 'page-view-completed',
-  templateUrl: 'view-completed.page.html'
+  selector: 'tja-page-todo-completed-list',
+  templateUrl: 'todo-completed-list.page.html'
 })
-export class ViewCompletedPage {
+export class TodoCompletedListPage {
   data$: Observable<TodoCompleted[]>;
 
   constructor(
