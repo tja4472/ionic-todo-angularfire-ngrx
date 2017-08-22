@@ -2,7 +2,7 @@
 // tslint:disable:no-empty
 import { Action } from '@ngrx/store';
 
-import { ITodoCompleted } from '../models/todo-completed';
+import { TodoCompleted } from '../shared/models/todo-completed.model';
 
 
 export const LOAD = '[TodoCompletedActions] Load';
@@ -20,13 +20,13 @@ export class LoadAction implements Action {
 export class LoadSuccessAction implements Action {
     readonly type = LOAD_SUCCESS;
 
-    constructor(public payload: ITodoCompleted[]) { }
+    constructor(public payload: TodoCompleted[]) { }
 }
 
 export class MoveToCurrentAction implements Action {
     readonly type = MOVE_TO_CURRENT;
 
-    constructor(public payload: ITodoCompleted) { }
+    constructor(public payload: TodoCompleted) { }
 }
 
 export class RemoveAction implements Action {
@@ -38,7 +38,7 @@ export class RemoveAction implements Action {
 export class SaveAction implements Action {
     readonly type = SAVE;
 
-    constructor(public payload: ITodoCompleted) { }
+    constructor(public payload: TodoCompleted) { }
 }
 
 export type Actions =

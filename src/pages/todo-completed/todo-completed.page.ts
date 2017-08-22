@@ -1,13 +1,13 @@
 import { ChangeDetectionStrategy, Component } from '@angular/core';
 import { NavParams, ViewController } from 'ionic-angular';
 
-import { ITodoCompleted } from '../../models/todo-completed';
+import { TodoCompleted } from '../../shared/models/todo-completed.model';
 import { Validators, FormBuilder } from '@angular/forms';
 
 export interface IModalResult {
   isRemoved: boolean;
   isCancelled: boolean;
-  todo?: ITodoCompleted;
+  todo?: TodoCompleted;
 }
 
 @Component({
@@ -18,7 +18,7 @@ export interface IModalResult {
 export class TodoCompletedPage {
   public todoForm: any;
 
-  private todo: ITodoCompleted =
+  private todo: TodoCompleted =
   {
     $key: '',
     description: undefined,
@@ -36,7 +36,7 @@ export class TodoCompletedPage {
   ) {
     console.log('params:get>', params.get('todo'));
 
-    const paramTodo: ITodoCompleted = params.get('todo');
+    const paramTodo: TodoCompleted = params.get('todo');
     this.isEditing = !!paramTodo;
 
     if (this.isEditing) {
@@ -92,7 +92,7 @@ export class TodoCompletedPage {
 
     // Get error here with private todo when using popover.
     // Hence local.
-    const localTodo: ITodoCompleted = {
+    const localTodo: TodoCompleted = {
       $key: this.todo.$key,
       description: this.todoForm.value.description,
       isComplete: this.todoForm.value.isComplete,

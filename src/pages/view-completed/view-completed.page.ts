@@ -12,7 +12,7 @@ import {
 } from '../../components/todo-completed-list/todo-completed-list.component';
 */
 
-import { ITodoCompleted } from '../../models/todo-completed';
+import { TodoCompleted } from '../../shared/models/todo-completed.model';
 import { IModalResult, TodoCompletedPage } from '../todo-completed/todo-completed.page';
 
 @Component({
@@ -20,7 +20,7 @@ import { IModalResult, TodoCompletedPage } from '../todo-completed/todo-complete
   templateUrl: 'view-completed.page.html'
 })
 export class ViewCompletedPage {
-  data$: Observable<ITodoCompleted[]>;
+  data$: Observable<TodoCompleted[]>;
 
   constructor(
     public navCtrl: NavController,
@@ -35,13 +35,13 @@ export class ViewCompletedPage {
     this.todoCompletedService.initialise();
   }
 
-  checkItem(item: ITodoCompleted) {
+  checkItem(item: TodoCompleted) {
     if (!item.isComplete) {
       this.todoCompletedService.moveToCurrent(item);
     }
   }
 
-  editItem(item: ITodoCompleted) {
+  editItem(item: TodoCompleted) {
     console.log('editItem:item>', item);
     const modal = this.modalCtrl.create(TodoCompletedPage, { todo: item });
 

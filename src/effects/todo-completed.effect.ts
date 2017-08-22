@@ -8,7 +8,7 @@ import * as FromRootReducer from '../reducers';
 import * as TodoCompletedAction from '../actions/todo-completed.action';
 import { Fb1DataService } from '../services/fb1.data.service';
 import { TodoCompletedDataService } from '../services/todo-completed.data.service';
-import { ITodoCompleted } from '../models/todo-completed';
+import { TodoCompleted } from '../shared/models/todo-completed.model';
 
 @Injectable()
 export class TodoCompletedEffects {
@@ -28,7 +28,7 @@ export class TodoCompletedEffects {
     // Watch database node and get items.
     .switchMap(() => this.dataService.getData())
     .do((x) => { console.log('Effect:loadCollection$:B', x); })
-    .map((items: ITodoCompleted[]) => new TodoCompletedAction.LoadSuccessAction(items));
+    .map((items: TodoCompleted[]) => new TodoCompletedAction.LoadSuccessAction(items));
 
   // tslint:disable-next-line:member-ordering
   @Effect({ dispatch: false }) moveToCurrent$ = this.actions$

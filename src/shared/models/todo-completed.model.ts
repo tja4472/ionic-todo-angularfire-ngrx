@@ -1,4 +1,4 @@
-export interface ITodoCompleted {
+export class TodoCompleted {
     $key: string;
     description?: string;
     name: string;

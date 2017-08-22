@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 
 import { Todo } from '../shared/models/todo.model';
 
-import { ITodoCompleted } from '../models/todo-completed';
+import { TodoCompleted } from '../shared/models/todo-completed.model';
 import { TodoDataService } from '../services/todo.data.service';
 import { TodoCompletedDataService } from '../services/todo-completed.data.service';
 
@@ -23,7 +23,7 @@ export class Fb1DataService {
             if (x.$key === undefined) {
                 return;
             }
-            const todoCompleted: ITodoCompleted = {
+            const todoCompleted: TodoCompleted = {
                 $key: '',
                 description: x.description,
                 isComplete: x.isComplete,
@@ -36,7 +36,7 @@ export class Fb1DataService {
         });
     }
 
-    moveToCuurent(item: ITodoCompleted) {
+    moveToCuurent(item: TodoCompleted) {
         console.log('moveToCuurent>', item);
 
         const todo: Todo = new Todo();

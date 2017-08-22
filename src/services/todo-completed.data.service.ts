@@ -3,7 +3,7 @@ import { Observable } from 'rxjs/Observable';
 
 import { AngularFireDatabase } from 'angularfire2/database';
 
-import { ITodoCompleted } from '../models/todo-completed';
+import { TodoCompleted } from '../shared/models/todo-completed.model';
 
 const FIREBASE_COMPLETED_TODOS = '/todo/completedTodos';
 
@@ -17,7 +17,7 @@ export class TodoCompletedDataService {
         this.fbCompletedTodos = af.list(FIREBASE_COMPLETED_TODOS);
     }
 
-    getData(): Observable<ITodoCompleted[]> {
+    getData(): Observable<TodoCompleted[]> {
         return this.af.list(FIREBASE_COMPLETED_TODOS)
             .map((x) => x.map((d: any) => fromFirebaseRecord(d)));
     }
@@ -26,7 +26,7 @@ export class TodoCompletedDataService {
         this.fbCompletedTodos.remove(itemKey);
     }
 
-    save(item: ITodoCompleted) {
+    save(item: TodoCompleted) {
         console.log('save>', item);
 
         if (item.$key === '') {
@@ -45,7 +45,7 @@ interface IFirebaseRecord {
     isComplete: boolean;
 }
 
-function toFirebaseRecord(item: ITodoCompleted): IFirebaseRecord {
+function toFirebaseRecord(item: TodoCompleted): IFirebaseRecord {
     //
     const result: IFirebaseRecord = {
         description: item.description,
@@ -57,9 +57,9 @@ function toFirebaseRecord(item: ITodoCompleted): IFirebaseRecord {
     return result;
 }
 
-function fromFirebaseRecord(x: any): ITodoCompleted {
+function fromFirebaseRecord(x: any): TodoCompleted {
     console.log('TodoCompletedDataService:fromFirebaseRecord>', x);
-    const result: ITodoCompleted = {
+    const result: TodoCompleted = {
         $key: x.$key,
         description: x.description,
         isComplete: x.isComplete,

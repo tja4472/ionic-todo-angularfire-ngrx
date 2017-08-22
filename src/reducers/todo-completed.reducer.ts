@@ -1,10 +1,10 @@
 import * as todoCompletedAction from '../actions/todo-completed.action';
-import { ITodoCompleted } from '../models/todo-completed';
+import { TodoCompleted } from '../shared/models/todo-completed.model';
 
 export interface IState {
     loaded: boolean;
     loading: boolean;
-    todoCompletedList: ITodoCompleted[];
+    todoCompletedList: TodoCompleted[];
 }
 
 const initialState: IState = {
@@ -25,7 +25,7 @@ export function reducer(
         }
 
         case todoCompletedAction.LOAD_SUCCESS: {
-            const items: ITodoCompleted[] = action.payload;
+            const items: TodoCompleted[] = action.payload;
 
             return {
                 loaded: true,
