@@ -6,10 +6,11 @@ import { Page1 } from '../pages/page1/page1';
 import { Page2 } from '../pages/page2/page2';
 import { CurrentTodosPage } from '../pages/current-todos/current-todos.page';
 import { LoginPage } from '../pages/login/login.page';
-import { CurrentTodoDetailModal } from '../pages/current-todo-detail-modal/current-todo-detail.modal';
-import { TodoCompletedDetailModal } from '../modals/todo-completed-detail/todo-completed-detail.modal';
 import { SignupPage } from '../pages/signup/signup.page';
 import { TodoCompletedListPage } from '../pages/todo-completed-list/todo-completed-list.page';
+
+import { TodoDetailModal } from '../modals/todo-detail/todo-detail.modal';
+import { TodoCompletedDetailModal } from '../modals/todo-completed-detail/todo-completed-detail.modal';
 
 import { StatusBar } from '@ionic-native/status-bar';
 
@@ -69,7 +70,7 @@ import './rxjs-operators';
     CurrentTodosPage,
     LoginPage,
     TodoCompletedDetailModal,
-    CurrentTodoDetailModal,
+    TodoDetailModal,
     SignupPage,
     TodoCompletedListPage,
   ],
@@ -97,7 +98,7 @@ import './rxjs-operators';
     CurrentTodosPage,
     LoginPage,
     TodoCompletedDetailModal,
-    CurrentTodoDetailModal,
+    TodoDetailModal,
     SignupPage,
     TodoCompletedListPage,
     MyPopoverPage,

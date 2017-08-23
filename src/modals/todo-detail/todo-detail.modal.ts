@@ -4,10 +4,10 @@ import { NavParams, ViewController } from 'ionic-angular';
 import { Todo } from '../../shared/models/todo.model';
 
 @Component({
-  selector: 'tja-modal-current-todo-detail',
-  templateUrl: 'current-todo-detail.modal.html',
+  selector: 'tja-modal-todo-detail',
+  templateUrl: 'todo-detail.modal.html',
 })
-export class CurrentTodoDetailModal {
+export class TodoDetailModal {
   // Called from template.
   public todo: Todo;
 

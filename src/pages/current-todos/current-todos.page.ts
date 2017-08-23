@@ -5,7 +5,7 @@ import { TodoService } from '../../services/todo.service';
 
 import { MyPopoverPage, IMyPopoverPageResult } from '../../components/popover/popover.component';
 import { Todo } from '../../shared/models/todo.model';
-import { CurrentTodoDetailModal } from '../current-todo-detail-modal/current-todo-detail.modal';
+import { TodoDetailModal } from '../../modals/todo-detail/todo-detail.modal';
 import { IReorderArrayIndexes } from '../../shared/models/reorder-array-indexes.model';
 
 @Component({
@@ -134,7 +134,7 @@ export class CurrentTodosPage {
 
   private showModal(item?: Todo) {
     //
-    const modal = this.modalCtrl.create(CurrentTodoDetailModal, { todo: item });
+    const modal = this.modalCtrl.create(TodoDetailModal, { todo: item });
 
     modal.onDidDismiss((data: Todo) => {
       console.log('onDidDismiss>', data);
