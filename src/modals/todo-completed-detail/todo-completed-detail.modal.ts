@@ -12,10 +12,10 @@ export interface IModalResult {
 
 @Component({
   changeDetection: ChangeDetectionStrategy.OnPush,
-  selector: 'page-todo-completed',
-  templateUrl: 'todo-completed.page.html'
+  selector: 'tja-modal-todo-completed',
+  templateUrl: 'todo-completed-detail.modal.html'
 })
-export class TodoCompletedPage {
+export class TodoCompletedDetailModal {
   public todoForm: any;
 
   private todo: TodoCompleted = new TodoCompleted();

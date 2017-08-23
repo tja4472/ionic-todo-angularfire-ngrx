@@ -5,7 +5,7 @@ import { Observable } from 'rxjs/Observable';
 import { TodoCompletedService } from '../../services/todo-completed.service';
 
 import { TodoCompleted } from '../../shared/models/todo-completed.model';
-import { IModalResult, TodoCompletedPage } from '../todo-completed/todo-completed.page';
+import { IModalResult, TodoCompletedDetailModal } from '../../modals/todo-completed-detail/todo-completed-detail.modal';
 
 @Component({
   selector: 'tja-page-todo-completed-list',
@@ -35,7 +35,7 @@ export class TodoCompletedListPage {
 
   editItem(item: TodoCompleted) {
     console.log('editItem:item>', item);
-    const modal = this.modalCtrl.create(TodoCompletedPage, { todo: item });
+    const modal = this.modalCtrl.create(TodoCompletedDetailModal, { todo: item });
 
     //    modal.onDidDismiss(data => {
     modal.onDidDismiss((modalResult: IModalResult) => {

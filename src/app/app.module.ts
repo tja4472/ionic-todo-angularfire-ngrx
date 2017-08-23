@@ -7,7 +7,7 @@ import { Page2 } from '../pages/page2/page2';
 import { CurrentTodosPage } from '../pages/current-todos/current-todos.page';
 import { LoginPage } from '../pages/login/login.page';
 import { CurrentTodoDetailModal } from '../pages/current-todo-detail-modal/current-todo-detail.modal';
-import { TodoCompletedPage } from '../pages/todo-completed/todo-completed.page';
+import { TodoCompletedDetailModal } from '../modals/todo-completed-detail/todo-completed-detail.modal';
 import { SignupPage } from '../pages/signup/signup.page';
 import { TodoCompletedListPage } from '../pages/todo-completed-list/todo-completed-list.page';
 
@@ -68,7 +68,7 @@ import './rxjs-operators';
     Page2,
     CurrentTodosPage,
     LoginPage,
-    TodoCompletedPage,
+    TodoCompletedDetailModal,
     CurrentTodoDetailModal,
     SignupPage,
     TodoCompletedListPage,
@@ -96,7 +96,7 @@ import './rxjs-operators';
     Page2,
     CurrentTodosPage,
     LoginPage,
-    TodoCompletedPage,
+    TodoCompletedDetailModal,
     CurrentTodoDetailModal,
     SignupPage,
     TodoCompletedListPage,
