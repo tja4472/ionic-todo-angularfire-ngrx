@@ -63,6 +63,16 @@ export class TodoCompletedListPage {
 
     modal.present();
   }
+
+  toggleCompleteItem(
+    item: TodoCompleted,
+  ) {
+    console.log('toggleCompleteItem:item>', item);
+
+    if (item.isComplete) {
+      this.todoCompletedService.moveToCurrent(item);
+    }
+  }
   /*
     removeItem(item: RemoveItemOutput) {
       console.log('removeItem:item>', item);

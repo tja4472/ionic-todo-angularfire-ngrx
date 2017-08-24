@@ -36,7 +36,7 @@ export class TodoCompletedEffects {
     .map((action: TodoCompletedAction.MoveToCurrentAction) => action.payload)
     .do((payload) => {
       console.log('Effect:moveToCurrent$:A', payload);
-      this.fb1DataService.moveToCuurent(payload);
+      this.fb1DataService.moveToCurrent(payload);
     });
   /*
     @Effect() moveToCurrent$ = this.updates$

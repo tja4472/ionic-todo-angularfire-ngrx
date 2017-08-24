@@ -17,15 +17,12 @@ import { StatusBar } from '@ionic-native/status-bar';
 
 import { Error } from '../components/error/error.component';
 import { MyPopoverPage } from '../components/popover/popover.component';
-import { TodoCompletedListComponent } from '../components/todo-completed-list/todo-completed-list.component';
-// import { TodoListComponent } from '../components/todo-list/todo-list.component';
 
 // shared
 import { CurrentTodoDetailsComponent } from '../shared/components/current-todo-details/current-todo-details.component';
-
 import { ControlMessagesComponent } from '../shared/components/control-messages/control-messages.component';
 import { CurrentTodoListComponent } from '../shared/components/current-todo-list/current-todo-list.component';
-
+import { TodoCompletedListComponent } from '../shared/components/todo-completed-list/todo-completed-list.component';
 import { ValidationService } from '../shared/services/validation.service';
 
 import { Fb1DataService } from '../services/fb1.data.service';

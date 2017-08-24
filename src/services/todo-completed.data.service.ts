@@ -29,7 +29,7 @@ export class TodoCompletedDataService {
     save(item: TodoCompleted) {
         console.log('save>', item);
 
-        if (item.$key === '') {
+        if (item.isNew()) {
             // insert.
             this.fbCompletedTodos.push(toFirebaseRecord(item));
         } else {

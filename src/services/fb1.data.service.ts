@@ -35,12 +35,12 @@ export class Fb1DataService {
         });
     }
 
-    moveToCuurent(item: TodoCompleted) {
-        console.log('moveToCuurent>', item);
+    moveToCurrent(item: TodoCompleted) {
+        console.log('moveToCurrent>', item);
 
         const todo: Todo = new Todo();
         todo.description = item.description;
-        todo.isComplete = item.isComplete;
+        // todo.isComplete = item.isComplete;
         todo.name = item.name;
 
         /*
