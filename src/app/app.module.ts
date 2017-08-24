@@ -4,7 +4,7 @@ import { IonicApp, IonicModule } from 'ionic-angular';
 import { MyApp } from './app.component';
 import { Page1 } from '../pages/page1/page1';
 import { Page2 } from '../pages/page2/page2';
-import { CurrentTodosPage } from '../pages/current-todos/current-todos.page';
+import { TodoListPage } from '../pages/todo-list/todo-list.page';
 import { LoginPage } from '../pages/login/login.page';
 import { SignupPage } from '../pages/signup/signup.page';
 import { TodoCompletedListPage } from '../pages/todo-completed-list/todo-completed-list.page';
@@ -64,7 +64,7 @@ import './rxjs-operators';
     MyApp,
     Page1,
     Page2,
-    CurrentTodosPage,
+    TodoListPage,
     LoginPage,
     TodoCompletedDetailModal,
     TodoDetailModal,
@@ -92,7 +92,7 @@ import './rxjs-operators';
     MyApp,
     Page1,
     Page2,
-    CurrentTodosPage,
+    TodoListPage,
     LoginPage,
     TodoCompletedDetailModal,
     TodoDetailModal,
