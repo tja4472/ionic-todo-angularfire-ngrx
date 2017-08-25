@@ -3,7 +3,7 @@ import { ActionSheetController, NavController, ModalController, PopoverControlle
 import { Observable } from 'rxjs/Observable';
 import { TodoService } from '../../services/todo.service';
 
-import { MyPopoverPage, IMyPopoverPageResult } from '../../components/popover/popover.component';
+import { TodoListPopover, ITodoListPopoverResult } from '../../components/todo-list-popover/todo-list.popover';
 import { Todo } from '../../shared/models/todo.model';
 import { TodoDetailModal } from '../../modals/todo-detail/todo-detail.modal';
 import { IReorderArrayIndexes } from '../../shared/models/reorder-array-indexes.model';
@@ -88,9 +88,9 @@ export class TodoListPage {
   }
 
   presentPopover(ev: any) {
-    const popover = this.popoverCtrl.create(MyPopoverPage);
+    const popover = this.popoverCtrl.create(TodoListPopover);
 
-    popover.onDidDismiss((result: IMyPopoverPageResult) => {
+    popover.onDidDismiss((result: ITodoListPopoverResult) => {
       console.log('popover.onDidDismiss>', result);
 
       if (!!!result) {

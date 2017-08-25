@@ -16,7 +16,7 @@ import { StatusBar } from '@ionic-native/status-bar';
 
 
 import { Error } from '../components/error/error.component';
-import { MyPopoverPage } from '../components/popover/popover.component';
+import { TodoListPopover } from '../components/todo-list-popover/todo-list.popover';
 
 // shared
 import { CurrentTodoDetailsComponent } from '../shared/components/current-todo-details/current-todo-details.component';
@@ -56,7 +56,7 @@ import './rxjs-operators';
   declarations: [
     ControlMessagesComponent,
     Error,
-    MyPopoverPage,
+    TodoListPopover,
     CurrentTodoDetailsComponent,
     CurrentTodoListComponent,
     TodoCompletedListComponent,
@@ -98,7 +98,7 @@ import './rxjs-operators';
     TodoDetailModal,
     SignupPage,
     TodoCompletedListPage,
-    MyPopoverPage,
+    TodoListPopover,
   ],
   providers: [
     Fb1DataService,
