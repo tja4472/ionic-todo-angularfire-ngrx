@@ -4,10 +4,10 @@ import { Validators, FormBuilder } from '@angular/forms';
 import { Todo } from '../../models/todo.model';
 
 @Component({
-    selector: 'tja-current-todo-details',
-    templateUrl: 'current-todo-details.component.html',
+    selector: 'tja-todo-detail',
+    templateUrl: 'todo-detail.component.html',
 })
-export class CurrentTodoDetailsComponent {
+export class TodoDetailComponent {
     @Input() public todo: Todo;
     @Output() public itemCancelled = new EventEmitter<Todo>();
     @Output() public itemSaved = new EventEmitter<Todo>();
@@ -16,7 +16,7 @@ export class CurrentTodoDetailsComponent {
 
     // private isEditing: boolean = true;
 
-    private readonly CLASS_NAME = 'CurrentTodoDetailsComponent';
+    private readonly CLASS_NAME = 'TodoDetailComponent';
 
     constructor(
         public formBuilder: FormBuilder,

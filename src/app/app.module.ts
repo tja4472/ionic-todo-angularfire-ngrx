@@ -19,7 +19,7 @@ import { Error } from '../components/error/error.component';
 import { TodoListPopover } from '../components/todo-list-popover/todo-list.popover';
 
 // shared
-import { CurrentTodoDetailsComponent } from '../shared/components/current-todo-details/current-todo-details.component';
+import { TodoDetailComponent } from '../shared/components/todo-detail/todo-detail.component';
 import { ControlMessagesComponent } from '../shared/components/control-messages/control-messages.component';
 import { TodoListComponent } from '../shared/components/todo-list/todo-list.component';
 import { TodoCompletedListComponent } from '../shared/components/todo-completed-list/todo-completed-list.component';
@@ -57,7 +57,7 @@ import './rxjs-operators';
     ControlMessagesComponent,
     Error,
     TodoListPopover,
-    CurrentTodoDetailsComponent,
+    TodoDetailComponent,
     TodoListComponent,
     TodoCompletedListComponent,
     // TodoListComponent,

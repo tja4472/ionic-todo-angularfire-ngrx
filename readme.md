@@ -8,7 +8,7 @@ TodoListPage
     TodoListPopover
     TodoDetailModal
         shared/ControlMessagesComponent
-        shared/CurrentTodoDetailsComponent
+        shared/TodoDetailComponent
 
 TodoCompletedListPage
     shared/TodoCompletedListComponent
