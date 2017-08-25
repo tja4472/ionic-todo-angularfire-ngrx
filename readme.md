@@ -4,7 +4,7 @@
 - https://github.com/ngrx/platform
 ```
 TodoListPage
-    shared/CurrentTodoListComponent
+    shared/TodoListComponent
     TodoListPopover
     TodoDetailModal
         shared/ControlMessagesComponent

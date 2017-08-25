@@ -17,12 +17,12 @@
 </ion-header>
 
 <ion-content>
-  <tja-current-todo-list [todos]="todos$ | async"
+  <tja-todo-list [todos]="todos$ | async"
                          (addItem)="addItem()"
                          (toggleCompleteItem)="toggleCompleteItem($event)"
                          (editItem)="editItem($event)"
                          (reorderItems)="reorderItems($event)"
-                         (removeItem)="removeItem($event)"></tja-current-todo-list>
+                         (removeItem)="removeItem($event)"></tja-todo-list>
   <!--  
   <todo-list 
       [todos]="todos$ | async" 
