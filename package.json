@@ -1,5 +1,6 @@
 {
   "name": "ionic-todo-angularfire-ngrx",
+  "version": "1.0.0",
   "author": "tja",
   "homepage": "http://ionicframework.com/",
   "private": true,
