@@ -27,7 +27,7 @@ export class TodoCompletedService {
 
     initialise(): void {
         this.store.dispatch(
-            new TodoCompletedActions.LoadAction());
+            new TodoCompletedActions.Load());
     }
 
     isLoaded(): Observable<boolean> {
@@ -40,7 +40,7 @@ export class TodoCompletedService {
 
     moveToCurrent(item: TodoCompleted) {
         this.store.dispatch(
-            new TodoCompletedActions.MoveToCurrentAction(item));
+            new TodoCompletedActions.MoveToCurrent(item));
     }
 
     remove(todo: TodoCompleted) {
@@ -49,11 +49,11 @@ export class TodoCompletedService {
         }
 
         this.store.dispatch(
-            new TodoCompletedActions.RemoveAction(todo.$key));
+            new TodoCompletedActions.Remove(todo.$key));
     }
 
     save(item: TodoCompleted) {
         this.store.dispatch(
-            new TodoCompletedActions.SaveAction(item));
+            new TodoCompletedActions.Save(item));
     }
 }

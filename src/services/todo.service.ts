@@ -18,7 +18,7 @@ export class TodoService {
 
     clearCompletedItems() {
         this.store.dispatch(
-            new TodoActions.ClearCompletedAction()
+            new TodoActions.ClearCompleted()
         );
     }
 
@@ -28,7 +28,7 @@ export class TodoService {
 
     initialise(): void {
         this.store.dispatch(
-            new TodoActions.LoadAction());
+            new TodoActions.Load());
     }
 
     isLoaded(): Observable<boolean> {
@@ -41,7 +41,7 @@ export class TodoService {
 
     reorderItems(indexes: IReorderArrayIndexes) {
         this.store.dispatch(
-            new TodoActions.ReorderListAction(indexes));
+            new TodoActions.ReorderList(indexes));
     }
 
     remove(todo: Todo) {
@@ -49,11 +49,11 @@ export class TodoService {
             return;
         }
         this.store.dispatch(
-            new TodoActions.RemoveAction(todo.$key));
+            new TodoActions.Remove(todo.$key));
     }
 
     save(todo: Todo) {
         this.store.dispatch(
-            new TodoActions.SaveAction(todo));
+            new TodoActions.Save(todo));
     }
 }

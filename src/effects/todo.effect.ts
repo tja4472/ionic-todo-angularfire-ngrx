@@ -48,7 +48,7 @@ export class TodoEffects {
     // Watch database node and get items.
     .switchMap(() => this.todoDataService.getData())
     .do((x) => { console.log('Effect:loadCollection$:B', x); })
-    .map((items: Todo[]) => new TodoAction.LoadSuccessAction(items));
+    .map((items: Todo[]) => new TodoAction.LoadSuccess(items));
 
 
 /*
@@ -68,7 +68,7 @@ export class TodoEffects {
   @Effect({ dispatch: false }) reorderList$ = this.actions$
     .ofType(TodoAction.REORDER_LIST)
     .withLatestFrom(this.state$)
-    .map(([action, state]) => ({ action: action as TodoAction.ReorderListAction, state }))
+    .map(([action, state]) => ({ action: action as TodoAction.ReorderList, state }))
     .do((x) => {
       console.log('Effect:reorderList$:A', x);
       this.todoDataService.reorderItemsAndUpdate(
@@ -92,7 +92,7 @@ export class TodoEffects {
   // tslint:disable-next-line:member-ordering
   @Effect({ dispatch: false }) removeItem$ = this.actions$
     .ofType(TodoAction.REMOVE)
-    .map((action: TodoAction.RemoveAction) => action.payload)
+    .map((action: TodoAction.Remove) => action.payload)
     .do((payload) => {
       console.log('Effect:removeItem$:A', payload);
       this.todoDataService.removeItem(payload);
@@ -113,7 +113,7 @@ export class TodoEffects {
   // tslint:disable-next-line:member-ordering
   @Effect({ dispatch: false }) save$ = this.actions$
     .ofType(TodoAction.SAVE)
-    .map((action: TodoAction.SaveAction) => action.payload)
+    .map((action: TodoAction.Save) => action.payload)
     .do((payload) => {
       console.log('Effect:save$:A', payload);
       this.todoDataService.save(payload);

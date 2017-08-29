@@ -21,7 +21,7 @@ export class LoginService {
             console.log('%s:authState: No user is signed in.', this.CLASS_NAME);
 
             this.store.dispatch(
-                new LoginActions.LogoutAction());
+                new LoginActions.Logout());
             return;
         }
         /*
@@ -35,7 +35,7 @@ export class LoginService {
         console.log(`%s:User is signed in>`, this.CLASS_NAME, firebaseUser.uid);
 
         this.store.dispatch(
-            new LoginActions.RestoreAuthenticationAction({
+            new LoginActions.RestoreAuthentication({
                 displayName: firebaseUser.displayName,
                 email: firebaseUser.email,
                 isAnonymous: firebaseUser.isAnonymous,
@@ -108,7 +108,7 @@ export class LoginService {
 
     anonymousAuthentication() {
         this.store.dispatch(
-            new LoginActions.AnonymousAuthenticationAction());
+            new LoginActions.AnonymousAuthentication());
     }
 
     createUser(
@@ -116,7 +116,7 @@ export class LoginService {
         password: string
     ) {
         this.store.dispatch(
-            new LoginActions.CreateUserAction({
+            new LoginActions.CreateUser({
                 password,
                 userName,
             }));
@@ -134,21 +134,21 @@ export class LoginService {
                     }));
         */
         this.store.dispatch(
-            new LoginActions.BeginAuthenticationAction());
+            new LoginActions.BeginAuthentication());
         this.af.auth.signInWithEmailAndPassword(userName, password).catch((error: firebase.FirebaseError) => {
             // Handle Errors here.
             // var errorCode = error.code;
             // var errorMessage = error.message;
 
             this.store.dispatch(
-                new LoginActions.EmailAuthenticationFailureAction(error));
+                new LoginActions.EmailAuthenticationFailure(error));
             // ...
         });
     }
 
     googleAuthentication() {
         this.store.dispatch(
-            new LoginActions.GoogleAuthenticationAction());
+            new LoginActions.GoogleAuthentication());
     }
 
     logout() {

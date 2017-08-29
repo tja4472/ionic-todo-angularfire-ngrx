@@ -15,31 +15,31 @@ export const GOOGLE_AUTHENTICATION_FAILURE = '[Login] Google Authentication Fail
 export const LOGOUT = '[Login] Logout';
 export const RESTORE_AUTHENTICATION = '[Login] Restore Authentication';
 
-export class AnonymousAuthenticationAction implements Action {
+export class AnonymousAuthentication implements Action {
     readonly type = ANONYMOUS_AUTHENTICATION;
 
     constructor() { }
 }
 
-export class AnonymousAuthenticationFailureAction implements Action {
+export class AnonymousAuthenticationFailure implements Action {
     readonly type = ANONYMOUS_AUTHENTICATION_FAILURE;
 
     constructor(public payload: any) { } // error
 }
 
-export class BeginAuthenticationAction implements Action {
+export class BeginAuthentication implements Action {
     readonly type = BEGIN_AUTHENTICATION;
 
     constructor() { }
 }
 
-export class BeginAuthenticationFailureAction implements Action {
+export class BeginAuthenticationFailure implements Action {
     readonly type = BEGIN_AUTHENTICATION_FAILURE;
 
     constructor() { }
 }
 
-export class CreateUserAction implements Action {
+export class CreateUser implements Action {
     readonly type = CREATE_USER;
 
     constructor(public payload: {
@@ -48,13 +48,13 @@ export class CreateUserAction implements Action {
     }) { }
 }
 
-export class CreateUserFailureAction implements Action {
+export class CreateUserFailure implements Action {
     readonly type = CREATE_USER_FAILURE;
 
     constructor(public payload: any) { } // error
 }
 
-export class EmailAuthenticationAction implements Action {
+export class EmailAuthentication implements Action {
     readonly type = EMAIL_AUTHENTICATION;
 
     constructor(public payload: {
@@ -63,31 +63,31 @@ export class EmailAuthenticationAction implements Action {
     }) { }
 }
 
-export class EmailAuthenticationFailureAction implements Action {
+export class EmailAuthenticationFailure implements Action {
     readonly type = EMAIL_AUTHENTICATION_FAILURE;
 
     constructor(public payload: any) { } // error
 }
 
-export class GoogleAuthenticationAction implements Action {
+export class GoogleAuthentication implements Action {
     readonly type = GOOGLE_AUTHENTICATION;
 
     constructor() { }
 }
 
-export class GoogleAuthenticationFailureAction implements Action {
+export class GoogleAuthenticationFailure implements Action {
     readonly type = GOOGLE_AUTHENTICATION_FAILURE;
 
     constructor(public payload: any) { } // error
 }
 
-export class LogoutAction implements Action {
+export class Logout implements Action {
     readonly type = LOGOUT;
 
     constructor() { }
 }
 
-export class RestoreAuthenticationAction implements Action {
+export class RestoreAuthentication implements Action {
     readonly type = RESTORE_AUTHENTICATION;
 
     constructor(public payload: {
@@ -98,15 +98,15 @@ export class RestoreAuthenticationAction implements Action {
 }
 
 export type Actions =
-    AnonymousAuthenticationAction |
-    AnonymousAuthenticationFailureAction |
-    BeginAuthenticationAction |
-    BeginAuthenticationFailureAction |
-    CreateUserAction |
-    CreateUserFailureAction |
-    EmailAuthenticationAction |
-    EmailAuthenticationFailureAction |
-    GoogleAuthenticationAction |
-    GoogleAuthenticationFailureAction |
-    LogoutAction |
-    RestoreAuthenticationAction;
+    AnonymousAuthentication |
+    AnonymousAuthenticationFailure |
+    BeginAuthentication |
+    BeginAuthenticationFailure |
+    CreateUser |
+    CreateUserFailure |
+    EmailAuthentication |
+    EmailAuthenticationFailure |
+    GoogleAuthentication |
+    GoogleAuthenticationFailure |
+    Logout |
+    RestoreAuthentication;

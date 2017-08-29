@@ -12,46 +12,46 @@ export const REORDER_LIST = '[ToDoActions] Reorder List';
 export const REMOVE = '[ToDoActions] Remove';
 export const SAVE = '[ToDoActions] Save';
 
-export class ClearCompletedAction implements Action {
+export class ClearCompleted implements Action {
     readonly type = CLEAR_COMPLETED;
 
     constructor() { }
 }
 
-export class LoadAction implements Action {
+export class Load implements Action {
     readonly type = LOAD;
 
     constructor() { }
 }
 
-export class LoadSuccessAction implements Action {
+export class LoadSuccess implements Action {
     readonly type = LOAD_SUCCESS;
 
     constructor(public payload: Todo[]) { }
 }
 
-export class RemoveAction implements Action {
+export class Remove implements Action {
     readonly type = REMOVE;
 
     constructor(public payload: string) { } // itemKey
 }
 
-export class ReorderListAction implements Action {
+export class ReorderList implements Action {
     readonly type = REORDER_LIST;
 
     constructor(public payload: IReorderArrayIndexes) { }
 }
 
-export class SaveAction implements Action {
+export class Save implements Action {
     readonly type = SAVE;
 
     constructor(public payload: Todo) { }
 }
 
 export type Actions =
-    ClearCompletedAction |
-    LoadAction |
-    LoadSuccessAction |
-    RemoveAction |
-    ReorderListAction |
-    SaveAction;
+    ClearCompleted |
+    Load |
+    LoadSuccess |
+    Remove |
+    ReorderList |
+    Save;

@@ -11,39 +11,39 @@ export const MOVE_TO_CURRENT = '[TodoCompletedActions] Move To Current';
 export const REMOVE = '[TodoCompletedActions] Remove';
 export const SAVE = '[TodoCompletedActions] Save';
 
-export class LoadAction implements Action {
+export class Load implements Action {
     readonly type = LOAD;
 
     constructor() { }
 }
 
-export class LoadSuccessAction implements Action {
+export class LoadSuccess implements Action {
     readonly type = LOAD_SUCCESS;
 
     constructor(public payload: TodoCompleted[]) { }
 }
 
-export class MoveToCurrentAction implements Action {
+export class MoveToCurrent implements Action {
     readonly type = MOVE_TO_CURRENT;
 
     constructor(public payload: TodoCompleted) { }
 }
 
-export class RemoveAction implements Action {
+export class Remove implements Action {
     readonly type = REMOVE;
 
     constructor(public payload: string) { } // itemKey
 }
 
-export class SaveAction implements Action {
+export class Save implements Action {
     readonly type = SAVE;
 
     constructor(public payload: TodoCompleted) { }
 }
 
 export type Actions =
-    LoadAction |
-    LoadSuccessAction |
-    MoveToCurrentAction |
-    RemoveAction |
-    SaveAction;
+    Load |
+    LoadSuccess |
+    MoveToCurrent |
+    Remove |
+    Save;
