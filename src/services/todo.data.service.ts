@@ -48,7 +48,7 @@ export class TodoDataService {
         console.log('save>', todo);
         console.log('save:todo.isNew()>', todo.isNew());
 
-        if (todo.$key === undefined) {
+        if (todo.isNew()) {
             // insert.
             this.fbCurrentTodos.push(toFirebaseTodo(todo));
         } else {
@@ -84,8 +84,7 @@ function fromFirebaseTodo(x: any): Todo {
     //
     console.log('TodoDataService:fromFirebaseTodo>', x);
 
-    // const result: Todo = new Todo();
-    const result = Object.assign(new Todo(),
+    const result: Todo = new Todo(
         {
             $key: x.$key,
             description: x.description,
@@ -93,6 +92,7 @@ function fromFirebaseTodo(x: any): Todo {
             isComplete: x.isComplete,
             name: x.name,
         });
+
     console.log('TodoDataService:fromFirebaseTodo:result>', result);
     /*
         const result: ITodo = {

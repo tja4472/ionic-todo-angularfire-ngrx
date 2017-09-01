@@ -1,14 +1,3 @@
-/*
-export interface Todo {
-    $key?: string;
-    index: number;
-    name: string;
-    description?: string;
-    isComplete: boolean;
-    userId: string;
-    isNew(): boolean;
-}
-*/
 export class Todo {
     $key?: string = undefined;
     description?: string = undefined;
@@ -16,6 +5,20 @@ export class Todo {
     isComplete: boolean = false;
     name: string = '';
     userId: string = '';
+
+    public constructor(
+        fields?: {
+            $key?: string,
+            description?: string,
+            index?: number,
+            isComplete?: boolean,
+            name?: string,
+            userId?: string,
+        }) {
+        if (fields) {
+            Object.assign(this, fields);
+        }
+    }
 
     public isNew(): boolean {
         return (this.$key === undefined);
