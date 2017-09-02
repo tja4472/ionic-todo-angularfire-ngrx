@@ -13,11 +13,18 @@ export class ControlMessagesComponent {
   @Input() control: FormControl;
 
   get errorMessage() {
-    if ((this === null)
-      || (this.control === null)
+    if (this === null) {
+      return null;
+    }
+
+    if(this.control === undefined) {
+      return null;
+    }
+
+    if ((this.control === null)
       || (this.control.errors === null)
     ) {
-      return;
+      return null;
     }
 
     for (const propertyName in this.control.errors) {
