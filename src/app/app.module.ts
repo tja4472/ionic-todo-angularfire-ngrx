@@ -44,7 +44,7 @@ import { EffectsModule } from '@ngrx/effects';
 import { StoreModule } from '@ngrx/store';
 import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 
-import { reducers } from '../reducers/index';
+import { reducers, metaReducers } from '../reducers/index';
 
 import { LoginEffects } from '../effects/login.effect';
 import { TodoCompletedEffects } from '../effects/todo-completed.effect';
@@ -80,7 +80,7 @@ import './rxjs-operators';
     // AngularFireOfflineModule,
     AngularFireAuthModule,
     AngularFireDatabaseModule,
-    StoreModule.forRoot(reducers),
+    StoreModule.forRoot(reducers, { metaReducers }),
     StoreDevtoolsModule.instrument(),
     EffectsModule.forRoot([
       LoginEffects,

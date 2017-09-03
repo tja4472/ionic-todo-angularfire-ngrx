@@ -1,7 +1,9 @@
 import {
     ActionReducerMap,
     createSelector,
+    MetaReducer,
 } from '@ngrx/store';
+import { storeFreeze } from 'ngrx-store-freeze';
 
 // import { storeLogger } from 'ngrx-store-logger';
 // import { storeFreeze } from 'ngrx-store-freeze';
@@ -24,6 +26,8 @@ export const reducers: ActionReducerMap<IState> = {
     todo: fromTodoReducer.reducer,
     todoCompleted: fromTodoCompletedReducer.reducer,
 };
+
+export const metaReducers: Array<MetaReducer<any>> = [storeFreeze];
 
 /*
 const developmentReducer: ActionReducer<State> = compose(
