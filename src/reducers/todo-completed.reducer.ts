@@ -19,7 +19,7 @@ export function reducer(
 ): IState {
     switch (action.type) {
         case todoCompletedAction.LOAD: {
-            return Object.assign(state, {
+            return Object.assign({}, state, {
                 loading: true
             });
         }

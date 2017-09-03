@@ -20,13 +20,13 @@ export function reducer(
 ): IState {
     switch (action.type) {
         case loginAction.GOOGLE_AUTHENTICATION: {
-            return Object.assign(state, {
+            return Object.assign({}, state, {
                 isAuthenticating: true
             });
         }
 
         case loginAction.RESTORE_AUTHENTICATION: {
-            return Object.assign(state, {
+            return Object.assign({}, state, {
                 displayName: makeDisplayName(action.payload),
                 isAuthenticated: true,
                 isAuthenticating: false
@@ -34,7 +34,7 @@ export function reducer(
         }
 
         case loginAction.LOGOUT: {
-            return Object.assign(state, {
+            return Object.assign({}, state, {
                 displayName: '',
                 isAuthenticated: false,
                 isAuthenticating: false
@@ -45,7 +45,7 @@ export function reducer(
         case loginAction.BEGIN_AUTHENTICATION:
         case loginAction.CREATE_USER:
         case loginAction.EMAIL_AUTHENTICATION: {
-            return Object.assign(state, {
+            return Object.assign({}, state, {
                 error: null,
                 isAuthenticating: true
             });
@@ -54,7 +54,7 @@ export function reducer(
         case loginAction.ANONYMOUS_AUTHENTICATION_FAILURE:
         case loginAction.CREATE_USER_FAILURE:
         case loginAction.EMAIL_AUTHENTICATION_FAILURE: {
-            return Object.assign(state, {
+            return Object.assign({}, state, {
                 error: action.payload,
                 isAuthenticated: false,
                 isAuthenticating: false
@@ -84,6 +84,15 @@ function makeDisplayName(user: {
 // Selectors
 // =========
 export const getDisplayName = (state: IState) => state.displayName;
-export const getError = (state: IState) => state.error;
+// export const getError = (state: IState) => state.error;
+
+let lastState: IState;
+export const getError = (state: IState) => {
+    console.log('getError>', state);
+    console.log('counterB:Projector called, parameter changed: ', !(lastState === state));
+    lastState = state;
+    return state.error;
+};
+
 export const getIsAuthenticated = (state: IState) => state.isAuthenticated;
 export const getIsAuthenticating = (state: IState) => state.isAuthenticating;
