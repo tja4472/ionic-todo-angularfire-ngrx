@@ -27,7 +27,7 @@ export const reducers: ActionReducerMap<IState> = {
     todoCompleted: fromTodoCompletedReducer.reducer,
 };
 
-export const metaReducers: Array<MetaReducer<any>> = [storeFreeze];
+export const metaReducers: Array<MetaReducer<IState>> = [storeFreeze];
 
 /*
 const developmentReducer: ActionReducer<State> = compose(
