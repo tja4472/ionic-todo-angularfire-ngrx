@@ -2,7 +2,7 @@ import { ChangeDetectionStrategy, Component } from '@angular/core';
 import { NavController } from 'ionic-angular';
 import { Validators, FormBuilder } from '@angular/forms';
 
-import { SignupPage } from '../signup/signup.page';
+import { RegisterPage } from '../register/register.page';
 
 // import { Error } from '../../components/error/error.component';
 
@@ -93,7 +93,7 @@ this.aaaa.valueChanges.subscribe(value => {
   }
 
   onSignup() {
-    this.nav.push(SignupPage);
+    this.nav.push(RegisterPage);
   }
 
   signInAnonymously() {

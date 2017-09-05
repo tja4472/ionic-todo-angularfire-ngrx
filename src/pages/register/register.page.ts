@@ -5,14 +5,14 @@ import { LoginService } from '../../services/login.service';
 import { IUserFormResult } from '../../shared/components/create-user/create-user.component';
 
 @Component({
-  selector: 'tja-page-signup',
-  templateUrl: 'signup.page.html',
+  selector: 'tja-page-register',
+  templateUrl: 'register.page.html',
 })
-export class SignupPage {
+export class RegisterPage {
   // Used in view
   public error$: any;
 
-  private readonly CLASS_NAME = 'SignupPage';
+  private readonly CLASS_NAME = 'RegisterPage';
 
   constructor(
     private loginService: LoginService,

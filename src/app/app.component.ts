@@ -7,7 +7,7 @@ import { Page2 } from '../pages/page2/page2';
 
 import { TodoListPage } from '../pages/todo-list/todo-list.page';
 import { LoginPage } from '../pages/login/login.page';
-import { SignupPage } from '../pages/signup/signup.page';
+import { RegisterPage } from '../pages/register/register.page';
 import { TodoCompletedListPage } from '../pages/todo-completed-list/todo-completed-list.page';
 
 import { LoginService } from '../services/login.service';
@@ -42,7 +42,7 @@ export class MyApp {
       { title: 'Current todos', component: TodoListPage },
       { title: 'Completed todos', component: TodoCompletedListPage },
       { title: 'Login', component: LoginPage },
-      { title: 'Signup', component: SignupPage },
+      { title: 'Register', component: RegisterPage },
       { title: 'Logout', component: LoginPage, logsOut: true },
     ];
 
