@@ -1,42 +1,15 @@
 <ion-header>
   <ion-navbar>
-    <button ion-button menuToggle icon-only>
+    <button ion-button
+            menuToggle
+            icon-only>
       <ion-icon name="menu"></ion-icon>
     </button>
     <ion-title>Signup</ion-title>
   </ion-navbar>
 </ion-header>
 
-<ion-content class="login-page">
-  <ion-list>
-    <form [formGroup]="loginForm" (ngSubmit)="logForm()" novalidate>
-      <ion-item>
-        <ion-label floating color="primary">Username</ion-label>
-        <ion-input type="text" formControlName="username">
-        </ion-input>
-      </ion-item>
-
-      <tja-control-messages [control]="loginForm.controls.username"></tja-control-messages>
-
-      <ion-item>
-        <ion-label floating color="primary">Password</ion-label>
-        <ion-input type="password" formControlName="password">
-        </ion-input>
-      </ion-item>
-
-      <tja-control-messages [control]="loginForm.controls.password"></tja-control-messages>
-
-      <div padding>
-        <button ion-button type="submit" [disabled]="!loginForm.valid" color="primary" block>Create</button>
-      </div>
-    </form>
-  </ion-list>
-
-  <h5>Login State</h5>
-  <p>
-    {{loginState$ | async | json}}
-  </p>
-
-  <error [error]="(loginState$ | async).error">
-  </error>
+<ion-content>
+  <tja-create-user (createUser)="createUser($event)"
+                   [error]="error$ | async "></tja-create-user>
 </ion-content>

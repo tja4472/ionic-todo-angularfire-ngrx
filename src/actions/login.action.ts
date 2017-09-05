@@ -6,6 +6,7 @@ export const ANONYMOUS_AUTHENTICATION = '[Login] Anonymous Authentication';
 export const ANONYMOUS_AUTHENTICATION_FAILURE = '[Login] Anonymous Authentication Failure';
 export const BEGIN_AUTHENTICATION = '[Login] Begin Authentication';
 export const BEGIN_AUTHENTICATION_FAILURE = '[Login] Begin Authentication Failure';
+export const CLEAR_ERROR = '[Login] Clear Error';
 export const CREATE_USER = '[Login] Create User';
 export const CREATE_USER_FAILURE = '[Login] Create User Failure';
 export const EMAIL_AUTHENTICATION = '[Login] Email Authentication';
@@ -35,6 +36,12 @@ export class BeginAuthentication implements Action {
 
 export class BeginAuthenticationFailure implements Action {
     readonly type = BEGIN_AUTHENTICATION_FAILURE;
+
+    constructor() { }
+}
+
+export class ClearError implements Action {
+    readonly type = CLEAR_ERROR;
 
     constructor() { }
 }
@@ -102,6 +109,7 @@ export type Actions =
     AnonymousAuthenticationFailure |
     BeginAuthentication |
     BeginAuthenticationFailure |
+    ClearError |
     CreateUser |
     CreateUserFailure |
     EmailAuthentication |

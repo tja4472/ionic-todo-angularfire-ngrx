@@ -102,6 +102,19 @@ export class LoginService {
         }
     */
 
+    public clearError$(): void {
+        this.store.dispatch(
+            new LoginActions.ClearError());
+    }
+
+    public error$() {
+        // this works
+        return this.store.select(FromRootReducer.getLogin_GetError);
+
+        // this works
+        // return this.store.select((s) => s.login.error);
+    }
+
     getLoginState() {
         return this.store.select(FromRootReducer.getLoginState);
     }
