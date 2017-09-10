@@ -15,6 +15,7 @@ import { LoginService } from '../services/login.service';
 export interface IPageInterface {
   title: string;
   component: any;
+  icon: string;
   logsOut?: boolean;
 }
 
@@ -37,13 +38,13 @@ export class MyApp {
 
     // used for an example of ngFor and navigation
     this.pages = [
-      { title: 'Page One', component: Page1 },
-      { title: 'Page Two', component: Page2 },
-      { title: 'Current todos', component: TodoListPage },
-      { title: 'Completed todos', component: TodoCompletedListPage },
-      { title: 'Login', component: LoginPage },
-      { title: 'Register', component: RegisterPage },
-      { title: 'Logout', component: LoginPage, logsOut: true },
+      { title: 'Page One', component: Page1, icon: 'calendar' },
+      { title: 'Page Two', component: Page2, icon: 'calendar' },
+      { title: 'Current todos', component: TodoListPage, icon: 'calendar' },
+      { title: 'Completed todos', component: TodoCompletedListPage, icon: 'calendar' },
+      { title: 'Login', component: LoginPage, icon: 'log-in' },
+      { title: 'Register', component: RegisterPage, icon: 'person-add'  },
+      { title: 'Logout', component: LoginPage, logsOut: true, icon: 'log-out'},
     ];
 
     // loginService.initialise();
@@ -103,6 +104,13 @@ export class MyApp {
 
   }
 
+  // Used in view.
+  public isActive(page: IPageInterface) {
+    if (this.nav.getActive() && this.nav.getActive().component === page.component) {
+      return 'primary';
+    }
+    return;
+  }
   openPage(page: IPageInterface) {
     // Reset the content nav to have just this page
     // we wouldn't want the back button to show in this scenario
