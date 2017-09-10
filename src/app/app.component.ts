@@ -44,7 +44,7 @@ export class MyApp {
       { title: 'Completed todos', component: TodoCompletedListPage, icon: 'calendar' },
       { title: 'Login', component: LoginPage, icon: 'log-in' },
       { title: 'Register', component: RegisterPage, icon: 'person-add'  },
-      { title: 'Logout', component: LoginPage, logsOut: true, icon: 'log-out'},
+      { title: 'Sign Out', component: LoginPage, logsOut: true, icon: 'log-out'},
     ];
 
     // loginService.initialise();
