@@ -1,5 +1,5 @@
 import { Component, ViewChild } from '@angular/core';
-import { Nav, Platform } from 'ionic-angular';
+import { MenuController, Nav, Platform } from 'ionic-angular';
 import { StatusBar } from '@ionic-native/status-bar';
 
 import { Page1 } from '../pages/page1/page1';
@@ -25,12 +25,35 @@ export interface IPageInterface {
 export class MyApp {
   @ViewChild(Nav) nav: Nav;
 
+  public displayUserName: string;
+
+  appPages: IPageInterface[] = [
+    { title: 'Page One', component: Page1, icon: 'calendar' },
+    { title: 'Page Two', component: Page2, icon: 'calendar' },
+  ];
+
+  loggedInPages: IPageInterface[] = [
+    { title: 'Current Todos', component: TodoListPage, icon: 'calendar' },
+    { title: 'Completed Todos', component: TodoCompletedListPage, icon: 'calendar' },
+    { title: 'Sign Out', component: Page1, icon: 'log-out', logsOut: true }
+  ];
+
+  loggedOutPages: IPageInterface[] = [
+    { title: 'Sign In', component: SignInPage, icon: 'log-in' },
+    { title: 'Register', component: RegisterPage, icon: 'person-add' },
+  ];
+
+
+
   rootPage: any; // = Page1;
   loginState$: any;
   pages: IPageInterface[];
 
+  private readonly CLASS_NAME = 'MyApp';
+
   constructor(
     private loginService: LoginService,
+    public menu: MenuController,
     public platform: Platform,
     public statusBar: StatusBar,
   ) {
@@ -43,8 +66,8 @@ export class MyApp {
       { title: 'Current todos', component: TodoListPage, icon: 'calendar' },
       { title: 'Completed todos', component: TodoCompletedListPage, icon: 'calendar' },
       { title: 'Sign In', component: SignInPage, icon: 'log-in' },
-      { title: 'Register', component: RegisterPage, icon: 'person-add'  },
-      { title: 'Sign Out', component: SignInPage, logsOut: true, icon: 'log-out'},
+      { title: 'Register', component: RegisterPage, icon: 'person-add' },
+      { title: 'Sign Out', component: SignInPage, logsOut: true, icon: 'log-out' },
     ];
 
     // loginService.initialise();
@@ -79,14 +102,16 @@ export class MyApp {
       this.loginService.auth$.subscribe((firebaseUser) => {
         console.log('>>>>>>>>>>firebaseUser>', firebaseUser);
         if (firebaseUser) {
-          this.rootPage = TodoListPage;
+          this.doSignedIn();
+          // this.rootPage = TodoListPage;
         } else {
-          this.rootPage = SignInPage;
+          this.doSignedOut();
+          // this.rootPage = SignInPage;
         }
       });
-/*
+      /*
       this.loginService.getLoginState()
-        .subscribe(loginState => {
+        .subscribe((loginState) => {
           console.log('loginState>', loginState);
           console.log('loginState.isAuthenticated>', loginState.isAuthenticated);
           console.log('loginState.isAuthenticating>', loginState.isAuthenticating);
@@ -94,12 +119,12 @@ export class MyApp {
           if (loginState.isAuthenticating) {
             // this.rootPage = Page1;
           } else if (loginState.isAuthenticated) {
-            this.rootPage = HomePage;
+            // this.rootPage = HomePage;
           } else {
-            this.rootPage = LoginPage;
+            // this.rootPage = LoginPage;
           }
         });
-*/
+      */
     });
 
   }
@@ -122,5 +147,41 @@ export class MyApp {
         this.loginService.logout();
       }, 1000);
     }
+  }
+
+  private doSignedIn(): void {
+    // this.rootPage = TodoListPage;
+    this.enableMenu(true);
+    this.nav.setRoot(TodoListPage).catch(() => {
+      console.error('Didn\'t set nav root');
+    });
+
+
+    this.displayUserName = 'doSignedIn';
+  }
+
+  private doSignedOut(): void {
+    // this.rootPage = SignInPage;
+    this.displayUserName = 'Not logged in';
+    this.enableMenu(false);
+    this.nav.setRoot(SignInPage).catch(() => {
+      console.error('Didn\'t set nav root');
+    });
+  }
+
+  private enableMenu(loggedIn: boolean): void {
+    const loggedInMenu = 'loggedInMenu';
+    const loggedOutMenu = 'loggedOutMenu';
+
+    if (!this.menu.get(loggedInMenu)) {
+      console.error(`%s:enableMenu() *** WARNING: Menu not found>`, this.CLASS_NAME, loggedInMenu);
+    }
+
+    if (!this.menu.get(loggedOutMenu)) {
+      console.error(`%s:enableMenu() *** WARNING: Menu not found>`, this.CLASS_NAME, loggedOutMenu);
+    }
+
+    this.menu.enable(loggedIn, loggedInMenu);
+    this.menu.enable(!loggedIn, loggedOutMenu);
   }
 }
