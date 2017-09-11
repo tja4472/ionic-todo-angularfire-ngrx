@@ -1,0 +1,44 @@
+<form [formGroup]="signupForm"
+      novalidate>
+    <ion-list>
+        <ion-item>
+            <ion-label floating
+                       color="primary">Username</ion-label>
+            <ion-input type="text"
+                       formControlName="username">
+            </ion-input>
+        </ion-item>
+
+        <tja-control-messages [control]="signupForm.controls['username']"></tja-control-messages>
+
+        <ion-item>
+            <ion-label floating
+                       color="primary">Password</ion-label>
+            <ion-input type="password"
+                       formControlName="password">
+            </ion-input>
+        </ion-item>
+
+        <tja-control-messages [control]="signupForm.controls['password']"></tja-control-messages>
+
+        <ion-row responsive-sm>
+            <ion-col>
+                <button ion-button
+                        (click)="createUserClicked()"
+                        color="primary"
+                        block
+                        [disabled]="!signupForm.valid">Signup</button>
+            </ion-col>
+            <ion-col>
+                <button ion-button
+                        (click)="register.emit()"
+                        color="light"
+                        block>Register</button>
+            </ion-col>
+        </ion-row>
+    </ion-list>
+</form>
+
+<h3>
+    {{ error | json }}
+</h3>
