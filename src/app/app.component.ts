@@ -6,7 +6,7 @@ import { Page1 } from '../pages/page1/page1';
 import { Page2 } from '../pages/page2/page2';
 
 import { TodoListPage } from '../pages/todo-list/todo-list.page';
-import { LoginPage } from '../pages/login/login.page';
+import { SignInPage } from '../pages/sign-in/sign-in.page';
 import { RegisterPage } from '../pages/register/register.page';
 import { TodoCompletedListPage } from '../pages/todo-completed-list/todo-completed-list.page';
 
@@ -42,9 +42,9 @@ export class MyApp {
       { title: 'Page Two', component: Page2, icon: 'calendar' },
       { title: 'Current todos', component: TodoListPage, icon: 'calendar' },
       { title: 'Completed todos', component: TodoCompletedListPage, icon: 'calendar' },
-      { title: 'Login', component: LoginPage, icon: 'log-in' },
+      { title: 'Sign In', component: SignInPage, icon: 'log-in' },
       { title: 'Register', component: RegisterPage, icon: 'person-add'  },
-      { title: 'Sign Out', component: LoginPage, logsOut: true, icon: 'log-out'},
+      { title: 'Sign Out', component: SignInPage, logsOut: true, icon: 'log-out'},
     ];
 
     // loginService.initialise();
@@ -81,7 +81,7 @@ export class MyApp {
         if (firebaseUser) {
           this.rootPage = TodoListPage;
         } else {
-          this.rootPage = LoginPage;
+          this.rootPage = SignInPage;
         }
       });
 /*

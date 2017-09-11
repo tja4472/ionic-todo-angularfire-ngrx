@@ -17,15 +17,16 @@ import { LoginService } from '../../services/login.service';
 
 @Component({
   changeDetection: ChangeDetectionStrategy.OnPush,
-  templateUrl: 'login.page.html',
+  selector: 'tja-page-sign-in',
+  templateUrl: 'sign-in.page.html',
 })
-export class LoginPage {
+export class SignInPage {
   submitted = false;
   public loginForm: any;
 
   loginState$: any;
 
-// aaaa: FormControl;
+  // aaaa: FormControl;
 
   constructor(
     public formBuilder: FormBuilder,
@@ -41,32 +42,32 @@ export class LoginPage {
       username: ['', Validators.required],
     });
 
-// this.aaaa = this.loginForm.username;
+    // this.aaaa = this.loginForm.username;
 
   }
-/*
-https://forum.ionicframework.com/t/form-validation-property-does-not-exist/68309/5
+  /*
+  https://forum.ionicframework.com/t/form-validation-property-does-not-exist/68309/5
 
-isValid(field: string) {
-let formField = this.myForm.get(field);
-return formField.valid || formField.pristine;
-}
-*/
-
-/*
-  ngOnInit() {
-    console.log('ngOnInit');
-    console.log('ngOnInit:this.loginForm>', this.loginForm);
-    console.log('ngOnInit:this.loginForm.controls[username]>', this.loginForm.controls['username']);
-    this.aaaa = this.loginForm.controls['username'];
-
-
-this.aaaa.valueChanges.subscribe(value => {
-      // do something with value here
-      console.log('value>', value)
-    });
+  isValid(field: string) {
+  let formField = this.myForm.get(field);
+  return formField.valid || formField.pristine;
   }
-*/
+  */
+
+  /*
+    ngOnInit() {
+      console.log('ngOnInit');
+      console.log('ngOnInit:this.loginForm>', this.loginForm);
+      console.log('ngOnInit:this.loginForm.controls[username]>', this.loginForm.controls['username']);
+      this.aaaa = this.loginForm.controls['username'];
+
+
+  this.aaaa.valueChanges.subscribe(value => {
+        // do something with value here
+        console.log('value>', value)
+      });
+    }
+  */
 
   /*
     ionViewDidLoad() {

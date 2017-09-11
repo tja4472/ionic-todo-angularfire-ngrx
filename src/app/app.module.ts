@@ -5,7 +5,7 @@ import { MyApp } from './app.component';
 import { Page1 } from '../pages/page1/page1';
 import { Page2 } from '../pages/page2/page2';
 import { TodoListPage } from '../pages/todo-list/todo-list.page';
-import { LoginPage } from '../pages/login/login.page';
+import { SignInPage } from '../pages/sign-in/sign-in.page';
 import { RegisterPage } from '../pages/register/register.page';
 import { TodoCompletedListPage } from '../pages/todo-completed-list/todo-completed-list.page';
 
@@ -67,7 +67,7 @@ import './rxjs-operators';
     Page1,
     Page2,
     TodoListPage,
-    LoginPage,
+    SignInPage,
     TodoCompletedDetailModal,
     TodoDetailModal,
     RegisterPage,
@@ -95,7 +95,7 @@ import './rxjs-operators';
     Page1,
     Page2,
     TodoListPage,
-    LoginPage,
+    SignInPage,
     TodoCompletedDetailModal,
     TodoDetailModal,
     RegisterPage,
