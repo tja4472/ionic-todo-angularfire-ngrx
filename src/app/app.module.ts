@@ -22,6 +22,7 @@ import { TodoListPopover } from '../components/todo-list-popover/todo-list.popov
 import { TodoDetailComponent } from '../shared/components/todo-detail/todo-detail.component';
 import { ControlMessagesComponent } from '../shared/components/control-messages/control-messages.component';
 import { CreateUserComponent } from '../shared/components/create-user/create-user.component';
+import { SignInComponent } from '../shared/components/sign-in/sign-in.component';
 import { TodoListComponent } from '../shared/components/todo-list/todo-list.component';
 import { TodoCompletedListComponent } from '../shared/components/todo-completed-list/todo-completed-list.component';
 import { ValidationService } from '../shared/services/validation.service';
@@ -58,6 +59,7 @@ import './rxjs-operators';
     CreateUserComponent,
     ControlMessagesComponent,
     Error,
+    SignInComponent,
     TodoListPopover,
     TodoDetailComponent,
     TodoListComponent,

@@ -1,107 +1,46 @@
-import { ChangeDetectionStrategy, Component } from '@angular/core';
+import { Component } from '@angular/core';
+
 import { NavController } from 'ionic-angular';
-import { Validators, FormBuilder } from '@angular/forms';
 
 import { RegisterPage } from '../register/register.page';
 
-// import { Error } from '../../components/error/error.component';
-
 import { LoginService } from '../../services/login.service';
 
-// import { Store } from '@ngrx/store';
-// import * as FromRootReducer from '../../reducers';
+import { ISignInComponentResult } from '../../shared/components/sign-in/sign-in.component';
 
-// import { Validators, FormBuilder, FormGroup } from '@angular/forms';
-// import { ControlMessages } from '../../components/control-messages/control-messages.component';
-// import { ValidationService } from '../../validation.service';
+// changeDetection: ChangeDetectionStrategy.OnPush,
 
 @Component({
-  changeDetection: ChangeDetectionStrategy.OnPush,
   selector: 'tja-page-sign-in',
   templateUrl: 'sign-in.page.html',
 })
 export class SignInPage {
-  submitted = false;
-  public loginForm: any;
+  // Used in view
+  public viewError$: any;
 
-  loginState$: any;
-
-  // aaaa: FormControl;
+  private readonly CLASS_NAME = 'SignInPage';
 
   constructor(
-    public formBuilder: FormBuilder,
     public loginService: LoginService,
     public nav: NavController,
-    // private store: Store<FromRootReducer.State>,
   ) {
-    //
-    this.loginState$ = loginService.getLoginState();
-
-    this.loginForm = formBuilder.group({
-      password: ['', Validators.required],
-      username: ['', Validators.required],
-    });
-
-    // this.aaaa = this.loginForm.username;
-
-  }
-  /*
-  https://forum.ionicframework.com/t/form-validation-property-does-not-exist/68309/5
-
-  isValid(field: string) {
-  let formField = this.myForm.get(field);
-  return formField.valid || formField.pristine;
-  }
-  */
-
-  /*
-    ngOnInit() {
-      console.log('ngOnInit');
-      console.log('ngOnInit:this.loginForm>', this.loginForm);
-      console.log('ngOnInit:this.loginForm.controls[username]>', this.loginForm.controls['username']);
-      this.aaaa = this.loginForm.controls['username'];
-
-
-  this.aaaa.valueChanges.subscribe(value => {
-        // do something with value here
-        console.log('value>', value)
-      });
-    }
-  */
-
-  /*
-    ionViewDidLoad() {
-      //
-      this.loginForm = this.formBuilder.group({
-        username: ['', Validators.required],
-        password: ['', Validators.required],
-      });
-    }
-  */
-  logForm() {
-    // console.log(this.loginForm.value);
-    // console.log('loginForm>', this.loginForm);
-
-    this.submitted = true;
-
-    if (this.loginForm.valid) {
-
-      this.loginService.emailAuthentication(
-        this.loginForm.value.username,
-        this.loginForm.value.password
-      );
-    }
+    console.log('%s:constructor', this.CLASS_NAME);
+    this.viewError$ = loginService.error$();
   }
 
-  onSignup() {
-    this.nav.push(RegisterPage);
+  public ionViewDidLeave() {
+    console.log('###%s:ionViewDidLeave', this.CLASS_NAME);
+    this.loginService.clearError$();
   }
 
-  signInAnonymously() {
-    this.loginService.anonymousAuthentication();
+  public viewRegister(): void {
+    console.log('viewRegister>');
+    // Should be root.
+    this.nav.setRoot(RegisterPage);
   }
 
-  signInWithGoogle() {
-    this.loginService.googleAuthentication();
+  public viewSignIn(x: ISignInComponentResult): void {
+    console.log('viewSignIn>', x);
+    this.loginService.emailAuthentication(x.email, x.password);
   }
 }
