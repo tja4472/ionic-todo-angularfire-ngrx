@@ -8,42 +8,34 @@ import { Todo } from '../../shared/models/todo.model';
   templateUrl: 'todo-detail.modal.html',
 })
 export class TodoDetailModal {
-  // Called from template.
-  public todo: Todo;
+  // Called from view.
+  public viewTodo: Todo;
 
-  /*
-    private _todo: ITodo =
-    {
-      $key: undefined,
-      description: undefined,
-      index: 0,
-      isComplete: false,
-      name: '',
-      userId: '',
-    };
-  */
-  // private isEditing: boolean;
+  private readonly CLASS_NAME = 'TodoDetailModal';
 
   constructor(
-    params: NavParams,
+    navParams: NavParams,
     public viewController: ViewController
   ) {
-    console.log('params>', params);
-    console.log('params:get>', params.get('todo'));
+    console.log(`%s:constructor`, this.CLASS_NAME);
+    // navParams passes by reference.
+    const navParamsTodo: Readonly<Todo> = Object.assign(new Todo(), navParams.get('todo'));
+    console.log('navParamsTodo>', navParamsTodo);
+    console.log('navParamsTodo.isNew()>', navParamsTodo.isNew());
 
-    const paramTodo: Todo = params.get('todo');
-
-
-
-    if (paramTodo) {
+    this.viewTodo = Object.assign(new Todo(), navParamsTodo);
+    console.log('this.todo>', this.viewTodo);
+    /*
+    if (navParamsTodo) {
       //  this.todo = Object.assign(this.todo, paramTodo);
       console.log('paramTodo = true');
-      this.todo = paramTodo;
+      this.viewTodo = Object.assign(new Todo(), navParamsTodo);
     } else {
       console.log('paramTodo = false');
-      this.todo = new Todo();
+      this.viewTodo = new Todo();
     }
-    console.log('this.todo>', this.todo);
+    */
+
 
     /*
         this.isEditing = !!paramTodo;
@@ -58,15 +50,13 @@ export class TodoDetailModal {
 
   }
 
-  // Called from template.
-  itemCancelled() {
-    console.log('itemCancelled>');
+  public viewItemCancelled() {
+    console.log('viewItemCancelled>');
     this.viewController.dismiss();
   }
 
-  // Called from template.
-  itemSaved(item: Todo) {
-    console.log('itemSaved>', item);
+  public viewItemSaved(item: Todo) {
+    console.log('viewItemSaved>', item);
     this.viewController.dismiss(item);
   }
 }

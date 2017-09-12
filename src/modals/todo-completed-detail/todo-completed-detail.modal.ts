@@ -25,16 +25,19 @@ export class TodoCompletedDetailModal {
 
   constructor(
     private formBuilder: FormBuilder,
-    params: NavParams,
+    navParams: NavParams,
     public viewController: ViewController
   ) {
-    console.log('params:get>', params.get('todo'));
+    // navParams passes by reference.
+    const navParamsTodo: Readonly<TodoCompleted> = Object.assign(new TodoCompleted(), navParams.get('todo'));
+    //
+    console.log('params:get>', navParams.get('todo'));
 
-    const paramTodo: TodoCompleted = params.get('todo');
-    this.isEditing = !!paramTodo;
+    // const navParamsTodo: TodoCompleted = navParams.get('todo');
+    this.isEditing = !!navParamsTodo;
 
     if (this.isEditing) {
-      this.todo = paramTodo;
+      this.todo = navParamsTodo;
     }
 
     this.todoForm = this.formBuilder.group({
