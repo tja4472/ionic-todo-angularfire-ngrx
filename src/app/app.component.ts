@@ -1,3 +1,4 @@
+
 import { Component, ViewChild } from '@angular/core';
 import { MenuController, Nav, Platform } from 'ionic-angular';
 import { StatusBar } from '@ionic-native/status-bar';
@@ -11,6 +12,8 @@ import { RegisterPage } from '../pages/register/register.page';
 import { TodoCompletedListPage } from '../pages/todo-completed-list/todo-completed-list.page';
 
 import { LoginService } from '../services/login.service';
+
+import { SignedInUser } from '../models/signed-in-user.model';
 
 export interface IPageInterface {
   title: string;
@@ -50,6 +53,8 @@ export class MyApp {
   pages: IPageInterface[];
 
   private readonly CLASS_NAME = 'MyApp';
+
+  private signedInUser: SignedInUser | null = null;
 
   constructor(
     private loginService: LoginService,
@@ -99,16 +104,30 @@ export class MyApp {
       // Here you can do any higher level native things you might need.
       this.statusBar.styleDefault();
 
-      this.loginService.auth$.subscribe((firebaseUser) => {
-        console.log('>>>>>>>>>>firebaseUser>', firebaseUser);
-        if (firebaseUser) {
-          this.doSignedIn();
-          // this.rootPage = TodoListPage;
+      this.loginService.notifier$.subscribe((signedInUser: SignedInUser) => {
+        console.log('>>>>>>>>>>signedInUser>', signedInUser);
+        this.signedInUser = signedInUser;
+
+        if (signedInUser) {
+          this.doSignedIn(signedInUser);
         } else {
           this.doSignedOut();
-          // this.rootPage = SignInPage;
         }
       });
+
+/*
+      this.loginService.auth$.subscribe((firebaseUser) => {
+        console.log('>>>>>>>>>>firebaseUser>', firebaseUser);
+
+                      if (firebaseUser) {
+                        this.doSignedIn();
+                        // this.rootPage = TodoListPage;
+                      } else {
+                        this.doSignedOut();
+                        // this.rootPage = SignInPage;
+                      }
+      });
+*/
       /*
       this.loginService.getLoginState()
         .subscribe((loginState) => {
@@ -149,7 +168,7 @@ export class MyApp {
     }
   }
 
-  private doSignedIn(): void {
+  private doSignedIn(user: SignedInUser): void {
     // this.rootPage = TodoListPage;
     this.enableMenu(true);
     this.nav.setRoot(TodoListPage).catch(() => {
@@ -157,12 +176,12 @@ export class MyApp {
     });
 
 
-    this.displayUserName = 'doSignedIn';
+    this.displayUserName = user.displayName;
   }
 
   private doSignedOut(): void {
     // this.rootPage = SignInPage;
-    this.displayUserName = 'Not logged in';
+    this.displayUserName = 'Not signed in';
     this.enableMenu(false);
     this.nav.setRoot(SignInPage).catch(() => {
       console.error('Didn\'t set nav root');
