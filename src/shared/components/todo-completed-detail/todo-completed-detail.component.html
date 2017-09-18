@@ -1,0 +1,55 @@
+<ion-header>
+    <ion-toolbar>
+        <ion-buttons left>
+            <button ion-button
+                    (click)="viewDismiss()">
+                cancel      
+            </button>
+        </ion-buttons>
+        <ion-buttons end>
+            <button ion-button
+                    (click)="viewRemove()">
+                remove      
+            </button>
+            <button ion-button
+                    (click)="viewSave()"
+                    [disabled]="!(this.todoForm.dirty && this.todoForm.valid)">
+                save      
+            </button>
+        </ion-buttons>
+    </ion-toolbar>
+</ion-header>
+
+<ion-content padding>
+    <form [formGroup]="todoForm"
+          novalidate>
+        <ion-list>
+            <ion-item>
+                <ion-label stacked
+                           color="primary">Complete?</ion-label>
+                <ion-toggle left
+                            formControlName="isComplete"></ion-toggle>
+            </ion-item>
+
+            <ion-item>
+                <ion-label stacked
+                           color="primary">Name</ion-label>
+                <ion-input type="text"
+                           formControlName="name">
+                </ion-input>
+            </ion-item>
+
+            <tja-control-messages [control]="todoForm.controls['name']"></tja-control-messages>
+
+            <ion-item>
+                <ion-label stacked
+                           color="primary">Description</ion-label>
+                <ion-input type="text"
+                           formControlName="description">
+                </ion-input>
+            </ion-item>
+
+            <tja-control-messages [control]="todoForm.controls['description']"></tja-control-messages>
+        </ion-list>
+    </form>
+</ion-content>
