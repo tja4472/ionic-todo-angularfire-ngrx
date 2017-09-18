@@ -1,48 +1,5 @@
-<ion-header>
-	<ion-toolbar>
-		<ion-buttons left>
-			<button ion-button (click)="dismiss()">
-                cancel      
-            </button>
-		</ion-buttons>
-		<ion-buttons end>
-			<button ion-button (click)="remove()">
-                remove      
-            </button>			
-			<button ion-button (click)="save()">
-                save      
-            </button>
-		</ion-buttons>
-	</ion-toolbar>
-</ion-header>
-
-<ion-content padding class="page1">
-
-	<ion-list>
-		<form [formGroup]="todoForm" novalidate>
-			<ion-item>
-				<ion-label color="primary">Complete?</ion-label>
-				<ion-checkbox formControlName="isComplete">
-				</ion-checkbox>
-			</ion-item>
-
-			<ion-item>
-				<ion-label floating color="primary">Name</ion-label>
-				<ion-input type="text" formControlName="name">
-				</ion-input>
-			</ion-item>
-
-			<tja-control-messages [control]="todoForm.controls['name']"></tja-control-messages>
-
-			<ion-item>
-				<ion-label floating color="primary">Description</ion-label>
-				<ion-input type="text" formControlName="description">
-				</ion-input>
-			</ion-item>
-
-			<tja-control-messages [control]="todoForm.controls['description']"></tja-control-messages>
-
-		</form>
-	</ion-list>
-
-</ion-content>
+<tja-todo-completed-detail [todoCompleted]='viewTodoCompleted'
+                           (itemCancelled)="viewItemCancelled()"
+                           (itemRemoved)="viewItemRemove()"
+                           (itemSaved)="viewItemSaved($event)">
+</tja-todo-completed-detail>
