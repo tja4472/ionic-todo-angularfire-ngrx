@@ -4,7 +4,6 @@ export class Todo {
     index: number = 0;
     isComplete: boolean = false;
     name: string = '';
-    userId: string = '';
 
     public constructor(
         fields?: {
@@ -13,7 +12,6 @@ export class Todo {
             index?: number,
             isComplete?: boolean,
             name?: string,
-            userId?: string,
         }) {
         if (fields) {
             Object.assign(this, fields);
