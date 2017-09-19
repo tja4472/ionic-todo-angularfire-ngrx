@@ -3,7 +3,6 @@ export class TodoCompleted {
     description?: string = undefined;
     isComplete: boolean = true;
     name: string = '';
-    userId: string = '';
 
     public constructor(
         fields?: {
@@ -11,7 +10,6 @@ export class TodoCompleted {
             description?: string,
             isComplete?: boolean,
             name?: string,
-            userId?: string,
         }) {
         if (fields) {
             Object.assign(this, fields);
