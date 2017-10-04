@@ -18,8 +18,22 @@ export class TodoCompletedDataService {
     }
 
     getData(): Observable<TodoCompleted[]> {
-        return this.af.list(FIREBASE_COMPLETED_TODOS)
-            .map((x) => x.map((d: any) => fromFirebaseRecord(d)));
+        return this.af.list(
+            FIREBASE_COMPLETED_TODOS)
+            .snapshotChanges()
+            .map((actions) => actions.map((action) => {
+                if ((action === null)
+                    || (action.payload === null)
+                    || (action.payload.key === null)
+                ) {
+                    return new TodoCompleted();
+                }
+
+                const $key = action.payload.key;
+                const data = { $key, ...action.payload.val() };
+
+                return fromFirebaseRecord(data);
+            }));
     }
 
     removeItem(itemKey: string) {
@@ -56,6 +70,7 @@ function toFirebaseRecord(item: TodoCompleted): IFirebaseRecord {
     console.log('toFirebaseRecord>', result);
     return result;
 }
+
 
 function fromFirebaseRecord(x: any): TodoCompleted {
     console.log('TodoCompletedDataService:fromFirebaseRecord>', x);

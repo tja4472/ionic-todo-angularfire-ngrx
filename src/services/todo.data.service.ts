@@ -23,12 +23,23 @@ export class TodoDataService {
     }
 
     getData(): Observable<Todo[]> {
-        return this.af.list(FIREBASE_CURRENT_TODOS, {
-            query: {
-                orderByChild: 'index'
-            }
-        })
-            .map((x) => x.map((d: any) => fromFirebaseTodo(d)));
+        return this.af.list(
+            FIREBASE_CURRENT_TODOS,
+            (ref) => ref.orderByChild('index'))
+            .snapshotChanges()
+            .map((actions) => actions.map((action) => {
+                if ((action === null)
+                    || (action.payload === null)
+                    || (action.payload.key === null)
+                ) {
+                    return new Todo();
+                }
+
+                const $key = action.payload.key;
+                const data = { $key, ...action.payload.val() };
+
+                return fromFirebaseTodo(data);
+            }));
     }
 
     reorderItemsAndUpdate(indexes: IReorderArrayIndexes, todos: Todo[]) {
@@ -94,21 +105,7 @@ function fromFirebaseTodo(x: any): Todo {
         });
 
     console.log('TodoDataService:fromFirebaseTodo:result>', result);
-    /*
-        const result: ITodo = {
-            $key: x.$key,
-            description: x.description,
-            index: x.index,
-            isComplete: x.isComplete,
-            name: x.name,
-            userId: '',
-        };
-    */
-    /*
-        if (result.description === undefined) {
-            result.description = null;
-        }
-    */
+
     if (result.isComplete === undefined) {
         result.isComplete = false;
     }
