@@ -2,7 +2,6 @@ import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs/Observable';
 
 import { AngularFireDatabase } from 'angularfire2/database';
-// import { AngularFireOfflineDatabase } from 'angularfire2-offline/database';
 
 import { IReorderArrayIndexes } from '../shared/models/reorder-array-indexes.model';
 import { Todo } from '../shared/models/todo.model';
@@ -11,8 +10,16 @@ import { reorderArray } from 'ionic-angular';
 
 const FIREBASE_CURRENT_TODOS = '/todo/currentTodos';
 
+interface IFirebaseTodo {
+    description?: string;
+    index: number;
+    name: string;
+    isComplete: boolean;
+}
+
 @Injectable()
 export class TodoDataService {
+
     private fbCurrentTodos: any; // readonly
 
     constructor(
@@ -38,7 +45,7 @@ export class TodoDataService {
                 const $key = action.payload.key;
                 const data = { $key, ...action.payload.val() };
 
-                return fromFirebaseTodo(data);
+                return this.fromFirebaseTodo(data);
             }));
     }
 
@@ -61,54 +68,45 @@ export class TodoDataService {
 
         if (todo.isNew()) {
             // insert.
-            this.fbCurrentTodos.push(toFirebaseTodo(todo));
+            this.fbCurrentTodos.push(this.toFirebaseTodo(todo));
         } else {
             // update.
-            this.fbCurrentTodos.update(todo.$key, toFirebaseTodo(todo));
+            this.fbCurrentTodos.update(todo.$key, this.toFirebaseTodo(todo));
         }
     }
-}
 
-interface IFirebaseTodo {
-    description?: string;
-    index: number;
-    name: string;
-    isComplete: boolean;
-}
+    private toFirebaseTodo(todo: Todo): IFirebaseTodo {
+        //
+        const result: IFirebaseTodo = {
+            description: todo.description,
+            index: todo.index,
+            isComplete: todo.isComplete,
+            name: todo.name,
+        };
 
-function toFirebaseTodo(todo: Todo): IFirebaseTodo {
-    // Important!
-    // angularfire2-offline: Properties have to be alphabetical.
-    // https://github.com/adriancarriger/angularfire2-offline/issues/57
-    const result: IFirebaseTodo = {
-        description: todo.description,
-        index: todo.index,
-        isComplete: todo.isComplete,
-        name: todo.name,
-    };
-
-    console.log('toFirebaseTodo>', result);
-    return result;
-}
-
-function fromFirebaseTodo(x: any): Todo {
-    //
-    console.log('TodoDataService:fromFirebaseTodo>', x);
-
-    const result: Todo = new Todo(
-        {
-            $key: x.$key,
-            description: x.description,
-            index: x.index,
-            isComplete: x.isComplete,
-            name: x.name,
-        });
-
-    console.log('TodoDataService:fromFirebaseTodo:result>', result);
-
-    if (result.isComplete === undefined) {
-        result.isComplete = false;
+        console.log('toFirebaseTodo>', result);
+        return result;
     }
 
-    return result;
+    private fromFirebaseTodo(x: any): Todo {
+        //
+        console.log('TodoDataService:fromFirebaseTodo>', x);
+
+        const result: Todo = new Todo(
+            {
+                $key: x.$key,
+                description: x.description,
+                index: x.index,
+                isComplete: x.isComplete,
+                name: x.name,
+            });
+
+        console.log('TodoDataService:fromFirebaseTodo:result>', result);
+
+        if (result.isComplete === undefined) {
+            result.isComplete = false;
+        }
+
+        return result;
+    }
 }
